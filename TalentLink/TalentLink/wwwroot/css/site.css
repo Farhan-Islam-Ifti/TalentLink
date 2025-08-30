@@ -1,0 +1,62 @@
+/* Custom styles for TalentLink */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.dashboard-card {
+    transition: transform 0.3s;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+    }
+
+.stat-card {
+    text-align: center;
+    padding: 20px;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
+    border: none;
+}
+
+.sidebar {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+    .sidebar .nav-link {
+        color: white;
+        padding: 15px 20px;
+        margin: 5px 0;
+        border-radius: 10px;
+    }
+
+        .sidebar .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            font-weight: 600;
+        }
