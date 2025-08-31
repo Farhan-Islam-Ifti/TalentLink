@@ -1,0 +1,168 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+<!-- Hero Section -->
+<section class="vh-100 hero-section d-flex align-items-center">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Left: Text + Buttons -->
+            <div class="col-lg-6 text-dark" data-aos="fade-right">
+                <h1 class="display-3 fw-bold mb-3">TalentLink</h1>
+                <p class="lead mb-4">Linking Talent with Opportunities — Find your dream job or hire top talent.</p>
+                <div class="d-flex gap-3">
+                    <a class="btn btn-gradient btn-lg animate__animated animate__pulse animate__infinite" asp-controller="Account" asp-action="Login">Login</a>
+                    <a class="btn btn-gradient-outline btn-lg animate__animated animate__pulse animate__infinite animate__delay-1s" asp-controller="Account" asp-action="Register">Sign Up</a>
+                </div>
+            </div>
+
+            <!-- Right: Job-related SVG Illustration -->
+            <div class="col-lg-6 text-center" data-aos="fade-left">
+                <svg class="hero-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+                    <!-- Background circles -->
+                    <circle cx="500" cy="300" r="250" fill="#F5F5F7" />
+                    <circle cx="400" cy="250" r="180" fill="#EDEDED" />
+
+                    <!-- Magnifying Glass -->
+                    <circle cx="400" cy="300" r="40" stroke="#6366F1" stroke-width="4" fill="transparent" />
+                    <line x1="430" y1="330" x2="470" y2="370" stroke="#6366F1" stroke-width="4" stroke-linecap="round" />
+
+                    <!-- Job Cards -->
+                    <rect x="320" y="380" width="160" height="40" rx="8" fill="#fff" />
+                    <rect x="330" y="385" width="60" height="8" fill="#6366F1" />
+                    <rect x="330" y="400" width="100" height="8" fill="#EC4899" />
+
+                    <rect x="320" y="440" width="160" height="40" rx="8" fill="#fff" />
+                    <rect x="330" y="445" width="80" height="8" fill="#F59E0B" />
+                    <rect x="330" y="460" width="90" height="8" fill="#6a5af9" />
+
+                    <!-- Person Icon -->
+                    <circle cx="400" cy="200" r="25" fill="#6366F1" />
+                    <rect x="385" y="225" width="30" height="50" rx="8" fill="#6366F1" />
+
+                    <!-- Floating small circles -->
+                    <circle cx="350" cy="150" r="15" fill="#F59E0B" class="float-circle" />
+                    <circle cx="450" cy="120" r="10" fill="#EC4899" class="float-circle" />
+                    <circle cx="420" cy="80" r="12" fill="#6366F1" class="float-circle" />
+                </svg>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- Features Section -->
+<section class="py-5 features-section">
+    <div class="container">
+        <div class="row mb-5 text-center text-dark">
+            <h2 class="fw-bold" data-aos="fade-down">Why Choose TalentLink?</h2>
+            <p class="text-muted" data-aos="fade-up" data-aos-delay="200">We connect job seekers and employers efficiently with modern design and smooth animations.</p>
+        </div>
+        <div class="row g-4 text-center">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="card h-100 shadow-sm feature-card">
+                    <div class="card-body">
+                        <i class="fas fa-briefcase fa-3x mb-3 text-gradient"></i>
+                        <h5>Find Jobs</h5>
+                        <p>Thousands of opportunities across industries, updated daily.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="card h-100 shadow-sm feature-card">
+                    <div class="card-body">
+                        <i class="fas fa-user-tie fa-3x mb-3 text-gradient"></i>
+                        <h5>Hire Talent</h5>
+                        <p>Connect with skilled professionals to grow your business.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="card h-100 shadow-sm feature-card">
+                    <div class="card-body">
+                        <i class="fas fa-chart-line fa-3x mb-3 text-gradient"></i>
+                        <h5>Career Growth</h5>
+                        <p>Boost your career with professional opportunities and guidance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Catchy Messages Section -->
+<section class="py-5 messages-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold" data-aos="fade-down">Why TalentLink is Perfect for You</h2>
+            <p class="text-muted" data-aos="fade-up" data-aos-delay="200">
+                Whether you are looking for your dream job or top talent, we've got you covered.
+            </p>
+        </div>
+        <div class="row g-4 text-center">
+            <!-- Job Seekers -->
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="card shadow-sm p-4 message-card">
+                    <i class="fas fa-user-graduate fa-3x mb-3 text-gradient"></i>
+                    <h5>For Job Seekers</h5>
+                    <p>Discover thousands of jobs tailored to your skills, grow your career, and get hired faster than ever before.</p>
+                    <a class="btn btn-gradient btn-sm mt-2" asp-controller="Account" asp-action="Register">Start Searching</a>
+                </div>
+            </div>
+            <!-- Employers/Companies -->
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="card shadow-sm p-4 message-card">
+                    <i class="fas fa-building fa-3x mb-3 text-gradient"></i>
+                    <h5>For Companies</h5>
+                    <p>Find the perfect candidate quickly, manage your job postings efficiently, and grow your team with top talent.</p>
+                    <a class="btn btn-gradient btn-sm mt-2" asp-controller="Account" asp-action="Register">Post a Job</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Jobs Section -->
+<section class="py-5 jobs-section bg-light">
+    <div class="container">
+        <div class="text-center mb-5 text-dark">
+            <h2 class="fw-bold" data-aos="fade-down">Latest Jobs</h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="card shadow-sm h-100 job-card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Frontend Developer</h5>
+                        <p class="text-muted">BrightApps · Dhaka</p>
+                        <p class="fw-bold">৳80k - ৳120k</p>
+                        <a class="btn btn-gradient btn-sm" asp-controller="Account" asp-action="Login">Apply</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="card shadow-sm h-100 job-card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Data Scientist</h5>
+                        <p class="text-muted">InsightLab · Remote</p>
+                        <p class="fw-bold">৳100k - ৳160k</p>
+                        <a class="btn btn-gradient btn-sm" asp-controller="Account" asp-action="Login">Apply</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="card shadow-sm h-100 job-card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Product Designer</h5>
+                        <p class="text-muted">PixelWorks · Chattogram</p>
+                        <p class="fw-bold">৳60k - ৳95k</p>
+                        <a class="btn btn-gradient btn-sm" asp-controller="Account" asp-action="Login">Apply</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
