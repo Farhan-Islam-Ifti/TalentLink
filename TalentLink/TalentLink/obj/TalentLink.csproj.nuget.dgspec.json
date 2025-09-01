@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Slash\\Documents\\New folder\\TalentLink\\TalentLink\\TalentLink.csproj": {}
+    "E:\\TalentLink\\TalentLink\\TalentLink\\TalentLink.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Slash\\Documents\\New folder\\TalentLink\\TalentLink\\TalentLink.csproj": {
+    "E:\\TalentLink\\TalentLink\\TalentLink\\TalentLink.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Slash\\Documents\\New folder\\TalentLink\\TalentLink\\TalentLink.csproj",
+        "projectUniqueName": "E:\\TalentLink\\TalentLink\\TalentLink\\TalentLink.csproj",
         "projectName": "TalentLink",
-        "projectPath": "C:\\Users\\Slash\\Documents\\New folder\\TalentLink\\TalentLink\\TalentLink.csproj",
-        "packagesPath": "C:\\Users\\Slash\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Slash\\Documents\\New folder\\TalentLink\\TalentLink\\obj\\",
+        "projectPath": "E:\\TalentLink\\TalentLink\\TalentLink\\TalentLink.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "E:\\TalentLink\\TalentLink\\TalentLink\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Slash\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -96,7 +96,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
