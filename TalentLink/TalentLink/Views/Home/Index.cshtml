@@ -1,6 +1,20 @@
 ﻿@{
     ViewData["Title"] = "Home";
 }
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    var userId = HttpContextAccessor.HttpContext.Session.GetString("UserId");
+    var firstName = HttpContextAccessor.HttpContext.Session.GetString("FirstName");
+}
+
+@if (!string.IsNullOrEmpty(userId))
+{
+    <script>
+        localStorage.setItem("UserId", '@userId');
+        localStorage.setItem("FirstName", '@firstName');
+    </script>
+}
+
 <!-- Hero Section -->
 <section class="vh-100 hero-section d-flex align-items-center">
     <div class="container">

@@ -10,7 +10,7 @@ namespace TalentLink.Models
         public string Skills { get; set; } = string.Empty;
         public string Experience { get; set; } = string.Empty;
         public string Education { get; set; } = string.Empty;
-        public string CVFilePath { get; set; } = string.Empty;
+        public string? CVFilePath { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Address { get; set; } = string.Empty;
 

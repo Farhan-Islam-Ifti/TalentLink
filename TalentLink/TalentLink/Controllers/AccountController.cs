@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TalentLink.Data;
 using TalentLink.Models;
@@ -10,11 +11,13 @@ namespace TalentLink.Controllers
     {
         private readonly IAuthService _authService;
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public AccountController(IAuthService authService, ApplicationDbContext context)
+        public AccountController(IAuthService authService, ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _authService = authService;
             _context = context;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -28,6 +31,84 @@ namespace TalentLink.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Profile(string userId)
+        {
+            if (string.IsNullOrEmpty(userId))
+                return RedirectToAction("Login");
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                return NotFound("User not found");
+
+            object model;
+
+            if (user.Role == UserRole.JobSeeker)
+            {
+                var jsProfile = await _context.JobSeekers.FirstOrDefaultAsync(js => js.UserId == user.Id);
+
+                model = new
+                {
+                    user.Id,
+                    user.Email,
+                    user.FirstName,
+                    user.LastName,
+                    user.PhoneNumber,
+                    user.Role,
+                    user.Image,
+                    Skills = jsProfile?.Skills,
+                    Experience = jsProfile?.Experience,
+                    Education = jsProfile?.Education,
+                    CVFilePath = jsProfile?.CVFilePath,
+                    DateOfBirth = jsProfile?.DateOfBirth,
+                    Address = jsProfile?.Address
+                };
+
+                return View("~/Views/JobSeeker/Profile.cshtml", model);
+            }
+            else if (user.Role == UserRole.Company)
+            {
+                var companyProfile = await _context.Companies.FirstOrDefaultAsync(c => c.UserId == user.Id);
+
+                model = new
+                {
+                    user.Id,
+                    user.Email,
+                    user.FirstName,
+                    user.LastName,
+                    user.PhoneNumber,
+                    user.Role,
+                    user.Image,
+                    CompanyName = companyProfile?.CompanyName,
+                    Industry = companyProfile?.Industry,
+                    Website = companyProfile?.Website,
+                    Address = companyProfile?.Address,
+                    Description = companyProfile?.Description
+                };
+
+                return View("~/Views/Company/Profile.cshtml", model);
+            }
+            else if (user.Role == UserRole.Admin)
+            {
+                model = new
+                {
+                    user.Id,
+                    user.Email,
+                    user.FirstName,
+                    user.LastName,
+                    user.PhoneNumber,
+                    user.Role,
+                    user.Image
+                };
+
+                return View("~/Views/Admin/Profile.cshtml", model);
+            }
+
+            return View("Error", "Invalid role");
+        }
+
+
 
         [HttpPost]
         public async Task<IActionResult> Register(RegisterModel model)
@@ -116,30 +197,32 @@ namespace TalentLink.Controllers
             });
 
             // Get user to determine role-based redirect
-            var user = await _authService.GetUserByIdAsync((await _authService.GetUserByIdAsync(model.Email))?.Id);
+            var user = await _userManager.FindByEmailAsync(model.Email);
 
-            if (user != null)
+            if (user == null)
             {
-                switch (user.Role)
-                {
-                    case UserRole.Admin:
-                        return RedirectToAction("Dashboard", "Admin");
-                    case UserRole.Company:
-                        return RedirectToAction("Dashboard", "Company");
-                    case UserRole.JobSeeker:
-                        return RedirectToAction("Dashboard", "JobSeeker");
-                    default:
-                        return RedirectToAction("Index", "Home");
-                }
+                ModelState.AddModelError("", "User not found.");
+                return View(model);
             }
+            // Store in session (backend)
+            HttpContext.Session.SetString("UserId", user.Id);
+            HttpContext.Session.SetString("FirstName", user.FirstName);
 
-            return RedirectToAction("Index", "Home");
+            // Pass info via query string to dashboard or home page
+            return RedirectToAction("Index", "Home", new { userId = user.Id, firstName = user.FirstName });
         }
 
-        [HttpPost]
+
+        [HttpGet]
         public IActionResult Logout()
         {
+            // Remove AuthToken cookie
             Response.Cookies.Delete("AuthToken");
+
+            // Clear session
+            HttpContext.Session.Remove("UserId");
+            HttpContext.Session.Remove("FirstName");
+
             return RedirectToAction("Index", "Home");
         }
     }
