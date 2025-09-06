@@ -1,5 +1,12 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+        var userId = HttpContextAccessor.HttpContext.Session.GetString("UserId");
+        var firstName = HttpContextAccessor.HttpContext.Session.GetString("FirstName");
+        var isLoggedIn = !string.IsNullOrEmpty(userId);
+}
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,24 +14,28 @@
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
     <!-- Navbar -->
     <header>
+
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
             <div class="container">
+                @if (isLoggedIn)
+                {
+                    <!-- Sidebar Toggle Button -->
+                    <button class="btn btn-outline-light me-3" id="sidebarToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                }
                 <a class="navbar-brand fw-bold" asp-area="" asp-controller="Home" asp-action="Index">TalentLink</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
@@ -32,13 +43,30 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link text-white" asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" asp-controller="Account" asp-action="Register">Register</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" asp-controller="Account" asp-action="Login">Login</a></li>
+
+                        @if (!isLoggedIn)
+                        {
+                            <li class="nav-item"><a class="nav-link text-white" asp-controller="Account" asp-action="Register">Register</a></li>
+                            <li class="nav-item"><a class="nav-link text-white" asp-controller="Account" asp-action="Login">Login</a></li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <span class="nav-link text-white">
+                                    @firstName
+                                </span>
+                            </li>
+
+                        }
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+    @if (isLoggedIn)
+    {
+        @await Html.PartialAsync("_Sidebar")
+    }
 
     <main role="main">
         @RenderBody()
@@ -66,5 +94,36 @@
     </script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const sidebar = document.getElementById("sidebar");
+            const sidebarToggle = document.getElementById("sidebarToggle");
+            const closeSidebar = document.getElementById("closeSidebar");
+            const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener("click", () => {
+                    sidebar.classList.add("active");
+                    sidebarOverlay.classList.add("active");
+                });
+            }
+
+            if (closeSidebar) {
+                closeSidebar.addEventListener("click", () => {
+                    sidebar.classList.remove("active");
+                    sidebarOverlay.classList.remove("active");
+                });
+            }
+
+            if (sidebarOverlay) {
+                sidebarOverlay.addEventListener("click", () => {
+                    sidebar.classList.remove("active");
+                    sidebarOverlay.classList.remove("active");
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>
