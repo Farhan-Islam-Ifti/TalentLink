@@ -1,0 +1,552 @@
+﻿@model TalentLink.Services.LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: linear-gradient(135deg, #E5E7EB 0%, #F3F4F6 100%);
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    .login-wrapper {
+        min-height: calc(100vh - 140px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .login-container {
+        background: white;
+        border-radius: 24px;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        max-width: 1000px;
+        width: 100%;
+        min-height: 650px;
+    }
+
+    .login-form-section {
+        padding: 60px 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: white;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+
+    .brand-icon {
+        width: 14px;
+        height: 14px;
+        background: #3B82F6;
+        border-radius: 3px;
+        margin-right: 10px;
+    }
+
+    .brand-text {
+        font-size: 18px;
+        font-weight: 700;
+        color: #1F2937;
+    }
+
+    .welcome-title {
+        font-size: 32px;
+        font-weight: 700;
+        color: #1F2937;
+        line-height: 1.2;
+        margin-bottom: 8px;
+    }
+
+    .welcome-subtitle {
+        color: #9CA3AF;
+        font-size: 15px;
+        margin-bottom: 40px;
+        font-weight: 400;
+    }
+
+    /* Toggle Buttons */
+    .form-toggle {
+        display: flex;
+        background: #F3F4F6;
+        border-radius: 10px;
+        padding: 4px;
+        margin-bottom: 30px;
+        position: relative;
+    }
+
+    /* User Type Toggle - Specific to signup form */
+    .user-type-toggle {
+        display: flex;
+        background: #F9FAFB;
+        border-radius: 10px;
+        padding: 4px;
+        margin-bottom: 25px;
+        margin-top: 20px;
+        position: relative;
+    }
+
+    .toggle-btn {
+        flex: 1;
+        padding: 12px 20px;
+        background: transparent;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: #6B7280;
+        position: relative;
+        z-index: 2;
+    }
+
+        .toggle-btn.active {
+            color: #1F2937;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+    /* User type toggle buttons with distinct styling */
+    .user-type-btn {
+        flex: 1;
+        padding: 12px 16px;
+        background: transparent;
+        border: none;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: #6B7280;
+        position: relative;
+        z-index: 2;
+    }
+
+        .user-type-btn.active {
+            color: #059669;
+            background: white;
+            box-shadow: 0 2px 8px rgba(5, 150, 105, 0.15);
+        }
+
+        .user-type-btn:hover:not(.active) {
+            color: #374151;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 16px 20px;
+        border: 1px solid #E5E7EB;
+        border-radius: 12px;
+        font-size: 15px;
+        transition: all 0.2s ease;
+        background: #FAFAFA;
+        color: #1F2937;
+    }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3B82F6;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #9CA3AF;
+            font-weight: 400;
+        }
+
+    .signin-button {
+        width: 100%;
+        background: #3B82F6;
+        color: white;
+        padding: 16px;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin: 30px 0 20px 0;
+    }
+
+        .signin-button:hover {
+            background: #2563EB;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+        }
+
+    .form-footer {
+        text-align: center;
+        color: #6B7280;
+        font-size: 14px;
+        margin-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .illustration-section {
+        background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 50%, #2563EB 100%);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: url("/Photos/LoginBackground.jpg");
+        background-size: cover; /* Makes image cover entire container */
+        background-position: center; /* Centers the image */
+        background-repeat: no-repeat; /* Prevents tiling */
+        height: 100%;
+    }
+
+    /* 3D Safe Illustration */
+    .safe-container {
+        position: relative;
+        transform: perspective(1000px) rotateY(-15deg) rotateX(5deg);
+    }
+
+    .safe {
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(135deg, #1E40AF 0%, #1E3A8A 50%, #1E293B 100%);
+        border-radius: 20px;
+        position: relative;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.1);
+    }
+
+        .safe::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(135deg, #3B82F6, #1E40AF);
+            border-radius: 25px;
+            z-index: -1;
+        }
+
+    .safe-door {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+        background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .safe-lock {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
+        border-radius: 50%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .lock-handle {
+        width: 4px;
+        height: 20px;
+        background: #E5E7EB;
+        border-radius: 2px;
+        position: absolute;
+    }
+
+    .lock-numbers {
+        position: absolute;
+        width: 80%;
+        height: 80%;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+        .lock-numbers::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 8px;
+            background: #E5E7EB;
+            border-radius: 1px;
+        }
+
+    /* Image Container */
+    .illustration-image {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .main-illustration {
+        max-width: 85%;
+        max-height: 85%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        border-radius: 16px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+        .main-illustration:hover {
+            transform: scale(1.02);
+        }
+
+    /* Floating elements */
+    .floating-element {
+        position: absolute;
+        opacity: 0.1;
+        animation: float 6s ease-in-out infinite;
+        z-index: 2;
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    .element-1 {
+        top: 15%;
+        left: 10%;
+        width: 30px;
+        height: 30px;
+        border-radius: 6px;
+        animation-delay: -2s;
+    }
+
+    .element-2 {
+        top: 25%;
+        right: 15%;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        animation-delay: -4s;
+    }
+
+    .element-3 {
+        bottom: 20%;
+        left: 15%;
+        width: 25px;
+        height: 25px;
+        border-radius: 4px;
+        animation-delay: -1s;
+    }
+
+    @@keyframes float {
+        0%, 100% {
+            transform: translateY(0px) rotate(0deg);
+        }
+
+        33% {
+            transform: translateY(-10px) rotate(120deg);
+        }
+
+        66% {
+            transform: translateY(-5px) rotate(240deg);
+        }
+    }
+
+    .validation-summary {
+        background: #FEF2F2;
+        border: 1px solid #FECACA;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 20px;
+        color: #B91C1C;
+        font-size: 14px;
+    }
+
+    .text-danger {
+        color: #EF4444;
+        font-size: 12px;
+        margin-top: 4px;
+        display: block;
+    }
+
+    /* Hide forms initially */
+    .signup-form {
+        display: none;
+    }
+
+    @@media (max-width: 768px) {
+        .login-container {
+            grid-template-columns: 1fr;
+            max-width: 400px;
+        }
+
+        .illustration-section {
+            display: none;
+        }
+
+        .login-form-section {
+            padding: 40px 30px;
+        }
+
+        .welcome-title {
+            font-size: 28px;
+        }
+    }
+</style>
+
+<div class="login-wrapper">
+    <div class="login-container">
+        <div class="login-form-section">
+            <div class="brand">
+                <div class="brand-icon"></div>
+                <span class="brand-text">TalentLink</span>
+            </div>
+
+            <h1 class="welcome-title">Holla! <br /> Welcome Back</h1>
+            <p class="welcome-subtitle">Welcome Back, Please enter Your details</p>
+
+            <!-- Toggle Buttons -->
+            <div class="form-toggle">
+                <button type="button" class="toggle-btn active" id="signinBtn">Sign In</button>
+                <button type="button" class="toggle-btn" id="signupBtn">Signup</button>
+            </div>
+
+            <!-- Sign In Form -->
+            <form asp-action="Login" method="post" id="signinForm" class="signin-form">
+                <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+                <div class="form-group">
+                    <input asp-for="Email" class="form-input" placeholder="ialirezamp@gmail.com" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input asp-for="Password" type="password" class="form-input" placeholder="Enter your password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="signin-button">Continue</button>
+            </form>
+
+            <!-- Sign Up Form -->
+            <form asp-action="Register" method="post" id="signupForm" class="signup-form" style="display: none;">
+                <div class="form-group">
+                    <input name="FirstName" class="form-input" placeholder="First Name" required />
+                </div>
+
+                <div class="form-group">
+                    <input name="LastName" class="form-input" placeholder="Last Name" required />
+                </div>
+
+                <div class="form-group">
+                    <input name="Email" type="email" class="form-input" placeholder="Email Address" required />
+                </div>
+
+                <div class="form-group">
+                    <input name="Password" type="password" class="form-input" placeholder="Password" required />
+                </div>
+
+                <div class="form-group">
+                    <input name="ConfirmPassword" type="password" class="form-input" placeholder="Confirm Password" required />
+                </div>
+
+                <!-- User Type Toggle -->
+                <div class="user-type-toggle">
+                    <button type="button" class="user-type-btn active" id="jobSeekerBtn">Job Seeker</button>
+                    <button type="button" class="user-type-btn" id="companyBtn">Company</button>
+                </div>
+
+                <!-- Hidden input to store user type -->
+                <input type="hidden" name="UserType" id="userTypeInput" value="JobSeeker" />
+
+                <button type="submit" class="signin-button">Continue</button>
+            </form>
+
+            <div class="form-footer">
+                Join the millions of smart investors who trust us to manage their finances. Log in to access your personalized dashboard, track your portfolio performance, and make informed investment decisions.
+            </div>
+        </div>
+
+        <div class="illustration-section">
+            <!-- Background Image -->
+            @* <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png" alt="TalentLink Illustration" class="main-illustration" /> *@
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const signinBtn = document.getElementById('signinBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        const signinForm = document.getElementById('signinForm');
+        const signupForm = document.getElementById('signupForm');
+        const welcomeTitle = document.querySelector('.welcome-title');
+        const welcomeSubtitle = document.querySelector('.welcome-subtitle');
+
+        // User type toggle elements
+        const jobSeekerBtn = document.getElementById('jobSeekerBtn');
+        const companyBtn = document.getElementById('companyBtn');
+        const userTypeInput = document.getElementById('userTypeInput');
+
+        signinBtn.addEventListener('click', function() {
+            signinBtn.classList.add('active');
+            signupBtn.classList.remove('active');
+            signinForm.style.display = 'block';
+            signupForm.style.display = 'none';
+            welcomeTitle.textContent = 'Welcome Back';
+            welcomeSubtitle.textContent = 'Welcome Back, Please enter Your details';
+        });
+
+        signupBtn.addEventListener('click', function() {
+            signupBtn.classList.add('active');
+            signinBtn.classList.remove('active');
+            signupForm.style.display = 'block';
+            signinForm.style.display = 'none';
+            welcomeTitle.textContent = 'Create Account';
+            welcomeSubtitle.textContent = 'Please fill in your details to create an account';
+        });
+
+        // User type toggle functionality
+        jobSeekerBtn.addEventListener('click', function() {
+            jobSeekerBtn.classList.add('active');
+            companyBtn.classList.remove('active');
+            userTypeInput.value = 'JobSeeker';
+        });
+
+        companyBtn.addEventListener('click', function() {
+            companyBtn.classList.add('active');
+            jobSeekerBtn.classList.remove('active');
+            userTypeInput.value = 'Company';
+        });
+    });
+</script>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+message.txt
+17 KB
