@@ -7928,23 +7928,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {},
+    "C:\\Users\\Slash\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\SD Only\\TalentLink\\TalentLink\\TalentLink\\TalentLink.csproj",
+      "projectUniqueName": "C:\\Users\\Slash\\Pictures\\proj\\TalentLink\\TalentLink\\TalentLink\\TalentLink.csproj",
       "projectName": "TalentLink",
-      "projectPath": "D:\\SD Only\\TalentLink\\TalentLink\\TalentLink\\TalentLink.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "D:\\SD Only\\TalentLink\\TalentLink\\TalentLink\\obj\\",
+      "projectPath": "C:\\Users\\Slash\\Pictures\\proj\\TalentLink\\TalentLink\\TalentLink\\TalentLink.csproj",
+      "packagesPath": "C:\\Users\\Slash\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Slash\\Pictures\\proj\\TalentLink\\TalentLink\\TalentLink\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Slash\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

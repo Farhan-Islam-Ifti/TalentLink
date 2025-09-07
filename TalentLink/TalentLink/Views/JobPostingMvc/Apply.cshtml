@@ -1,0 +1,132 @@
+﻿@model TalentLink.Controllers.ApplyJobViewModel
+@{
+    var jobPosting = ViewBag.JobPosting as JobPosting;
+    var jobSeeker = ViewBag.JobSeeker as JobSeeker;
+    ViewData["Title"] = $"Apply for {jobPosting?.Title}";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-paper-plane me-2"></i>Apply for Position
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        You are applying for: <strong>@jobPosting?.Title</strong> at <strong>@jobPosting?.Company.CompanyName</strong>
+                    </div>
+
+                    <form asp-action="Apply" method="post" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="jobPostingId" value="@jobPosting?.Id" />
+
+                        <div class="mb-3">
+                            <label class="form-label">Your Information</label>
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <p class="mb-1"><strong>Name:</strong> @jobSeeker?.User.FirstName @jobSeeker?.User.LastName</p>
+                                    <p class="mb-1"><strong>Email:</strong> @jobSeeker?.User.Email</p>
+                                    @if (!string.IsNullOrEmpty(jobSeeker?.CVFilePath))
+                                    {
+                                        <p class="mb-0">
+                                            <strong>Current CV:</strong>
+                                            <a href="@jobSeeker.CVFilePath" target="_blank" class="text-decoration-none">
+                                                View Current CV
+                                            </a>
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="mb-0 text-warning">
+                                            <i class="fas fa-exclamation-triangle me-1"></i>
+                                            No CV uploaded yet
+                                        </p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="CoverLetter" class="form-label">Cover Letter *</label>
+                            <textarea asp-for="CoverLetter" class="form-control" rows="6"
+                                      placeholder="Why are you interested in this position? What makes you a good candidate?"></textarea>
+                            <span asp-validation-for="CoverLetter" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="CVFile" class="form-label">Upload CV (optional)</label>
+                            <input asp-for="CVFile" type="file" class="form-control" accept=".pdf,.doc,.docx">
+                            <small class="form-text text-muted">Accepted formats: PDF, DOC, DOCX. Max size: 5MB</small>
+                            <span asp-validation-for="CVFile" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input asp-for="SaveCV" class="form-check-input" />
+                            <label asp-for="SaveCV" class="form-check-label">Save this CV as my default</label>
+                            <small class="form-text text-muted">This CV will be used for future applications</small>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="@Url.Action("Details", "JobPostingMvc", new { id = jobPosting?.Id })" class="btn btn-outline-secondary me-md-2">
+                                <i class="fas fa-arrow-left me-1"></i>Cancel
+                            </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-paper-plane me-1"></i>Submit Application
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // File size validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const fileInput = document.getElementById('CVFile');
+            if (fileInput && fileInput.files[0]) {
+                const fileSize = fileInput.files[0].size;
+                const maxSize = 5 * 1024 * 1024; // 5MB
+
+                if (fileSize > maxSize) {
+                    e.preventDefault();
+                    alert('File size must be less than 5MB');
+                }
+            }
+        });
+    </script>
+}
+
+<style>
+    .card {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .card-header {
+        border-radius: 10px 10px 0 0 !important;
+        font-weight: 600;
+    }
+
+    .btn-success {
+        background: linear-gradient(135deg, #42ba96 0%, #3b8d99 100%);
+        border: none;
+        border-radius: 6px;
+        padding: 10px 20px;
+        font-weight: 500;
+    }
+
+        .btn-success:hover {
+            background: linear-gradient(135deg, #3aa986 0%, #357f8a 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+</style>

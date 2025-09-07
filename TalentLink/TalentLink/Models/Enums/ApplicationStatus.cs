@@ -7,6 +7,7 @@ namespace TalentLink.Models
         InterviewScheduled,
         Interviewed,
         Accepted,
-        Rejected
+        Rejected,
+        Withdrawn
     }
 }
