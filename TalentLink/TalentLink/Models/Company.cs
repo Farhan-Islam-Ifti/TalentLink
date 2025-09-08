@@ -16,4 +16,23 @@ namespace TalentLink.Models
         public ApplicationUser User { get; set; }
         public ICollection<JobPosting> JobPostings { get; set; } = new List<JobPosting>();
     }
+
+    public class CompanyEditViewModel
+    {
+        public string Id { get; set; } = string.Empty;
+
+        public string FirstName { get; set; } = string.Empty;  // from ApplicationUser
+        public string LastName { get; set; } = string.Empty;   // from ApplicationUser
+        public string PhoneNumber { get; set; } = string.Empty; // from IdentityUser (base)
+
+        public string? CompanyName { get; set; }   // from Company
+        public string? Industry { get; set; }      // from Company
+        public string? Website { get; set; }       // from Company
+        public string? Address { get; set; }       // from Company
+        public string? Description { get; set; }   // from Company
+
+        public string? Image { get; set; }         // from ApplicationUser
+        public IFormFile? ImageFile { get; set; }  // for uploads
+    }
+
 }
