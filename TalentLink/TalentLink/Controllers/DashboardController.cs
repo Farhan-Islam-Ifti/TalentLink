@@ -82,7 +82,7 @@ namespace TalentLink.Controllers
         }
 
         [Authorize(Roles = "JobSeeker")]
-        public async Task<IActionResult> JobSeekerDashboard()
+       /* public async Task<IActionResult> JobSeekerDashboard()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -112,6 +112,39 @@ namespace TalentLink.Controllers
 
             ViewBag.RecommendedJobs = recommendedJobs;
             ViewBag.Applications = applications;
+
+            return View(jobSeeker);
+        }*/
+        public async Task<IActionResult> JobSeekerDashboard()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var jobSeeker = await _context.JobSeekers
+                .Include(js => js.User)
+                .FirstOrDefaultAsync(js => js.UserId == userId);
+
+            if (jobSeeker == null)
+            {
+                return RedirectToAction("Create", "JobSeekerProfile");
+            }
+
+            // Get applications
+            var applications = await _context.JobApplications
+                .Include(ja => ja.JobPosting)
+                .ThenInclude(jp => jp.Company)
+                .Where(ja => ja.JobSeekerId == jobSeeker.Id)
+                .OrderByDescending(ja => ja.AppliedDate)
+                .ToListAsync();
+
+            // Get recommended jobs (logic depends on your business rules)
+            var recommendedJobs = await _context.JobPostings
+                .Include(jp => jp.Company)
+                .Where(jp => jp.IsActive && jp.DeadlineDate > DateTime.Now)
+                .OrderByDescending(jp => jp.PostedDate)
+                .Take(6)
+                .ToListAsync();
+
+            ViewBag.Applications = applications;
+            ViewBag.RecommendedJobs = recommendedJobs;
 
             return View(jobSeeker);
         }

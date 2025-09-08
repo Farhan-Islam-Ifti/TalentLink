@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TalentLink.Migrations
 {
     /// <inheritdoc />
-    public partial class AddCreatedAtAndUpdatedAtColumns : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -41,6 +41,12 @@ namespace TalentLink.Migrations
                 table: "JobPostings",
                 type: "datetime2",
                 nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Image",
+                table: "AspNetUsers",
+                type: "nvarchar(max)",
+                nullable: true);
         }
 
         /// <inheritdoc />
@@ -53,6 +59,10 @@ namespace TalentLink.Migrations
             migrationBuilder.DropColumn(
                 name: "UpdatedAt",
                 table: "JobPostings");
+
+            migrationBuilder.DropColumn(
+                name: "Image",
+                table: "AspNetUsers");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Title",

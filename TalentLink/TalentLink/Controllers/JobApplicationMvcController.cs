@@ -10,6 +10,7 @@ using TalentLink.Services;
 namespace TalentLink.Controllers
 {
     [Authorize]
+    [Route("JobApplication")]
     public class JobApplicationMvcController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -28,6 +29,7 @@ namespace TalentLink.Controllers
 
         // GET: JobApplication/MyApplications
         [Authorize(Roles = "JobSeeker")]
+        [Route("MyApplications")]
         public async Task<IActionResult> MyApplications()
         {
             try
@@ -65,6 +67,7 @@ namespace TalentLink.Controllers
 
         // GET: JobApplication/CompanyApplications
         [Authorize(Roles = "Company")]
+        [Route("CompanyApplications")]
         public async Task<IActionResult> CompanyApplications(int? jobPostingId = null, ApplicationStatus? status = null)
         {
             try
@@ -126,6 +129,7 @@ namespace TalentLink.Controllers
 
         // GET: JobApplication/Details/{id}
         [Authorize]
+        [Route("Details/{id}")]
         public async Task<IActionResult> Details(int id)
         {
             try
@@ -140,9 +144,9 @@ namespace TalentLink.Controllers
 
                 var query = _context.JobApplications
                     .Include(ja => ja.JobPosting)
-                    .ThenInclude(jp => jp.Company)
+                        .ThenInclude(jp => jp.Company)
                     .Include(ja => ja.JobSeeker)
-                    .ThenInclude(js => js.User)
+                        .ThenInclude(js => js.User)
                     .Include(ja => ja.Specialist)
                     .Where(ja => ja.Id == id);
 
@@ -168,7 +172,7 @@ namespace TalentLink.Controllers
                 }
 
                 ViewBag.UserRole = userRole;
-                return View(application); // This should pass a JobApplication, not JobPosting
+                return View(application);
             }
             catch (Exception ex)
             {
@@ -180,6 +184,7 @@ namespace TalentLink.Controllers
 
         // GET: JobApplication/Apply/{jobPostingId}
         [Authorize(Roles = "JobSeeker")]
+        [Route("Apply/{jobPostingId}")]
         public async Task<IActionResult> Apply(int jobPostingId)
         {
             try
@@ -194,18 +199,14 @@ namespace TalentLink.Controllers
                     .FirstOrDefaultAsync(js => js.UserId == userId);
 
                 if (jobSeeker == null)
-                {
                     return RedirectToAction("Create", "JobSeekerProfile");
-                }
 
                 var jobPosting = await _context.JobPostings
                     .Include(jp => jp.Company)
                     .FirstOrDefaultAsync(jp => jp.Id == jobPostingId && jp.IsActive);
 
                 if (jobPosting == null)
-                {
                     return NotFound();
-                }
 
                 if (jobPosting.DeadlineDate < DateTime.Now)
                 {
@@ -240,31 +241,26 @@ namespace TalentLink.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "JobSeeker")]
+        [Route("Apply/{jobPostingId}")]
         public async Task<IActionResult> Apply(int jobPostingId, ApplyJobViewModel model)
         {
             try
             {
                 if (!ModelState.IsValid)
-                {
                     return View(model);
-                }
 
                 var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                 var jobSeeker = await _context.JobSeekers
                     .FirstOrDefaultAsync(js => js.UserId == userId);
 
                 if (jobSeeker == null)
-                {
                     return RedirectToAction("Create", "JobSeekerProfile");
-                }
 
                 var jobPosting = await _context.JobPostings
                     .FirstOrDefaultAsync(jp => jp.Id == jobPostingId && jp.IsActive);
 
                 if (jobPosting == null)
-                {
                     return NotFound();
-                }
 
                 if (jobPosting.DeadlineDate < DateTime.Now)
                 {
@@ -289,8 +285,6 @@ namespace TalentLink.Controllers
                     try
                     {
                         cvUrl = await _cloudinaryService.UploadPdfAsync(model.CVFile);
-
-                        // Update job seeker's CV path if they want to save it
                         if (model.SaveCV)
                         {
                             jobSeeker.CVFilePath = cvUrl;
@@ -330,6 +324,7 @@ namespace TalentLink.Controllers
 
         // GET: JobApplication/UpdateStatus/{id}
         [Authorize(Roles = "Company,Specialist")]
+        [Route("UpdateStatus/{id}")]
         public async Task<IActionResult> UpdateStatus(int id)
         {
             try
@@ -338,9 +333,7 @@ namespace TalentLink.Controllers
                 var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
 
                 if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(userRole))
-                {
                     return Unauthorized();
-                }
 
                 var application = await _context.JobApplications
                     .Include(ja => ja.JobPosting)
@@ -350,18 +343,14 @@ namespace TalentLink.Controllers
                     .FirstOrDefaultAsync(ja => ja.Id == id);
 
                 if (application == null)
-                {
                     return NotFound();
-                }
 
                 // Check permissions
                 if (userRole == "Company")
                 {
                     var company = await _context.Companies.FirstOrDefaultAsync(c => c.UserId == userId);
                     if (company == null || application.JobPosting.CompanyId != company.Id)
-                    {
                         return Forbid();
-                    }
                 }
 
                 ViewBag.Application = application;
@@ -382,22 +371,19 @@ namespace TalentLink.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Company,Specialist")]
+        [Route("UpdateStatus/{id}")]
         public async Task<IActionResult> UpdateStatus(int id, UpdateApplicationStatusViewModel model)
         {
             try
             {
                 if (!ModelState.IsValid)
-                {
                     return View(model);
-                }
 
                 var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                 var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
 
                 if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(userRole))
-                {
                     return Unauthorized();
-                }
 
                 var application = await _context.JobApplications
                     .Include(ja => ja.JobPosting)
@@ -405,18 +391,14 @@ namespace TalentLink.Controllers
                     .FirstOrDefaultAsync(ja => ja.Id == id);
 
                 if (application == null)
-                {
                     return NotFound();
-                }
 
                 // Check permissions
                 if (userRole == "Company")
                 {
                     var company = await _context.Companies.FirstOrDefaultAsync(c => c.UserId == userId);
                     if (company == null || application.JobPosting.CompanyId != company.Id)
-                    {
                         return Forbid();
-                    }
                 }
 
                 // Update application
@@ -426,9 +408,7 @@ namespace TalentLink.Controllers
 
                 // Assign specialist if updating as specialist
                 if (userRole == "Specialist" && application.SpecialistId == null)
-                {
                     application.SpecialistId = userId;
-                }
 
                 await _context.SaveChangesAsync();
 

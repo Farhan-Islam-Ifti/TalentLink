@@ -1,4 +1,4 @@
-﻿@model JobSeeker
+﻿@model TalentLink.Models.JobSeeker
 @{
     ViewData["Title"] = "Job Seeker Dashboard";
     // Cast ViewBag.Applications to a strongly typed list
@@ -95,13 +95,20 @@
                                                 </small>
                                             </div>
                                             <div class="d-flex justify-content-between align-items-center">
+                                                <!-- FIXED: Link to JobPosting details, not JobApplication -->
                                                 <a href="@Url.Action("Details", "JobPostingMvc", new { id = job.Id })"
                                                    class="btn btn-sm btn-primary">
                                                     <i class="fas fa-eye me-1"></i>View Job
                                                 </a>
-                                                @if (applications.Any(a => a.JobPostingId == job.Id))
+                                                @{
+                                                    var applicationForJob = applications.FirstOrDefault(a => a.JobPostingId == job.Id);
+                                                }
+                                                @if (applicationForJob != null)
                                                 {
-                                                    <span class="badge bg-success"><i class="fas fa-check me-1"></i>Applied</span>
+                                                    <a href="@Url.Action("Details", "JobApplicationMvc", new { id = applicationForJob.Id })"
+                                                       class="badge bg-success text-decoration-none">
+                                                        <i class="fas fa-check me-1"></i>View Application
+                                                    </a>
                                                 }
                                             </div>
                                         </div>
@@ -143,9 +150,10 @@
                                         <i class="fas fa-calendar me-1"></i> @application.AppliedDate.ToString("MMM dd, yyyy")
                                     </small>
                                 </div>
-                                <span class="badge bg-info">
-                                    <i class="fas fa-paper-plane me-1"></i>Applied
-                                </span>
+                                <a href="@Url.Action("Details", "JobApplicationMvc", new { id = application.Id })"
+                                   class="badge bg-info text-decoration-none">
+                                    <i class="fas fa-eye me-1"></i>View Application
+                                </a>
                             </div>
                         }
 
@@ -195,6 +203,8 @@
     .skill-tags .badge {
         font-size: 0.75rem;
         padding: 0.35em 0.65em;
+        margin-right: 0.25rem;
+        margin-bottom: 0.25rem;
     }
 
     .card {

@@ -12,8 +12,8 @@ using TalentLink.Data;
 namespace TalentLink.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250907161008_AddCreatedAtAndUpdatedAtColumns")]
-    partial class AddCreatedAtAndUpdatedAtColumns
+    [Migration("20250908130041_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -184,6 +184,9 @@ namespace TalentLink.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
