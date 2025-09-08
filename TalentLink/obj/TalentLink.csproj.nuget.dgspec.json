@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\TalentLink\\TalentLink\\TalentLink\\TalentLink.csproj": {}
+    "D:\\TalentLink\\TalentLink final\\TalentLink\\TalentLink.csproj": {}
   },
   "projects": {
-    "D:\\TalentLink\\TalentLink\\TalentLink\\TalentLink.csproj": {
+    "D:\\TalentLink\\TalentLink final\\TalentLink\\TalentLink.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TalentLink\\TalentLink\\TalentLink\\TalentLink.csproj",
+        "projectUniqueName": "D:\\TalentLink\\TalentLink final\\TalentLink\\TalentLink.csproj",
         "projectName": "TalentLink",
-        "projectPath": "D:\\TalentLink\\TalentLink\\TalentLink\\TalentLink.csproj",
+        "projectPath": "D:\\TalentLink\\TalentLink final\\TalentLink\\TalentLink.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "D:\\TalentLink\\TalentLink\\TalentLink\\obj\\",
+        "outputPath": "D:\\TalentLink\\TalentLink final\\TalentLink\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

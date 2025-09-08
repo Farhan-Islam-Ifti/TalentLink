@@ -13,9 +13,30 @@ namespace TalentLink.Controllers
             _logger = logger;
         }
 
+        // Public homepage (before login)
         public IActionResult Index()
         {
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                // Redirect logged-in users to their dashboard automatically
+                return RedirectToAction("Dashboard");
+            }
+
             return View();
+
+        }
+
+      public IActionResult About()
+    {
+        return View();
+    }
+
+    
+
+        // Dashboard for logged-in users
+        public IActionResult Dashboard()
+        {
+            return View(); // You’ll create Views/Home/Dashboard.cshtml
         }
 
         public IActionResult Privacy()

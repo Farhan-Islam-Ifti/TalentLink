@@ -41,12 +41,11 @@ namespace TalentLink.Controllers
 
             if (result.Succeeded)
             {
-                // Get the newly created user
                 var user = await _authService.GetUserByIdAsync((await _authService.GetUserByIdAsync(model.Email))?.Id);
 
                 if (user != null)
                 {
-                    // Create role-specific profile
+                    // Role-specific profile
                     if (model.Role == UserRole.Company)
                     {
                         var company = new Company
@@ -70,7 +69,7 @@ namespace TalentLink.Controllers
                             Education = model.Education,
                             DateOfBirth = model.DateOfBirth ?? DateTime.Now.AddYears(-20),
                             Address = model.Address,
-                            CVFilePath = "" // You'll need to handle file upload separately
+                            CVFilePath = "" // TODO: Handle file upload
                         };
                         _context.JobSeekers.Add(jobSeeker);
                     }
@@ -106,7 +105,7 @@ namespace TalentLink.Controllers
                 return View(model);
             }
 
-            // Store token in a cookie for authentication
+            // Save token in cookie
             Response.Cookies.Append("AuthToken", token, new CookieOptions
             {
                 HttpOnly = true,
@@ -115,7 +114,7 @@ namespace TalentLink.Controllers
                 Expires = DateTime.Now.AddDays(7)
             });
 
-            // Get user to determine role-based redirect
+            // Get logged-in user
             var user = await _authService.GetUserByIdAsync((await _authService.GetUserByIdAsync(model.Email))?.Id);
 
             if (user != null)
@@ -129,11 +128,11 @@ namespace TalentLink.Controllers
                     case UserRole.JobSeeker:
                         return RedirectToAction("Dashboard", "JobSeeker");
                     default:
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Dashboard", "Home");
                 }
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Dashboard", "Home");
         }
 
         [HttpPost]
