@@ -28,12 +28,72 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/SD Only/TalentLink/TalentLink/TalentLink/Views/Company/EditProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxFZGl0UHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/SD Only/TalentLink/TalentLink/TalentLink/Views/Company/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/SD Only/TalentLink/TalentLink/TalentLink/Views/Dashboard/CompanyDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXENvbXBhbnlEYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/SD Only/TalentLink/TalentLink/TalentLink/Views/Dashboard/JobSeekerDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEpvYlNlZWtlckRhc2hib2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/SD Only/TalentLink/TalentLink/TalentLink/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/SD Only/TalentLink/TalentLink/TalentLink/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/SD Only/TalentLink/TalentLink/TalentLink/Views/JobApplicationMvc/Apply.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iQXBwbGljYXRpb25NdmNcQXBwbHkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/SD Only/TalentLink/TalentLink/TalentLink/Views/JobApplicationMvc/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iQXBwbGljYXRpb25NdmNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/SD Only/TalentLink/TalentLink/TalentLink/Views/JobPostingMvc/Apply.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iUG9zdGluZ012Y1xBcHBseS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/SD Only/TalentLink/TalentLink/TalentLink/Views/JobPostingMvc/CompanyApplications.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iUG9zdGluZ012Y1xDb21wYW55QXBwbGljYXRpb25zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/SD Only/TalentLink/TalentLink/TalentLink/Views/JobPostingMvc/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iUG9zdGluZ012Y1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/SD Only/TalentLink/TalentLink/TalentLink/Views/JobPostingMvc/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iUG9zdGluZ012Y1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/SD Only/TalentLink/TalentLink/TalentLink/Views/JobPostingMvc/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iUG9zdGluZ012Y1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/SD Only/TalentLink/TalentLink/TalentLink/Views/JobPostingMvc/MyApplications.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iUG9zdGluZ012Y1xNeUFwcGxpY2F0aW9ucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/SD Only/TalentLink/TalentLink/TalentLink/Views/JobPostingMvc/MyPostings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iUG9zdGluZ012Y1xNeVBvc3RpbmdzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/SD Only/TalentLink/TalentLink/TalentLink/Views/JobPostingMvc/UpdateStatus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iUG9zdGluZ012Y1xVcGRhdGVTdGF0dXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/SD Only/TalentLink/TalentLink/TalentLink/Views/JobSeeker/EditProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iU2Vla2VyXEVkaXRQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/SD Only/TalentLink/TalentLink/TalentLink/Views/JobSeeker/Profile.cshtml]

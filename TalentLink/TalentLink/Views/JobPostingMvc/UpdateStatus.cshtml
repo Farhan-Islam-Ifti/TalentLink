@@ -1,0 +1,71 @@
+﻿@model TalentLink.Controllers.UpdateApplicationStatusViewModel
+@{
+    var application = ViewBag.Application as JobApplication;
+    var userRole = ViewBag.UserRole as string;
+    var statuses = ViewBag.Statuses as Array;
+    ViewData["Title"] = "Update Application Status";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-edit me-2"></i>Update Application Status
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Updating application for: <strong>@application?.JobSeeker?.User?.FirstName @application?.JobSeeker?.User?.LastName</strong>
+                        <br>
+                        Position: <strong>@application?.JobPosting?.Title</strong>
+                    </div>
+
+                    <form asp-action="UpdateStatus" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@application?.Id" />
+
+                        <div class="mb-3">
+                            <label asp-for="Status" class="form-label">Status *</label>
+                            <select asp-for="Status" class="form-select">
+                                @foreach (ApplicationStatus status in statuses)
+                                {
+                                    <option value="@status">@status</option>
+                                }
+                            </select>
+                            <span asp-validation-for="Status" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="InterviewDate" class="form-label">Interview Date</label>
+                            <input asp-for="InterviewDate" type="datetime-local" class="form-control">
+                            <span asp-validation-for="InterviewDate" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="InterviewNotes" class="form-label">Interview Notes</label>
+                            <textarea asp-for="InterviewNotes" class="form-control" rows="4"
+                                      placeholder="Add any notes about the interview or application status..."></textarea>
+                            <span asp-validation-for="InterviewNotes" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="@Url.Action("Details", new { id = application?.Id })" class="btn btn-outline-secondary me-md-2">
+                                <i class="fas fa-arrow-left me-1"></i>Cancel
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-1"></i>Update Status
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

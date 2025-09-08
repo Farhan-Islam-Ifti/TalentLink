@@ -1,10 +1,7 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using CloudinaryDotNet;
 using Microsoft.Extensions.DependencyInjection;
-using System.Text;
 using TalentLink.Data;
 using TalentLink.Models;
 using TalentLink.Services;
@@ -16,13 +13,12 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-
-//Cloudinary configuration
+// Cloudinary configuration
 builder.Services.Configure<CloudinarySettings>(
     builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 
-// Add Identity
+// Add Identity with Cookie Authentication
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
@@ -35,8 +31,24 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
+// Configure Cookie Authentication
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Account/Login";
+    options.LogoutPath = "/Account/Logout";
+    options.AccessDeniedPath = "/Account/AccessDenied";
+    options.ExpireTimeSpan = TimeSpan.FromHours(1);
+    options.SlidingExpiration = true;
+    options.Cookie.HttpOnly = true;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.SameSite = SameSiteMode.Strict;
+});
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("Cloudinary"));
+builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 
 // Add session services
 builder.Services.AddDistributedMemoryCache();
@@ -45,35 +57,12 @@ builder.Services.AddSession(options =>
     options.IdleTimeout = TimeSpan.FromHours(1);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
+    options.Cookie.SameSite = SameSiteMode.Strict;
 });
 builder.Services.AddHttpContextAccessor();
 
 // Register AuthService
 builder.Services.AddScoped<IAuthService, AuthService>();
-
-// Configure JWT
-var jwtKey = builder.Configuration["Jwt:Key"] ?? "YourDefaultKeyMustBeAtLeast32CharactersLong!";
-var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? "TalentLink";
-var jwtAudience = builder.Configuration["Jwt:Audience"] ?? "TalentLinkUsers";
-
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = jwtIssuer,
-        ValidAudience = jwtAudience,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
-    };
-});
 
 var app = builder.Build();
 
@@ -93,16 +82,31 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-
 app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-
+/*
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+*/
+app.MapControllerRoute(
+    name: "JobApplication",
+    pattern: "JobApplication/{action=Index}/{id?}",
+    defaults: new { controller = "JobApplicationMvc" });
+
+app.MapControllerRoute(
+    name: "JobPosting",
+    pattern: "JobPosting/{action=Index}/{id?}",
+    defaults: new { controller = "JobPostingMvc" });
+
+// Keep the default route
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+// For API controllers
+app.MapControllers();
 app.MapRazorPages();
 
 // Initialize database and seed data

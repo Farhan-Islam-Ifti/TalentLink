@@ -1,0 +1,80 @@
+﻿@model dynamic
+@{
+    ViewData["Title"] = "Company Profile";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <!-- Card -->
+            <div class="card shadow-lg p-4 border-0 rounded-4">
+
+                <!-- Profile Header -->
+                <div class="d-flex align-items-center mb-4">
+                    <img src="@(!string.IsNullOrEmpty(Model.Image) ? Model.Image : Url.Content("~/images/profile.jpg"))"
+                         alt="Company Logo"
+                         class="rounded-circle me-4 border border-3 border-primary"
+                         style="width:120px; height:120px; object-fit:cover;" />
+                    <div>
+                        <h3 class="mb-1">@Model.CompanyName</h3>
+                        <p class="text-muted mb-0">@Model.Industry</p>
+                        <p class="text-muted mb-0">@Model.Website</p>
+                    </div>
+                </div>
+
+                <hr class="my-4" />
+
+                <!-- Profile Details Grid -->
+                <div class="row text-start">
+                    <div class="col-md-6 mb-3">
+                        <h6 class="text-secondary">Contact</h6>
+                        <p>@Model.FirstName @Model.LastName</p>
+                        <p>@Model.PhoneNumber</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <h6 class="text-secondary">Address</h6>
+                        <p>@(Model.Address ?? "-")</p>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <h6 class="text-secondary">Description</h6>
+                        <p>@(Model.Description ?? "-")</p>
+                    </div>
+                </div>
+
+                <a asp-action="EditProfile" asp-route-userId="@Model.Id" class="btn btn-primary">Edit Profile</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Shared CSS (same as JobSeeker) -->
+<style>
+    .card {
+        background: #ffffff;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+    h6 {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #6c757d;
+    }
+
+    .card p {
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+        color: #495057;
+    }
+
+    a.btn-outline-primary,
+    a.btn-primary {
+        font-size: 0.85rem;
+        padding: 0.25rem 0.75rem;
+    }
+</style>
