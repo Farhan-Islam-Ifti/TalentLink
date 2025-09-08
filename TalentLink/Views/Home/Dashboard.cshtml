@@ -1,0 +1,171 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Dashboard";
+}
+
+
+<!-- Hero Section with Gradient + Particles -->
+<section class="hero-section py-5 position-relative">
+    <!-- Particles Container -->
+    <div id="hero-particles" style="position:absolute; width:100%; height:100%; top:0; left:0; z-index:0;"></div>
+
+    <!-- Hero Content -->
+    <div class="container text-center position-relative" style="z-index:1;" data-aos="fade-up">
+        <h1 class="display-4 fw-bold mb-3" style="color: #343a40;">Step Into Your Next Career 🚀</h1>
+        <p class="lead mb-4" style="color: #6c757d;">Discover top jobs in IT, Finance, Healthcare, and Marketing. Apply instantly and stay ahead in your career.</p>
+
+        <!-- Search Form -->
+        <form class="d-flex justify-content-center mb-5" style="max-width: 700px; margin: 0 auto;">
+            <input type="text" class="form-control me-2 rounded-pill px-4 py-2" placeholder="Search jobs, companies, or skills..." style="border: 1px solid #ced4da;">
+            <button class="btn btn-primary rounded-pill px-4">Search</button>
+        </form>
+    </div>
+</section>
+
+<!-- Job Sectors -->
+<section class="job-sectors py-5">
+    <div class="container">
+        <!-- Sector Tabs -->
+        <ul class="nav nav-pills justify-content-center mb-4" id="sectorTabs">
+            <li class="nav-item"><a class="nav-link active" data-bs-toggle="pill" href="#it">IT</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#finance">Finance</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#health">Healthcare</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#marketing">Marketing</a></li>
+        </ul>
+
+        <!-- Job Cards by Sector -->
+        <div class="tab-content">
+
+            <!-- IT Jobs -->
+            <div class="tab-pane fade show active" id="it">
+                <div class="row g-4">
+                    @{
+                        var itJobs = new string[] {
+                                        "Software Engineer", "Frontend Developer", "Backend Developer", "Fullstack Developer", "Data Scientist",
+                                        "AI/ML Engineer", "DevOps Engineer", "Database Administrator", "Cloud Solutions Architect", "Mobile App Developer",
+                                        "Cybersecurity Analyst", "UI/UX Designer", "QA Engineer", "System Analyst", "Network Engineer",
+                                        "Technical Support Engineer", "Game Developer", "Embedded Systems Engineer", "Product Manager", "Business Analyst",
+                                        "Web Developer", "IT Consultant", "Scrum Master", "IT Project Manager", "Blockchain Developer",
+                                        "Software Tester", "ERP Consultant", "IT Auditor", "Security Engineer", "Site Reliability Engineer"
+                                        };
+                    }
+                    @for (int i = 0; i < itJobs.Length; i++)
+                    {
+                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="@(i * 30)">
+                            <div class="card job-card shadow-sm h-100 border-0">
+                                <div class="card-body">
+                                    <h5 class="fw-bold">@itJobs[i]</h5>
+                                    <p class="text-muted">Company @i • Dhaka</p>
+                                    <p class="fw-bold">$2000 - $5000</p>
+                                    <a href="#" class="btn btn-gradient btn-sm w-100">Apply Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Finance Jobs -->
+            <div class="tab-pane fade" id="finance">
+                <div class="row g-4">
+                    @{
+                        var financeJobs = new string[] {
+                                        "Financial Analyst", "Accountant", "Investment Banker", "Auditor", "Tax Consultant",
+                                        "Credit Analyst", "Risk Manager", "Portfolio Manager", "Financial Planner", "Treasury Analyst",
+                                        "Budget Analyst", "Finance Manager", "Controller", "Payroll Specialist", "Business Analyst",
+                                        "Equity Analyst", "Compliance Officer", "Loan Officer", "Chief Financial Officer", "Actuary",
+                                        "Revenue Analyst", "Accounts Payable Specialist", "Accounts Receivable Specialist", "Corporate Finance Analyst", "Financial Advisor",
+                                        "Internal Auditor", "Credit Risk Analyst", "Financial Operations Analyst", "Investment Analyst", "Budget Officer"
+                                        };
+                    }
+                    @for (int i = 0; i < financeJobs.Length; i++)
+                    {
+                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="@(i * 30)">
+                            <div class="card job-card shadow-sm h-100 border-0">
+                                <div class="card-body">
+                                    <h5 class="fw-bold">@financeJobs[i]</h5>
+                                    <p class="text-muted">Company @i • Dhaka</p>
+                                    <p class="fw-bold">$1800 - $4000</p>
+                                    <a href="#" class="btn btn-gradient btn-sm w-100">Apply Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Healthcare Jobs -->
+            <div class="tab-pane fade" id="health">
+                <div class="row g-4">
+                    @{
+                        var healthJobs = new string[] {
+                                        "Nurse", "Doctor", "Medical Assistant", "Physiotherapist", "Pharmacist",
+                                        "Lab Technician", "Radiologist", "Surgeon", "Dentist", "Nutritionist",
+                                        "Therapist", "Paramedic", "Health Administrator", "Medical Researcher", "Optometrist",
+                                        "Anesthesiologist", "Psychologist", "Medical Coder", "Medical Transcriptionist", "Midwife",
+                                        "Occupational Therapist", "Speech Therapist", "Emergency Room Technician", "Veterinarian", "Clinical Research Coordinator",
+                                        "Health Educator", "Respiratory Therapist", "Cardiologist", "Dermatologist", "Ophthalmologist"
+                                        };
+                    }
+                    @for (int i = 0; i < healthJobs.Length; i++)
+                    {
+                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="@(i * 30)">
+                            <div class="card job-card shadow-sm h-100 border-0">
+                                <div class="card-body">
+                                    <h5 class="fw-bold">@healthJobs[i]</h5>
+                                    <p class="text-muted">Hospital @i • Dhaka</p>
+                                    <p class="fw-bold">$1000 - $3000</p>
+                                    <a href="#" class="btn btn-gradient btn-sm w-100">Apply Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Marketing Jobs -->
+            <div class="tab-pane fade" id="marketing">
+                <div class="row g-4">
+                    @{
+                        var marketingJobs = new string[] {
+                                        "Digital Marketing Specialist", "SEO Specialist", "Content Writer", "Social Media Manager", "Brand Manager",
+                                        "Market Research Analyst", "Product Marketing Manager", "Email Marketing Specialist", "Copywriter", "Advertising Specialist",
+                                        "Marketing Coordinator", "PR Specialist", "Sales Manager", "Account Manager", "Event Manager",
+                                        "Creative Director", "Graphic Designer", "Community Manager", "E-commerce Manager", "Marketing Analyst",
+                                        "Marketing Consultant", "Affiliate Manager", "Media Planner", "Campaign Manager", "Marketing Assistant",
+                                        "Influencer Marketing Specialist", "Business Development Executive", "Marketing Executive", "Content Strategist", "Growth Hacker"
+                                        };
+                    }
+                    @for (int i = 0; i < marketingJobs.Length; i++)
+                    {
+                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="@(i * 30)">
+                            <div class="card job-card shadow-sm h-100 border-0">
+                                <div class="card-body">
+                                    <h5 class="fw-bold">@marketingJobs[i]</h5>
+                                    <p class="text-muted">Company @i • Dhaka</p>
+                                    <p class="fw-bold">$1500 - $3500</p>
+                                    <a href="#" class="btn btn-gradient btn-sm w-100">Apply Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Particles JS Script -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<script>
+    particlesJS("hero-particles", {
+        "particles": {
+            "number": { "value": 40 },
+            "size": { "value": 3 },
+            "color": { "value": "#6c757d" },
+            "line_linked": { "enable": true, "distance": 120, "color": "#6c757d", "opacity": 0.15, "width": 1 },
+            "move": { "speed": 1 }
+        }
+    });
+</script>

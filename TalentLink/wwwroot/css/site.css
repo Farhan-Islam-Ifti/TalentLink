@@ -1,0 +1,349 @@
+/* Custom styles for TalentLink */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.dashboard-card {
+    transition: transform 0.3s;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+    }
+
+.stat-card {
+    text-align: center;
+    padding: 20px;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
+    border: none;
+}
+
+.sidebar {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+    .sidebar .nav-link {
+        color: white;
+        padding: 15px 20px;
+        margin: 5px 0;
+        border-radius: 10px;
+    }
+
+        .sidebar .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            font-weight: 600;
+        }
+
+/* Hero Section */
+.hero-section {
+    background: #ffffff;
+    color: #1f2937; /* Dark text for contrast */
+    overflow: hidden;
+    position: relative;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+/* Hero Buttons */
+.btn-gradient {
+    background: linear-gradient(90deg, #6366F1, #EC4899, #F59E0B);
+    color: white;
+    border-radius: 50px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+    .btn-gradient:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+    }
+
+.btn-gradient-outline {
+    background: transparent;
+    border: 2px solid #6366F1;
+    color: #6366F1;
+    border-radius: 50px;
+    transition: all 0.3s;
+}
+
+    .btn-gradient-outline:hover {
+        background: linear-gradient(90deg, #6366F1, #EC4899, #F59E0B);
+        color: white;
+    }
+
+/* Hero SVG */
+.hero-svg {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.float-circle {
+    animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+
+/* Float animation for illustration */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Gradient Buttons */
+.btn-gradient {
+    background: linear-gradient(90deg, #6a5af9, #f97bbf, #f9c06a);
+    color: white;
+    border-radius: 50px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+    .btn-gradient:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.35);
+    }
+
+.btn-outline-gradient {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 50px;
+    transition: all 0.3s;
+}
+
+    .btn-outline-gradient:hover {
+        background: rgba(255,255,255,0.25);
+        border-color: white;
+        color: white;
+        transform: translateY(-3px);
+    }
+
+/* Text Gradient */
+.text-gradient {
+    background: linear-gradient(90deg,#6a5af9,#f97bbf,#f9c06a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.message-card {
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background: white;
+}
+
+    .message-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    /* Gradient icons */
+    .message-card .text-gradient {
+        background: linear-gradient(90deg, #6366F1, #EC4899, #F59E0B);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Buttons */
+    .message-card .btn-gradient {
+        background: linear-gradient(90deg, #6366F1, #EC4899, #F59E0B);
+        color: white;
+        border-radius: 50px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .message-card .btn-gradient:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+        }
+.btn-gradient {
+    background: linear-gradient(90deg, #6a11cb 0%, #ff6a00 100%);
+    color: #fff;
+    border: none;
+    transition: 0.3s;
+}
+
+    .btn-gradient:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+.hover-effect {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .hover-effect:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+/* Dashboard Hero */
+.dashboard-hero {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+    .dashboard-hero h2 {
+        font-size: 2.5rem;
+        color: #333;
+    }
+
+    .dashboard-hero p {
+        color: #6c757d;
+        font-size: 1.1rem;
+    }
+
+/* Job Cards */
+.job-card {
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+    .job-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    }
+
+/* Sector Tabs */
+.nav-pills .nav-link {
+    border-radius: 30px;
+    padding: 0.5rem 1.2rem;
+    font-weight: 500;
+    color: #555;
+}
+
+    .nav-pills .nav-link.active {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: #fff;
+    }
+/* Fonts */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Hero section */
+.dashboard-hero {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    padding: 80px 0;
+    border-radius: 0 0 50px 50px;
+}
+
+    .dashboard-hero .catchy-line {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+/* Job sectors section */
+.job-sectors {
+    background: #f8f9fa;
+    padding: 60px 0;
+}
+
+/* Job cards */
+.job-card {
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+    .job-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+/* Gradient buttons */
+.btn-gradient {
+    background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+    border: none;
+    color: white;
+    font-weight: 600;
+    transition: transform 0.2s;
+}
+
+    .btn-gradient:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+
+/* Active tab */
+.nav-pills .nav-link.active {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    font-weight: 600;
+}
+/* Add this in your site.css */
+.hero-section {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+    .hero-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
+        background-size: 600% 600%;
+        animation: gradientAnimation 20s ease infinite;
+        opacity: 0.1; /* subtle */
+        z-index: 0;
+    }
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
