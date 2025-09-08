@@ -86,11 +86,25 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
+/*
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+*/
+app.MapControllerRoute(
+    name: "JobApplication",
+    pattern: "JobApplication/{action=Index}/{id?}",
+    defaults: new { controller = "JobApplicationMvc" });
 
+app.MapControllerRoute(
+    name: "JobPosting",
+    pattern: "JobPosting/{action=Index}/{id?}",
+    defaults: new { controller = "JobPostingMvc" });
+
+// Keep the default route
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 // For API controllers
 app.MapControllers();
 app.MapRazorPages();
