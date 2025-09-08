@@ -10,7 +10,7 @@
     <!-- Welcome Section -->
     <div class="row mb-4">
         <div class="col-12">
-            <div class="card bg-gradient text-white">
+            <div class="card bg-gradient text-black">
                 <div class="card-body">
                     <h2 class="card-title"><i class="fas fa-user-graduate me-2"></i> Welcome, @Model.User?.FirstName!</h2>
                     <p class="card-text">Ready to find your next opportunity? Here are some jobs that match your skills.</p>
@@ -41,10 +41,6 @@
                         </div>
                     }
 
-                    <a href="@Url.Action("Profile", "Account", new { userId = Model.UserId })"
-                       class="btn btn-outline-primary btn-sm w-100 mt-3">
-                        <i class="fas fa-edit me-1"></i> Edit Profile
-                    </a>
                 </div>
             </div>
 
