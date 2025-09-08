@@ -1,0 +1,103 @@
+﻿@model TalentLink.Controllers.EditJobPostingViewModel
+
+@{
+    ViewData["Title"] = "Edit Job Posting";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-edit me-2"></i>Edit Job Posting
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label asp-for="Title" class="form-label">Job Title *</label>
+                                <input asp-for="Title" class="form-control">
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="JobType" class="form-label">Job Type *</label>
+                                <select asp-for="JobType" class="form-select" asp-items="Html.GetEnumSelectList<JobType>()">
+                                    <option value="">Select Job Type</option>
+                                </select>
+                                <span asp-validation-for="JobType" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Location" class="form-label">Location *</label>
+                                <input asp-for="Location" class="form-control">
+                                <span asp-validation-for="Location" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Salary" class="form-label">Salary (optional)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input asp-for="Salary" type="number" class="form-control" min="0" step="1000">
+                                </div>
+                                <span asp-validation-for="Salary" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="DeadlineDate" class="form-label">Application Deadline *</label>
+                                <input asp-for="DeadlineDate" type="date" class="form-control">
+                                <span asp-validation-for="DeadlineDate" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label">Job Description *</label>
+                            <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Requirements" class="form-label">Requirements *</label>
+                            <textarea asp-for="Requirements" class="form-control" rows="5"></textarea>
+                            <span asp-validation-for="Requirements" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input asp-for="IsActive" class="form-check-input" />
+                            <label asp-for="IsActive" class="form-check-label">Active Job Posting</label>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="@Url.Action("MyPostings")" class="btn btn-outline-secondary me-md-2">
+                                <i class="fas fa-arrow-left me-1"></i>Cancel
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-1"></i>Update Job
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const deadlineInput = document.getElementById('DeadlineDate');
+            const today = new Date().toISOString().split('T')[0];
+            deadlineInput.min = today;
+        });
+    </script>
+}
