@@ -1,0 +1,56 @@
+﻿@model TalentLink.Models.CompanyEditViewModel
+@{
+    ViewData["Title"] = "Edit Company Profile";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow-lg p-4 border-0 rounded-4">
+                <h3 class="mb-4">Edit Company Profile</h3>
+
+                <form asp-action="EditProfile" method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="mb-3">
+                        <label asp-for="CompanyName" class="form-label"></label>
+                        <input asp-for="CompanyName" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Industry" class="form-label"></label>
+                        <input asp-for="Industry" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Website" class="form-label"></label>
+                        <input asp-for="Website" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Address" class="form-label"></label>
+                        <input asp-for="Address" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label"></label>
+                        <textarea asp-for="Description" class="form-control"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Company Logo</label><br />
+                        @if (!string.IsNullOrEmpty(Model.Image))
+                        {
+                            <img src="@Model.Image" alt="Company Logo" class="rounded-circle mb-2" style="width:100px;height:100px;object-fit:cover;" />
+                        }
+                        <input asp-for="ImageFile" type="file" class="form-control" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <a asp-action="Profile" asp-route-userId="@Model.Id" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TalentLink.Data;
 using TalentLink.Models;
@@ -10,11 +11,19 @@ namespace TalentLink.Controllers
     {
         private readonly IAuthService _authService;
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager; // Added this
 
-        public AccountController(IAuthService authService, ApplicationDbContext context)
+        public AccountController(
+            IAuthService authService,
+            ApplicationDbContext context,
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager) // Added this parameter
         {
             _authService = authService;
             _context = context;
+            _userManager = userManager;
+            _signInManager = signInManager; // Added this assignment
         }
 
         [HttpGet]
@@ -29,6 +38,7 @@ namespace TalentLink.Controllers
             return View();
         }
 
+        
         [HttpPost]
         public async Task<IActionResult> Register(RegisterModel model)
         {
@@ -42,7 +52,7 @@ namespace TalentLink.Controllers
             if (result.Succeeded)
             {
                 // Get the newly created user
-                var user = await _authService.GetUserByIdAsync((await _authService.GetUserByIdAsync(model.Email))?.Id);
+                var user = await _userManager.FindByEmailAsync(model.Email);
 
                 if (user != null)
                 {
@@ -52,11 +62,11 @@ namespace TalentLink.Controllers
                         var company = new Company
                         {
                             UserId = user.Id,
-                            CompanyName = model.CompanyName,
-                            Industry = model.Industry,
-                            Website = model.Website,
-                            Address = model.CompanyAddress,
-                            Description = model.CompanyDescription
+                            CompanyName = model.CompanyName ?? string.Empty,
+                            Industry = model.Industry ?? string.Empty,
+                            Website = model.Website ?? string.Empty,
+                            Address = model.CompanyAddress ?? string.Empty,
+                            Description = model.CompanyDescription ?? string.Empty
                         };
                         _context.Companies.Add(company);
                     }
@@ -65,12 +75,12 @@ namespace TalentLink.Controllers
                         var jobSeeker = new JobSeeker
                         {
                             UserId = user.Id,
-                            Skills = model.Skills,
-                            Experience = model.Experience,
-                            Education = model.Education,
+                            Skills = model.Skills ?? string.Empty,
+                            Experience = model.Experience ?? string.Empty,
+                            Education = model.Education ?? string.Empty,
                             DateOfBirth = model.DateOfBirth ?? DateTime.Now.AddYears(-20),
-                            Address = model.Address,
-                            CVFilePath = "" // You'll need to handle file upload separately
+                            Address = model.Address ?? string.Empty,
+                            CVFilePath = null // Handle file upload separately via API
                         };
                         _context.JobSeekers.Add(jobSeeker);
                     }
@@ -98,49 +108,85 @@ namespace TalentLink.Controllers
                 return View(model);
             }
 
-            var token = await _authService.LoginAsync(model);
-
-            if (token == null)
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
             {
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                ModelState.AddModelError("", "Invalid login attempt.");
                 return View(model);
             }
 
-            // Store token in a cookie for authentication
-            Response.Cookies.Append("AuthToken", token, new CookieOptions
-            {
-                HttpOnly = true,
-                Secure = true,
-                SameSite = SameSiteMode.Strict,
-                Expires = DateTime.Now.AddDays(7)
-            });
+            // Use SignInManager for cookie authentication
+            var result = await _signInManager.PasswordSignInAsync(user, model.Password, isPersistent: true, lockoutOnFailure: false);
 
-            // Get user to determine role-based redirect
-            var user = await _authService.GetUserByIdAsync((await _authService.GetUserByIdAsync(model.Email))?.Id);
-
-            if (user != null)
+            if (!result.Succeeded)
             {
-                switch (user.Role)
-                {
-                    case UserRole.Admin:
-                        return RedirectToAction("Dashboard", "Admin");
-                    case UserRole.Company:
-                        return RedirectToAction("Dashboard", "Company");
-                    case UserRole.JobSeeker:
-                        return RedirectToAction("Dashboard", "JobSeeker");
-                    default:
-                        return RedirectToAction("Index", "Home");
-                }
+                ModelState.AddModelError("", "Invalid login attempt.");
+                return View(model);
             }
 
-            return RedirectToAction("Index", "Home");
+            // Store in session
+            HttpContext.Session.SetString("UserId", user.Id);
+            HttpContext.Session.SetString("FirstName", user.FirstName);
+            HttpContext.Session.SetString("Role", user.Role.ToString());
+            HttpContext.Session.SetString("Email", user.Email);
+
+            // Redirect to dashboard
+            return RedirectToAction("Index", "Dashboard");
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult Logout()
         {
+            // Remove AuthToken cookie
             Response.Cookies.Delete("AuthToken");
+
+            // Clear session
+            HttpContext.Session.Remove("UserId");
+            HttpContext.Session.Remove("FirstName");
+
             return RedirectToAction("Index", "Home");
         }
+    }
+
+    // View Models for Profile Views
+    public class JobSeekerProfileViewModel
+    {
+        public string Id { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public string? PhoneNumber { get; set; }
+        public UserRole Role { get; set; }
+        public string Skills { get; set; } = string.Empty;
+        public string Experience { get; set; } = string.Empty;
+        public string Education { get; set; } = string.Empty;
+        public string? CVFilePath { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public string Address { get; set; } = string.Empty;
+    }
+
+    public class CompanyProfileViewModel
+    {
+        public string Id { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public string? PhoneNumber { get; set; }
+        public UserRole Role { get; set; }
+        public string CompanyName { get; set; } = string.Empty;
+        public string Industry { get; set; } = string.Empty;
+        public string Website { get; set; } = string.Empty;
+        public string Address { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+    }
+
+    public class AdminProfileViewModel
+    {
+        public string Id { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public string? PhoneNumber { get; set; }
+        public UserRole Role { get; set; }
     }
 }
