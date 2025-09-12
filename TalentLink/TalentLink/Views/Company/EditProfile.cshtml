@@ -3,12 +3,245 @@
     ViewData["Title"] = "Edit Company Profile";
 }
 
+<style>
+    /* ====== Page Background with Gradient Animation ====== */
+    body {
+        background: linear-gradient(135deg, #f8f9fc, #e3f2fd, #6a11cb);
+        background-size: 300% 300%;
+        animation: gradientShift 14s ease infinite;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #2c3e50;
+        overflow-x: hidden;
+    }
+
+    @@keyframes gradientShift {
+        0%
+
+    {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+    }
+
+    /* ====== Floating Background Circles ====== */
+    .bg-animation span {
+        position: absolute;
+        display: block;
+        width: 25px;
+        height: 25px;
+        background: rgba(255, 255, 255, 0.15);
+        animation: animate 20s linear infinite;
+        bottom: -150px;
+        border-radius: 50%;
+        z-index: 0;
+    }
+
+        .bg-animation span:nth-child(1) {
+            left: 25%;
+            width: 60px;
+            height: 60px;
+            animation-duration: 15s;
+        }
+
+        .bg-animation span:nth-child(2) {
+            left: 10%;
+            width: 40px;
+            height: 40px;
+            animation-duration: 20s;
+            animation-delay: 2s;
+        }
+
+        .bg-animation span:nth-child(3) {
+            left: 70%;
+            width: 90px;
+            height: 90px;
+            animation-duration: 25s;
+        }
+
+        .bg-animation span:nth-child(4) {
+            left: 40%;
+            width: 50px;
+            height: 50px;
+            animation-duration: 18s;
+            animation-delay: 5s;
+        }
+
+        .bg-animation span:nth-child(5) {
+            left: 65%;
+            width: 30px;
+            height: 30px;
+            animation-duration: 12s;
+        }
+
+    @@keyframes animate {
+        0%
+
+    {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+
+    100% {
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+
+    }
+
+    /* ====== Card Styling ====== */
+    .card {
+        position: relative;
+        z-index: 2;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        border-radius: 20px;
+        box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        animation: fadeSlideUp 0.8s ease-in-out;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 12px 35px rgba(0, 0, 0, 0.25);
+        }
+
+    /* ====== Title Styling ====== */
+    h3 {
+        font-weight: 700;
+        font-size: 1.8rem;
+        background: linear-gradient(90deg, #2575fc, #6a11cb);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: 0.5px;
+        animation: fadeSlideDown 0.9s ease-in-out;
+    }
+
+    /* ====== Input Fields ====== */
+    .form-control {
+        border-radius: 12px;
+        padding: 12px 15px;
+        border: 1.5px solid #ddd;
+        transition: all 0.3s ease;
+        background: #fff;
+    }
+
+        .form-control:focus {
+            border-color: #2575fc;
+            box-shadow: 0 0 12px rgba(37, 117, 252, 0.35);
+            transform: scale(1.02);
+        }
+
+    label {
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: #34495e;
+    }
+
+    textarea {
+        min-height: 130px;
+    }
+
+    /* ====== Buttons ====== */
+    .btn-primary {
+        background: linear-gradient(90deg, #2575fc, #6a11cb);
+        border: none;
+        border-radius: 12px;
+        padding: 10px 22px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0px 4px 14px rgba(37, 117, 252, 0.35);
+    }
+
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0px 6px 18px rgba(37, 117, 252, 0.5);
+        }
+
+    .btn-secondary {
+        border-radius: 12px;
+        padding: 10px 22px;
+        font-weight: 600;
+        border: 2px solid #7f8c8d;
+        color: #7f8c8d;
+        transition: all 0.3s ease;
+        margin-left: 8px;
+    }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+    /* ====== Logo Preview ====== */
+    .logo-preview {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 3px solid #f0f0f0;
+        background: #fff;
+        padding: 5px;
+    }
+
+        .logo-preview:hover {
+            transform: rotate(3deg) scale(1.07);
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+    /* ====== Animations ====== */
+    @@keyframes fadeSlideDown {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    @@keyframes fadeSlideUp {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+</style>
+
+<!-- Floating Background Shapes -->
+<div class="bg-animation">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-
             <div class="card shadow-lg p-4 border-0 rounded-4">
-                <h3 class="mb-4">Edit Company Profile</h3>
+                <h3 class="mb-4 text-center">Edit Company Profile</h3>
 
                 <form asp-action="EditProfile" method="post" enctype="multipart/form-data">
                     <input type="hidden" asp-for="Id" />
@@ -42,13 +275,15 @@
                         <label class="form-label">Company Logo</label><br />
                         @if (!string.IsNullOrEmpty(Model.Image))
                         {
-                            <img src="@Model.Image" alt="Company Logo" class="rounded-circle mb-2" style="width:100px;height:100px;object-fit:cover;" />
+                            <img src="@Model.Image" alt="Company Logo" class="rounded-circle mb-2 logo-preview" style="width:100px;height:100px;object-fit:cover;" />
                         }
                         <input asp-for="ImageFile" type="file" class="form-control" />
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                    <a asp-action="Profile" asp-route-userId="@Model.Id" class="btn btn-secondary">Cancel</a>
+                    <div class="d-flex justify-content-end mt-4">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <a asp-action="Profile" asp-route-userId="@Model.Id" class="btn btn-secondary">Cancel</a>
+                    </div>
                 </form>
             </div>
         </div>
