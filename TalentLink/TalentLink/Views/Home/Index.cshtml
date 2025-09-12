@@ -22,10 +22,13 @@
             <div class="col-lg-6 text-dark" data-aos="fade-right">
                 <h1 class="display-3 fw-bold mb-3">TalentLink</h1>
                 <p class="lead mb-4">Linking Talent with Opportunities — Find your dream job or hire top talent.</p>
-                <div class="d-flex gap-3">
-                    <a class="btn btn-gradient btn-lg animate__animated animate__pulse animate__infinite" asp-controller="Account" asp-action="Login">Login</a>
-                    <a class="btn btn-gradient-outline btn-lg animate__animated animate__pulse animate__infinite animate__delay-1s" asp-controller="Account" asp-action="Register">Sign Up</a>
-                </div>
+                @if (string.IsNullOrEmpty(userId))
+                {
+                    <div class="d-flex gap-3">
+                        <a class="btn btn-gradient btn-lg animate__animated animate__pulse animate__infinite" asp-controller="Account" asp-action="Login">Login</a>
+                        <a class="btn btn-gradient-outline btn-lg animate__animated animate__pulse animate__infinite animate__delay-1s" asp-controller="Account" asp-action="Register">Sign Up</a>
+                    </div>
+                }
             </div>
 
             <!-- Right: Job-related SVG Illustration -->
