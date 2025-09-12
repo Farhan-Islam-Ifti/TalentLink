@@ -8,76 +8,193 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-            <div class="card shadow-lg p-4 border-0 rounded-4">
-                <h3 class="mb-4">Edit Profile</h3>
+            <!-- Modern Card -->
+            <div class="card edit-profile-card shadow-lg border-0 rounded-4 p-4">
+                <h3 class="mb-4 text-gradient fw-bold text-center">
+                    <i class="fas fa-user-edit me-2"></i>Edit Profile
+                </h3>
 
-                <form asp-action="EditProfile" method="post" enctype="multipart/form-data">
+                <form asp-action="EditProfile" method="post" enctype="multipart/form-data" class="animated-form">
                     <input type="hidden" asp-for="Id" />
 
                     <div class="mb-3">
-                        <label asp-for="FirstName" class="form-label"></label>
-                        <input asp-for="FirstName" class="form-control" />
+                        <label asp-for="FirstName" class="form-label fw-semibold"></label>
+                        <input asp-for="FirstName" class="form-control custom-input" />
                     </div>
 
                     <div class="mb-3">
-                        <label asp-for="LastName" class="form-label"></label>
-                        <input asp-for="LastName" class="form-control" />
+                        <label asp-for="LastName" class="form-label fw-semibold"></label>
+                        <input asp-for="LastName" class="form-control custom-input" />
                     </div>
 
                     <div class="mb-3">
-                        <label asp-for="PhoneNumber" class="form-label"></label>
-                        <input asp-for="PhoneNumber" class="form-control" />
+                        <label asp-for="PhoneNumber" class="form-label fw-semibold"></label>
+                        <input asp-for="PhoneNumber" class="form-control custom-input" />
                     </div>
 
                     <div class="mb-3">
-                        <label asp-for="Address" class="form-label"></label>
-                        <input asp-for="Address" class="form-control" />
+                        <label asp-for="Address" class="form-label fw-semibold"></label>
+                        <input asp-for="Address" class="form-control custom-input" />
                     </div>
 
                     <div class="mb-3">
-                        <label asp-for="DateOfBirth" class="form-label"></label>
-                        <input asp-for="DateOfBirth" type="date" class="form-control" />
+                        <label asp-for="DateOfBirth" class="form-label fw-semibold"></label>
+                        <input asp-for="DateOfBirth" type="date" class="form-control custom-input" />
                     </div>
 
                     <div class="mb-3">
-                        <label asp-for="Skills" class="form-label"></label>
-                        <textarea asp-for="Skills" class="form-control"></textarea>
+                        <label asp-for="Skills" class="form-label fw-semibold"></label>
+                        <textarea asp-for="Skills" class="form-control custom-input"></textarea>
                     </div>
 
                     <div class="mb-3">
-                        <label asp-for="Experience" class="form-label"></label>
-                        <textarea asp-for="Experience" class="form-control"></textarea>
+                        <label asp-for="Experience" class="form-label fw-semibold"></label>
+                        <textarea asp-for="Experience" class="form-control custom-input"></textarea>
                     </div>
 
                     <div class="mb-3">
-                        <label asp-for="Education" class="form-label"></label>
-                        <textarea asp-for="Education" class="form-control"></textarea>
+                        <label asp-for="Education" class="form-label fw-semibold"></label>
+                        <textarea asp-for="Education" class="form-control custom-input"></textarea>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Profile Image</label><br />
+                        <label class="form-label fw-semibold">Profile Image</label><br />
                         @if (!string.IsNullOrEmpty(Model.Image))
                         {
-                            <img src="@Model.Image" alt="Profile" class="rounded-circle mb-2" style="width:100px;height:100px;object-fit:cover;" />
+                            <img src="@Model.Image" alt="Profile" class="rounded-circle mb-3 glowing-img"
+                                 style="width:100px;height:100px;object-fit:cover;" />
                         }
-                        <input asp-for="ImageFile" type="file" class="form-control" />
+                        <input asp-for="ImageFile" type="file" class="form-control custom-input" />
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Resume (PDF)</label><br />
+                        <label class="form-label fw-semibold">Resume (PDF)</label><br />
                         @if (!string.IsNullOrEmpty(Model.CVFilePath))
                         {
-                            <a href="@Model.CVFilePath" target="_blank">Current Resume</a>
-                        
+                            <a href="@Model.CVFilePath" target="_blank" class="resume-link">Current Resume</a>
                             <br />
                         }
-                        <input asp-for="CVFile" type="file" class="form-control" />
+                        <input asp-for="CVFile" type="file" class="form-control custom-input" />
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                    <a asp-action="Profile" asp-route-userId="@Model.Id" class="btn btn-secondary">Cancel</a>
+                    <div class="d-flex justify-content-between mt-4">
+                        <button type="submit" class="btn btn-gradient px-4">
+                            <i class="fas fa-save me-2"></i>Save Changes
+                        </button>
+                        <a asp-action="Profile" asp-route-userId="@Model.Id" class="btn btn-outline-light px-4">
+                            <i class="fas fa-times me-2"></i>Cancel
+                        </a>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    /* Card only styling (not full background) */
+    .edit-profile-card {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(8px);
+        border-radius: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .edit-profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+
+    /* Title Gradient */
+    .text-gradient {
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Custom Input */
+    .custom-input {
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        padding: 0.7rem 1rem;
+        transition: all 0.3s ease;
+    }
+
+        .custom-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(118,75,162,0.2);
+        }
+
+    /* Gradient Button */
+    .btn-gradient {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border: none;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(118, 75, 162, 0.4);
+        }
+
+    /* Outline Button */
+    .btn-outline-light {
+        border: 2px solid #764ba2;
+        border-radius: 50px;
+        color: #764ba2;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+        .btn-outline-light:hover {
+            background: #764ba2;
+            color: #fff;
+        }
+
+    /* Resume link */
+    .resume-link {
+        color: #667eea;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+        .resume-link:hover {
+            color: #764ba2;
+        }
+
+    /* Image Glow */
+    .glowing-img {
+        box-shadow: 0 0 10px rgba(118, 75, 162, 0.6);
+        animation: pulseGlow 2.5s infinite alternate;
+    }
+
+    @@keyframes pulseGlow {
+        from {
+            box-shadow: 0 0 8px rgba(118, 75, 162, 0.4);
+        }
+
+        to {
+            box-shadow: 0 0 20px rgba(118, 75, 162, 0.8);
+        }
+    }
+
+    /* Form Fade-in */
+    .animated-form {
+        animation: fadeInUp 0.6s ease;
+    }
+
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
