@@ -14,7 +14,10 @@
     .dashboard-card:hover {
         transform: translateY(-5px);
     }
-
+/* Footer always at bottom */
+footer {
+    margin-top: auto;
+}
 .stat-card {
     text-align: center;
     padding: 20px;

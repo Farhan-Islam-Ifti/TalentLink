@@ -44,6 +44,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEpvYlNlZWtlckRhc2hib2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Project/TalentLink/TalentLink/TalentLink/Views/Dashboard/_RecommendedJobs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXF9SZWNvbW1lbmRlZEpvYnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Project/TalentLink/TalentLink/TalentLink/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -92,12 +96,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iUG9zdGluZ012Y1xVcGRhdGVTdGF0dXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Project/TalentLink/TalentLink/TalentLink/Views/JobSeeker/AvailableJobs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iU2Vla2VyXEF2YWlsYWJsZUpvYnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Project/TalentLink/TalentLink/TalentLink/Views/JobSeeker/EditProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iU2Vla2VyXEVkaXRQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Project/TalentLink/TalentLink/TalentLink/Views/JobSeeker/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iU2Vla2VyXFByb2ZpbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/TalentLink/TalentLink/TalentLink/Views/JobSeeker/_JobsList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iU2Vla2VyXF9Kb2JzTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Project/TalentLink/TalentLink/TalentLink/Views/Shared/Error.cshtml]

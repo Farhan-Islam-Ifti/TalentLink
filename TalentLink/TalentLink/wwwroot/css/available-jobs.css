@@ -1,0 +1,102 @@
+﻿/* Available Jobs page only */
+.available-jobs-page .animated-title {
+    animation: fadeInDown 0.8s ease-in-out;
+}
+.available-jobs-page {
+    margin-top: 20px; /* pushes content below fixed navbar */
+    margin-bottom: 50px; /* creates space above footer */
+}
+.available-jobs-page .gradient-card {
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #f8f9fa, #ffffff);
+    transition: all 0.3s ease-in-out;
+}
+
+    .available-jobs-page .gradient-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+.available-jobs-page .search-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.available-jobs-page .job-card-modern {
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+    .available-jobs-page .job-card-modern:hover {
+        transform: translateY(-8px) scale(1.02);
+    }
+
+.available-jobs-page .modern-input {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    transition: all 0.2s;
+}
+
+    .available-jobs-page .modern-input:focus {
+        border-color: #6c63ff;
+        box-shadow: 0 0 5px rgba(108,99,255,0.4);
+    }
+
+.available-jobs-page .modern-btn {
+    border-radius: 30px;
+    font-weight: 600;
+    padding: 8px 18px;
+    transition: all 0.3s;
+}
+    /* Add spacing between search container and job container */
+.available-jobs-page #searchForm {
+    margin-bottom: 30px; /* push jobs list down */
+}
+
+.available-jobs-page .btn-gradient {
+    background: linear-gradient(45deg, #6c63ff, #836fff);
+    color: #fff;
+    border: none;
+}
+
+    .available-jobs-page .btn-gradient:hover {
+        opacity: 0.9;
+    }
+/* Job Type Badge */
+.badge.bg-gradient {
+    background: linear-gradient(45deg, #6c63ff, #836fff);
+    font-size: 0.85rem;
+    border-radius: 8px;
+}
+
+/* Job Info Section */
+.job-meta {
+    background: #f9f9ff;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+/* Card Improvements */
+.job-card-modern {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .job-card-modern:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    /* Action Buttons */
+    .job-card-modern .modern-btn {
+        border-radius: 30px;
+        font-weight: 600;
+    }
