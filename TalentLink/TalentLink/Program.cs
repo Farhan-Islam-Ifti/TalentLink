@@ -17,6 +17,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.Configure<CloudinarySettings>(
     builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
+builder.Services.AddScoped<IJobRecommendationService, JobRecommendationService>();
 
 // Add Identity with Cookie Authentication
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>

@@ -1,4 +1,4 @@
-wwwroot\css\site.css
+wwwroot\css\available-jobs.css
 wwwroot\favicon.ico
 wwwroot\images\profile.jpg
 wwwroot\js\site.js
@@ -59,3 +59,4 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
+wwwroot\css\site.css

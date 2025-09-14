@@ -69,67 +69,19 @@
             <div class="col-md-8">
 
                 <!-- Recommended Jobs -->
-                <div class="card recommended-jobs-card gradient-card mb-4 animated-card">
-                    <div class="card-header gradient-header">
-                        <h5 class="mb-0"><i class="fas fa-briefcase me-2"></i>Recommended Jobs For You</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            @if (recommendedJobs.Any())
-                            {
-                                foreach (var job in recommendedJobs)
-                                {
-                                    <div class="col-md-6 mb-3">
-                                        <div class="card job-card-modern gradient-card shadow-lg animated-card soft-card">
-                                            <div class="card-body">
-                                                <h6 class="fw-bold">@job.Title</h6>
-                                                <p class="mb-2"><i class="fas fa-building me-1"></i>@job.Company?.CompanyName</p>
-                                                <p class="small mb-3">
-                                                    @(job.Description.Length > 100 ? job.Description.Substring(0, 100) + "..." : job.Description)
-                                                </p>
-                                                <div class="job-details mb-3">
-                                                    <i class="fas fa-map-marker-alt me-1"></i>@job.Location<br>
-                                                    @if (job.Salary.HasValue)
-                                                    {
-                                                        <i class="fas fa-money-bill-wave me-1"></i>
-                                                        @job.Salary.Value.ToString("C")
-                                            
-                                                        <br>
-                                                    }
-                                                    <i class="fas fa-clock me-1"></i>@job.DeadlineDate?.ToString("MMM dd, yyyy")
-                                                </div>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <a href="@Url.Action("Details", "JobPostingMvc", new { id = job.Id })" class="modern-btn btn-gradient btn-animated btn-sm">
-                                                        <i class="fas fa-eye me-1"></i>View Job
-                                                    </a>
-                                                    @{
-                                                        var applicationForJob = applications.FirstOrDefault(a => a.JobPostingId == job.Id);
-                                                    }
-                                                    @if (applicationForJob != null)
-                                                    {
-                                                        <a href="@Url.Action("Details", "JobApplicationMvc", new { id = applicationForJob.Id })" class="application-badge">
-                                                            <i class="fas fa-check me-1"></i>View Application
-                                                        </a>
-                                                    }
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                            }
-                            else
-                            {
-                                <div class="col-12 text-center py-4">
-                                    <i class="fas fa-briefcase fa-3x mb-3"></i>
-                                    <p>No recommended jobs available at the moment.</p>
-                                    <a href="@Url.Action("Index", "JobPostingMvc")" class="modern-btn btn-gradient mt-2">
-                                        <i class="fas fa-search me-1"></i>Browse All Jobs
-                                    </a>
-                                </div>
-                            }
-                        </div>
-                    </div>
-                </div>
+                <div id="recommendedJobsContainer"></div>
+
+                @section Scripts {
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            fetch('@Url.Action("Recommended", "Recommendation")', { headers: { "X-Requested-With": "XMLHttpRequest" } })
+                                .then(r => r.text())
+                                .then(html => document.getElementById('recommendedJobsContainer').innerHTML = html)
+                                .catch(() => { document.getElementById('recommendedJobsContainer').innerHTML = '<div class="alert alert-warning">Could not load recommendations.</div>'; });
+                        });
+                    </script>
+                }
+
 
                 <!-- Recent Applications -->
                 <div class="card recent-applications-card gradient-card shadow-lg animated-card delay-1s">

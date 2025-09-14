@@ -45,14 +45,6 @@
                         </li>
                         <li>
                             <a class="sidebar-link"
-                               asp-controller="Company"
-                               asp-action="EditProfile"
-                               asp-route-userId="@Context.Session.GetString("UserId")">
-                                <i class="fas fa-edit me-2"></i> Edit Profile
-                            </a>
-                        </li>
-                        <li>
-                            <a class="sidebar-link"
                                asp-controller="Dashboard"
                                asp-action="CompanyDashboard">
                                 <i class="fas fa-user me-2"></i> DashBoard
@@ -75,15 +67,26 @@
                             <a class="sidebar-link d-flex align-items-center"
                                asp-controller="Dashboard"
                                asp-action="JobSeekerDashboard">
-                                <!-- Icon -->
                                 <i class="bi bi-person-workspace me-2" style="font-size: 1.2rem;"></i>
-                                <!-- Link Text -->
                                 <span>Dashboard</span>
                             </a>
                         </li>
+                        <li>
+                            <a class="sidebar-link d-flex align-items-center"
+                               asp-controller="JobSeeker"
+                               asp-action="AvailableJobs">
+                                <i class="bi bi-briefcase-fill me-2" style="font-size: 1.2rem;"></i>
+                                <span>Available Jobs</span>
+                            </a>
+                        </li>
 
-                        <li><a class="sidebar-link" asp-controller="JobSeeker" asp-action="Jobs"><i class="fas fa-search me-2"></i> Available Jobs</a></li>
-                        <li><a class="sidebar-link" asp-controller="JobSeeker" asp-action="Applications"><i class="fas fa-file-alt me-2"></i> My Applications</a></li>
+                        <li>
+                            <a class="sidebar-link"
+                               asp-controller="JobSeeker"
+                               asp-action="Applications">
+                                <i class="fas fa-file-alt me-2"></i> My Applications
+                            </a>
+                        </li>
                     }
                 </ul>
             </div>

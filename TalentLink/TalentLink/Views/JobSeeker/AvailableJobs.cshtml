@@ -1,0 +1,41 @@
+﻿@model AvailableJobsViewModel
+@using TalentLink.Models
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/available-jobs.css" asp-append-version="true" />
+}
+
+<div class="container available-jobs-page">
+    <!-- Search Form -->
+    <form id="searchForm" method="get" asp-action="AvailableJobs" asp-controller="JobSeeker">
+        <div class="row g-3 align-items-end">
+            <div class="col-md-4">
+                <input type="text" name="search" value="@Model.Search" class="form-control modern-input" placeholder="Search jobs title..." />
+            </div>
+            <div class="col-md-3">
+                <input type="text" name="location" value="@Model.Location" class="form-control modern-input" placeholder="Location" />
+            </div>
+            <div class="col-md-3">
+                <select name="jobType" class="form-select modern-input">
+                    <option value="">-- Select Job Type--</option>
+                    @foreach (var type in Enum.GetValues(typeof(JobType)))
+                    {
+                        <option value="@type" selected="@(Model.JobType == (JobType)type)">
+                            @type
+                        </option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="modern-btn btn-gradient w-100">
+                    <i class="fas fa-search me-1"></i> Search
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Jobs Container -->
+    <div id="jobsContainer">
+        @await Html.PartialAsync("_JobsList", Model)
+    </div>
+</div>

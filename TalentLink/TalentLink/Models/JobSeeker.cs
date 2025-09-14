@@ -58,4 +58,16 @@ namespace TalentLink.Models
         public IFormFile? CVFile { get; set; }  // For uploading new
     }
 
+    public class AvailableJobsViewModel
+    {
+        public IEnumerable<JobPosting> Jobs { get; set; } = new List<JobPosting>();
+        public string? Search { get; set; }
+        public string? Location { get; set; }
+        public JobType? JobType { get; set; }
+        public int CurrentPage { get; set; }
+        public int PageSize { get; set; }
+        public int TotalCount { get; set; }
+    }
+
+
 }

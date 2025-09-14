@@ -99,16 +99,20 @@ namespace TalentLink.Controllers
             var jsProfile = await _context.JobSeekers.FirstOrDefaultAsync(js => js.UserId == user.Id);
             if (jsProfile == null) return NotFound("Job seeker profile not found");
 
-            // Update only changed values
-            user.FirstName = model.FirstName ?? user.FirstName;
-            user.LastName = model.LastName ?? user.LastName;
-            user.PhoneNumber = model.PhoneNumber ?? user.PhoneNumber;
+            
+            // Update only changed values (preserve old if new is null, empty, or whitespace)
+            user.FirstName = string.IsNullOrWhiteSpace(model.FirstName) ? user.FirstName : model.FirstName;
+            user.LastName = string.IsNullOrWhiteSpace(model.LastName) ? user.LastName : model.LastName;
+            user.PhoneNumber = string.IsNullOrWhiteSpace(model.PhoneNumber) ? user.PhoneNumber : model.PhoneNumber;
 
-            jsProfile.Address = model.Address ?? jsProfile.Address;
+            jsProfile.Address = string.IsNullOrWhiteSpace(model.Address) ? jsProfile.Address : model.Address;
+            jsProfile.Skills = string.IsNullOrWhiteSpace(model.Skills) ? jsProfile.Skills : model.Skills;
+            jsProfile.Experience = string.IsNullOrWhiteSpace(model.Experience) ? jsProfile.Experience : model.Experience;
+            jsProfile.Education = string.IsNullOrWhiteSpace(model.Education) ? jsProfile.Education : model.Education;
+
+            // DateOfBirth is a nullable DateTime, so check differently
             jsProfile.DateOfBirth = model.DateOfBirth ?? jsProfile.DateOfBirth;
-            jsProfile.Skills = model.Skills ?? jsProfile.Skills;
-            jsProfile.Experience = model.Experience ?? jsProfile.Experience;
-            jsProfile.Education = model.Education ?? jsProfile.Education;
+
 
             // Upload Image if new file provided
             if (model.ImageFile != null)
@@ -130,5 +134,48 @@ namespace TalentLink.Controllers
 
             return RedirectToAction("Profile", new { userId = user.Id });
         }
+
+        // GET: /JobSeeker/AvailableJobs
+        [HttpGet]
+        public async Task<IActionResult> AvailableJobs(string? search, string? location, JobType? jobType, int page = 1, int pageSize = 9)
+        {
+            var query = _context.JobPostings
+                .Include(jp => jp.Company)
+                .Where(jp => jp.IsActive);
+
+            if (!string.IsNullOrWhiteSpace(search))
+                query = query.Where(jp => jp.Title.Contains(search) || jp.Description.Contains(search) || jp.Requirements.Contains(search));
+
+            if (!string.IsNullOrWhiteSpace(location))
+                query = query.Where(jp => jp.Location.Contains(location));
+
+            if (jobType.HasValue)
+                query = query.Where(jp => jp.JobType == jobType);
+
+            var totalCount = await query.CountAsync();
+            var jobs = await query
+                .OrderByDescending(jp => jp.PostedDate)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            var model = new AvailableJobsViewModel
+            {
+                Jobs = jobs,
+                Search = search,
+                Location = location,
+                JobType = jobType,
+                CurrentPage = page,
+                PageSize = pageSize,
+                TotalCount = totalCount
+            };
+
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                return PartialView("_JobsList", model);
+
+            return View(model);
+        }
+
+
     }
 }
