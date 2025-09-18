@@ -12,39 +12,56 @@ namespace TalentLink.Controllers
         private readonly IAuthService _authService;
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager; // Added this
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
         public AccountController(
             IAuthService authService,
             ApplicationDbContext context,
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager) // Added this parameter
+            SignInManager<ApplicationUser> signInManager)
         {
             _authService = authService;
             _context = context;
             _userManager = userManager;
-            _signInManager = signInManager; // Added this assignment
+            _signInManager = signInManager;
         }
 
         [HttpGet]
         public IActionResult Register()
         {
-            return View();
+            // Redirect to Login page since registration is now embedded there
+            return RedirectToAction("Login");
         }
 
         [HttpGet]
         public IActionResult Login()
         {
-            return View();
+            var loginModel = new LoginModel();
+            return View(loginModel);
         }
 
-        
         [HttpPost]
         public async Task<IActionResult> Register(RegisterModel model)
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                // Store registration data and errors in TempData to pass to Login view
+                TempData["ShowRegisterForm"] = true;
+                TempData["RegisterModel"] = System.Text.Json.JsonSerializer.Serialize(model);
+
+                // Store ModelState errors
+                var errors = new Dictionary<string, List<string>>();
+                foreach (var key in ModelState.Keys)
+                {
+                    var modelErrors = ModelState[key]?.Errors;
+                    if (modelErrors != null && modelErrors.Count > 0)
+                    {
+                        errors[key] = modelErrors.Select(e => e.ErrorMessage).ToList();
+                    }
+                }
+                TempData["RegisterErrors"] = System.Text.Json.JsonSerializer.Serialize(errors);
+
+                return RedirectToAction("Login");
             }
 
             var result = await _authService.RegisterAsync(model);
@@ -92,12 +109,20 @@ namespace TalentLink.Controllers
                 return RedirectToAction("Login");
             }
 
+            // If registration failed, show errors on the register form
+            TempData["ShowRegisterForm"] = true;
+            TempData["RegisterModel"] = System.Text.Json.JsonSerializer.Serialize(model);
+
+            var registerErrors = new Dictionary<string, List<string>>();
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError(string.Empty, error.Description);
+                if (!registerErrors.ContainsKey("RegisterGeneral"))
+                    registerErrors["RegisterGeneral"] = new List<string>();
+                registerErrors["RegisterGeneral"].Add(error.Description);
             }
+            TempData["RegisterErrors"] = System.Text.Json.JsonSerializer.Serialize(registerErrors);
 
-            return View(model);
+            return RedirectToAction("Login");
         }
 
         [HttpPost]
@@ -130,6 +155,10 @@ namespace TalentLink.Controllers
             HttpContext.Session.SetString("Role", user.Role.ToString());
             HttpContext.Session.SetString("Email", user.Email);
 
+            // Store in TempData for JavaScript access
+            TempData["UserId"] = user.Id;
+            TempData["FirstName"] = user.FirstName;
+
             // Redirect to dashboard
             return RedirectToAction("Index", "Dashboard");
         }
@@ -137,18 +166,23 @@ namespace TalentLink.Controllers
         [HttpGet]
         public IActionResult Logout()
         {
+            // Use SignInManager to sign out
+            _signInManager.SignOutAsync();
+
             // Remove AuthToken cookie
             Response.Cookies.Delete("AuthToken");
 
             // Clear session
             HttpContext.Session.Remove("UserId");
             HttpContext.Session.Remove("FirstName");
+            HttpContext.Session.Remove("Role");
+            HttpContext.Session.Remove("Email");
 
             return RedirectToAction("Index", "Home");
         }
     }
 
-    // View Models for Profile Views
+    // View Models for Profile Views (keep these as they are)
     public class JobSeekerProfileViewModel
     {
         public string Id { get; set; } = string.Empty;

@@ -2,8 +2,9 @@
 
 @{
     ViewData["Title"] = "Login";
-    Layout = "_Layout"; // Changed to use the main layout
+    Layout = "_Layout"; // Use the shared layout
 }
+
 @if (TempData["UserId"] != null)
 {
     <script>
@@ -12,41 +13,700 @@
     </script>
 }
 
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-<div class="row justify-content-center mt-5">
-    <div class="col-md-6">
-        <div class="card shadow">
-            <div class="card-header bg-primary text-white text-center">
-                <h3><i class="fas fa-sign-in-alt"></i> Login to TalentLink</h3>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: linear-gradient(135deg, #E5E7EB 0%, #F3F4F6 100%);
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    .login-wrapper {
+        min-height: calc(100vh - 140px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .login-container {
+        background: white;
+        border-radius: 24px;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        max-width: 1200px;
+        width: 100%;
+        min-height: 650px;
+    }
+
+    .login-form-section {
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        background: white;
+        overflow-y: auto;
+        max-height: 650px;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .brand-icon {
+        width: 14px;
+        height: 14px;
+        background: #3B82F6;
+        border-radius: 3px;
+        margin-right: 10px;
+    }
+
+    .brand-text {
+        font-size: 18px;
+        font-weight: 700;
+        color: #1F2937;
+    }
+
+    .welcome-title {
+        font-size: 32px;
+        font-weight: 700;
+        color: #1F2937;
+        line-height: 1.2;
+        margin-bottom: 8px;
+    }
+
+    .welcome-subtitle {
+        color: #9CA3AF;
+        font-size: 15px;
+        margin-bottom: 30px;
+        font-weight: 400;
+    }
+
+    /* Toggle Buttons */
+    .form-toggle {
+        display: flex;
+        background: #F3F4F6;
+        border-radius: 10px;
+        padding: 4px;
+        margin-bottom: 25px;
+        position: relative;
+    }
+
+    .toggle-btn {
+        flex: 1;
+        padding: 12px 20px;
+        background: transparent;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: #6B7280;
+        position: relative;
+        z-index: 2;
+    }
+
+        .toggle-btn.active {
+            color: #1F2937;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 16px;
+    }
+
+    .form-input, .form-select {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1px solid #E5E7EB;
+        border-radius: 10px;
+        font-size: 14px;
+        transition: all 0.2s ease;
+        background: #FAFAFA;
+        color: #1F2937;
+    }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #3B82F6;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #9CA3AF;
+            font-weight: 400;
+        }
+
+    .form-textarea {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1px solid #E5E7EB;
+        border-radius: 10px;
+        font-size: 14px;
+        transition: all 0.2s ease;
+        background: #FAFAFA;
+        color: #1F2937;
+        resize: vertical;
+        min-height: 80px;
+        font-family: inherit;
+    }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: #3B82F6;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+    .signin-button {
+        width: 100%;
+        background: #3B82F6;
+        color: white;
+        padding: 16px;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin: 20px 0;
+    }
+
+        .signin-button:hover {
+            background: #2563EB;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+        }
+
+    .form-footer {
+        text-align: center;
+        color: #6B7280;
+        font-size: 14px;
+        margin-top: 15px;
+        padding-bottom: 20px;
+    }
+
+    .illustration-section {
+        background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 50%, #2563EB 100%);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* 3D Safe Illustration */
+    .safe-container {
+        position: relative;
+        transform: perspective(1000px) rotateY(-15deg) rotateX(5deg);
+    }
+
+    .safe {
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(135deg, #1E40AF 0%, #1E3A8A 50%, #1E293B 100%);
+        border-radius: 20px;
+        position: relative;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.1);
+    }
+
+        .safe::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(135deg, #3B82F6, #1E40AF);
+            border-radius: 25px;
+            z-index: -1;
+        }
+
+    .safe-door {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+        background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .safe-lock {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
+        border-radius: 50%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .lock-handle {
+        width: 4px;
+        height: 20px;
+        background: #E5E7EB;
+        border-radius: 2px;
+        position: absolute;
+    }
+
+    .lock-numbers {
+        position: absolute;
+        width: 80%;
+        height: 80%;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+        .lock-numbers::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 8px;
+            background: #E5E7EB;
+            border-radius: 1px;
+        }
+
+    /* Floating elements */
+    .floating-element {
+        position: absolute;
+        opacity: 0.1;
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .element-1 {
+        top: 15%;
+        left: 10%;
+        width: 30px;
+        height: 30px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+        animation-delay: -2s;
+    }
+
+    .element-2 {
+        top: 25%;
+        right: 15%;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 50%;
+        animation-delay: -4s;
+    }
+
+    .element-3 {
+        bottom: 20%;
+        left: 15%;
+        width: 25px;
+        height: 25px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        animation-delay: -1s;
+    }
+
+    @@keyframes float {
+        0%, 100%
+
+    {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    33% {
+        transform: translateY(-10px) rotate(120deg);
+    }
+
+    66% {
+        transform: translateY(-5px) rotate(240deg);
+    }
+
+    }
+
+    .validation-summary, .alert {
+        background: #FEF2F2;
+        border: 1px solid #FECACA;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 20px;
+        color: #B91C1C;
+        font-size: 14px;
+    }
+
+    .alert-success {
+        background: #F0FDF4;
+        border-color: #BBF7D0;
+        color: #166534;
+    }
+
+    .text-danger {
+        color: #EF4444;
+        font-size: 12px;
+        margin-top: 4px;
+        display: block;
+    }
+
+    /* Hide forms initially */
+    .signup-form {
+        display: none;
+    }
+
+    .role-fields {
+        display: none;
+    }
+
+    @@media (max-width: 768px) {
+        .login-container
+
+    {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+
+    .illustration-section {
+        display: none;
+    }
+
+    .login-form-section {
+        padding: 30px 25px;
+    }
+
+    .welcome-title {
+        font-size: 28px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    }
+</style>
+
+<div class="login-wrapper">
+    <div class="login-container">
+        <div class="login-form-section">
+            <div class="brand">
+                <div class="brand-icon"></div>
+                <span class="brand-text">TalentLink</span>
             </div>
-            <div class="card-body">
-                <form asp-action="Login" method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                    <div class="form-group mb-3">
-                        <label asp-for="Email" class="form-label">Email</label>
-                        <input asp-for="Email" class="form-control" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
+            <h1 class="welcome-title">Welcome Back</h1>
+            <p class="welcome-subtitle">Welcome Back, Please enter Your details</p>
+
+            <!-- Toggle Buttons -->
+            <div class="form-toggle">
+                <button type="button" class="toggle-btn active" id="signinBtn">Sign In</button>
+                <button type="button" class="toggle-btn" id="signupBtn">Signup</button>
+            </div>
+
+            <!-- Sign In Form -->
+            <form asp-action="Login" method="post" id="signinForm" class="signin-form">
+                <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+                <div class="form-group">
+                    <input asp-for="Email" class="form-input" placeholder="Enter your email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input asp-for="Password" type="password" class="form-input" placeholder="Enter your password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="signin-button">Continue</button>
+
+                <div class="form-footer">
+                    Don't have an account? Click Signup above to create one.
+                </div>
+            </form>
+
+            <!-- Sign Up Form -->
+            <form asp-action="Register" method="post" id="signupForm" class="signup-form" style="display: none;">
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+                }
+
+                <!-- Registration Errors Display -->
+                <div id="registerErrors" style="display: none;" class="validation-summary">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <input name="FirstName" id="reg-FirstName" class="form-input" placeholder="First Name" required />
+                        <span class="text-danger" id="error-FirstName"></span>
+                    </div>
+                    <div class="form-group">
+                        <input name="LastName" id="reg-LastName" class="form-input" placeholder="Last Name" required />
+                        <span class="text-danger" id="error-LastName"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input name="Email" id="reg-Email" type="email" class="form-input" placeholder="Email Address" required />
+                    <span class="text-danger" id="error-Email"></span>
+                </div>
+
+                <div class="form-group">
+                    <input name="PhoneNumber" id="reg-PhoneNumber" class="form-input" placeholder="Phone Number" />
+                    <span class="text-danger" id="error-PhoneNumber"></span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <input name="Password" id="reg-Password" type="password" class="form-input" placeholder="Password" required />
+                        <span class="text-danger" id="error-Password"></span>
+                    </div>
+                    <div class="form-group">
+                        <input name="ConfirmPassword" id="reg-ConfirmPassword" type="password" class="form-input" placeholder="Confirm Password" required />
+                        <span class="text-danger" id="error-ConfirmPassword"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <select name="Role" id="roleSelect" class="form-select" required>
+                        <option value="">Select User Type</option>
+                        <option value="Company">Company</option>
+                        <option value="JobSeeker">Job Seeker</option>
+                    </select>
+                    <span class="text-danger" id="error-Role"></span>
+                </div>
+
+                <!-- Company Fields -->
+                <div id="companyFields" class="role-fields">
+                    <div class="form-group">
+                        <input name="CompanyName" class="form-input" placeholder="Company Name" />
                     </div>
 
-                    <div class="form-group mb-3">
-                        <label asp-for="Password" class="form-label">Password</label>
-                        <input asp-for="Password" type="password" class="form-control" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input name="Industry" class="form-input" placeholder="Industry" />
+                        </div>
+                        <div class="form-group">
+                            <input name="Website" class="form-input" placeholder="Website" />
+                        </div>
                     </div>
 
-                    <div class="form-group mb-3">
-                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    <div class="form-group">
+                        <textarea name="CompanyAddress" class="form-textarea" placeholder="Company Address"></textarea>
                     </div>
 
-                    <div class="text-center">
-                        <p>Don't have an account? <a href="/Account/Register">Register here</a></p>
+                    <div class="form-group">
+                        <textarea name="CompanyDescription" class="form-textarea" placeholder="Company Description"></textarea>
                     </div>
-                </form>
+                </div>
+
+                <!-- Job Seeker Fields -->
+                <div id="jobSeekerFields" class="role-fields">
+                    <div class="form-group">
+                        <input name="DateOfBirth" type="date" class="form-input" />
+                    </div>
+
+                    <div class="form-group">
+                        <textarea name="Address" class="form-textarea" placeholder="Address"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea name="Skills" class="form-textarea" placeholder="Skills (separate with commas)"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea name="Experience" class="form-textarea" placeholder="Experience"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea name="Education" class="form-textarea" placeholder="Education"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="signin-button">Register</button>
+
+                <div class="form-footer">
+                    Already have an account? Click Sign In above to login.
+                </div>
+            </form>
+        </div>
+
+        <div class="illustration-section">
+            <div class="floating-element element-1"></div>
+            <div class="floating-element element-2"></div>
+            <div class="floating-element element-3"></div>
+
+            <div class="safe-container">
+                <div class="safe">
+                    <div class="safe-door">
+                        <div class="safe-lock">
+                            <div class="lock-numbers"></div>
+                            <div class="lock-handle"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const signinBtn = document.getElementById('signinBtn');
+    const signupBtn = document.getElementById('signupBtn');
+    const signinForm = document.getElementById('signinForm');
+    const signupForm = document.getElementById('signupForm');
+    const welcomeTitle = document.querySelector('.welcome-title');
+    const welcomeSubtitle = document.querySelector('.welcome-subtitle');
+    const roleSelect = document.getElementById('roleSelect');
+    const companyFields = document.getElementById('companyFields');
+    const jobSeekerFields = document.getElementById('jobSeekerFields');
+
+    // Check if we need to show the register form due to errors
+    const showRegisterForm = @Html.Raw(TempData["ShowRegisterForm"]?.ToString() ?? "false");
+    const registerModelJson = '@Html.Raw(TempData["RegisterModel"]?.ToString() ?? "")';
+    const registerErrorsJson = '@Html.Raw(TempData["RegisterErrors"]?.ToString() ?? "")';
+
+    if (showRegisterForm) {
+    // Switch to register form
+    signupBtn.classList.add('active');
+    signinBtn.classList.remove('active');
+    signupForm.style.display = 'block';
+    signinForm.style.display = 'none';
+    welcomeTitle.textContent = 'Join TalentLink';
+    welcomeSubtitle.textContent = 'Create your account to get started';
+
+    // Populate form with previous data
+    if (registerModelJson && registerModelJson !== '') {
+    try {
+    const registerModel = JSON.parse(registerModelJson.replace(/&quot;/g, '"'));
+
+    document.getElementById('reg-FirstName').value = registerModel.FirstName || '';
+    document.getElementById('reg-LastName').value = registerModel.LastName || '';
+    document.getElementById('reg-Email').value = registerModel.Email || '';
+    document.getElementById('reg-PhoneNumber').value = registerModel.PhoneNumber || '';
+    document.getElementById('roleSelect').value = registerModel.Role || '';
+
+    // Trigger role change to show appropriate fields
+    roleSelect.dispatchEvent(new Event('change'));
+
+    // Populate role-specific fields
+    if (registerModel.Role === 'Company') {
+    if (document.querySelector('input[name="CompanyName"]'))
+    document.querySelector('input[name="CompanyName"]').value = registerModel.CompanyName || '';
+    if (document.querySelector('input[name="Industry"]'))
+    document.querySelector('input[name="Industry"]').value = registerModel.Industry || '';
+    if (document.querySelector('input[name="Website"]'))
+    document.querySelector('input[name="Website"]').value = registerModel.Website || '';
+    if (document.querySelector('textarea[name="CompanyAddress"]'))
+    document.querySelector('textarea[name="CompanyAddress"]').value = registerModel.CompanyAddress || '';
+    if (document.querySelector('textarea[name="CompanyDescription"]'))
+    document.querySelector('textarea[name="CompanyDescription"]').value = registerModel.CompanyDescription || '';
+    } else if (registerModel.Role === 'JobSeeker') {
+    if (document.querySelector('input[name="DateOfBirth"]'))
+    document.querySelector('input[name="DateOfBirth"]').value = registerModel.DateOfBirth || '';
+    if (document.querySelector('textarea[name="Address"]'))
+    document.querySelector('textarea[name="Address"]').value = registerModel.Address || '';
+    if (document.querySelector('textarea[name="Skills"]'))
+    document.querySelector('textarea[name="Skills"]').value = registerModel.Skills || '';
+    if (document.querySelector('textarea[name="Experience"]'))
+    document.querySelector('textarea[name="Experience"]').value = registerModel.Experience || '';
+    if (document.querySelector('textarea[name="Education"]'))
+    document.querySelector('textarea[name="Education"]').value = registerModel.Education || '';
+    }
+    } catch (e) {
+    console.error('Error parsing register model:', e);
+    }
+    }
+
+    // Show errors
+    if (registerErrorsJson && registerErrorsJson !== '') {
+    try {
+    const registerErrors = JSON.parse(registerErrorsJson.replace(/&quot;/g, '"'));
+    const errorDiv = document.getElementById('registerErrors');
+    let errorHtml = '';
+
+    for (const [field, errors] of Object.entries(registerErrors)) {
+    if (field === 'RegisterGeneral') {
+    // Show general errors in the main error div
+    errorHtml += errors.join('<br>');
+    } else {
+    // Show field-specific errors
+    const errorElement = document.getElementById('error-' + field);
+    if (errorElement) {
+    errorElement.textContent = errors.join(', ');
+    }
+    }
+    }
+
+    if (errorHtml) {
+    errorDiv.innerHTML = errorHtml;
+    errorDiv.style.display = 'block';
+    }
+    } catch (e) {
+    console.error('Error parsing register errors:', e);
+    }
+    }
+    }
+
+    signinBtn.addEventListener('click', function() {
+    signinBtn.classList.add('active');
+    signupBtn.classList.remove('active');
+    signinForm.style.display = 'block';
+    signupForm.style.display = 'none';
+    welcomeTitle.textContent = 'Welcome Back';
+    welcomeSubtitle.textContent = 'Welcome Back, Please enter Your details';
+
+    // Clear registration errors
+    document.getElementById('registerErrors').style.display = 'none';
+    const errorElements = document.querySelectorAll('.text-danger');
+    errorElements.forEach(el => el.textContent = '');
+    });
+
+    signupBtn.addEventListener('click', function() {
+    signupBtn.classList.add('active');
+    signinBtn.classList.remove('active');
+    signupForm.style.display = 'block';
+    signinForm.style.display = 'none';
+    welcomeTitle.textContent = 'Join TalentLink';
+    welcomeSubtitle.textContent = 'Create your account to get started';
+    });
+
+    // Role selection functionality
+    roleSelect.addEventListener('change', function() {
+    const role = this.value;
+    companyFields.style.display = role === 'Company' ? 'block' : 'none';
+    jobSeekerFields.style.display = role === 'JobSeeker' ? 'block' : 'none';
+    });
+
+    // Trigger change on page load to show/hide fields based on initial value
+    roleSelect.dispatchEvent(new Event('change'));
+    });
+</script>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
