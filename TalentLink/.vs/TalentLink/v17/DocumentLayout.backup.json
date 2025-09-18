@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\Project\\TalentLink\\TalentLink\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|d:\\project\\talentlink\\talentlink\\talentlink\\controllers\\recommendationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\controllers\\recommendationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|d:\\project\\talentlink\\talentlink\\talentlink\\views\\dashboard\\jobseekerdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\views\\dashboard\\jobseekerdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -18,11 +22,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "RecommendationController.cs",
+              "DocumentMoniker": "D:\\Project\\TalentLink\\TalentLink\\TalentLink\\Controllers\\RecommendationController.cs",
+              "RelativeDocumentMoniker": "TalentLink\\Controllers\\RecommendationController.cs",
+              "ToolTip": "D:\\Project\\TalentLink\\TalentLink\\TalentLink\\Controllers\\RecommendationController.cs",
+              "RelativeToolTip": "TalentLink\\Controllers\\RecommendationController.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAowCwAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-14T19:08:45.44Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "_RecommendedJobs.cshtml",
               "DocumentMoniker": "D:\\Project\\TalentLink\\TalentLink\\TalentLink\\Views\\Dashboard\\_RecommendedJobs.cshtml",
               "RelativeDocumentMoniker": "TalentLink\\Views\\Dashboard\\_RecommendedJobs.cshtml",
@@ -35,7 +52,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "JobSeekerDashboard.cshtml",
               "DocumentMoniker": "D:\\Project\\TalentLink\\TalentLink\\TalentLink\\Views\\Dashboard\\JobSeekerDashboard.cshtml",
               "RelativeDocumentMoniker": "TalentLink\\Views\\Dashboard\\JobSeekerDashboard.cshtml",
