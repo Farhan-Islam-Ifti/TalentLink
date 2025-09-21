@@ -50,6 +50,10 @@ namespace TalentLink.Controllers
         {
             return View();
         }
+        public IActionResult About()
+        {
+            return View(); // Views/Home/About.cshtml will be used
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

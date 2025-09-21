@@ -2,11 +2,10 @@
 <html lang="en">
 @inject IHttpContextAccessor HttpContextAccessor
 @{
-        var userId = HttpContextAccessor.HttpContext.Session.GetString("UserId");
-        var firstName = HttpContextAccessor.HttpContext.Session.GetString("FirstName");
-        var isLoggedIn = !string.IsNullOrEmpty(userId);
+            var userId = HttpContextAccessor.HttpContext.Session.GetString("UserId");
+            var firstName = HttpContextAccessor.HttpContext.Session.GetString("FirstName");
+            var isLoggedIn = !string.IsNullOrEmpty(userId);
 }
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,14 +23,28 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    @RenderSection("Styles", required: false)
 
+    <style>
+        /* Gradient Navbar synced with sidebar theme */
+        .navbar-gradient {
+            background: linear-gradient(160deg, #667eea, #764ba2);
+        }
+
+            .navbar-gradient .nav-link,
+            .navbar-gradient .navbar-brand {
+                color: #fff !important;
+                font-weight: 500;
+            }
+
+                .navbar-gradient .nav-link:hover {
+                    color: #f1f1f1 !important;
+                }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
     <header>
-
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-gradient shadow-sm">
             <div class="container">
                 @if (isLoggedIn)
                 {
@@ -46,26 +59,26 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="About">About</a></li>
                         @if (!isLoggedIn)
                         {
-                            @* <li class="nav-item"><a class="nav-link text-white" asp-controller="Account" asp-action="Register">Register</a></li> *@
-                            <li class="nav-item"><a class="nav-link text-white" asp-controller="Account" asp-action="Login">Login</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Account" asp-action="Register">Register</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Account" asp-action="Login">Login</a></li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <span class="nav-link text-white">
+                                <span class="nav-link">
                                     @firstName
                                 </span>
                             </li>
-
                         }
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
     @if (isLoggedIn)
     {
         @await Html.PartialAsync("_Sidebar")
@@ -127,6 +140,5 @@
             }
         });
     </script>
-
 </body>
 </html>
