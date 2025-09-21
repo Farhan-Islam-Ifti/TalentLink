@@ -73,6 +73,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|e:\\sd 3.2\\talentlink\\talentlink\\talentlink\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\SD 3.2\\TalentLink\\TalentLink\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -82,17 +86,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": ".gitignore",
+              "DocumentMoniker": "E:\\SD 3.2\\TalentLink\\TalentLink\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "E:\\SD 3.2\\TalentLink\\TalentLink\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-09-21T18:04:12.48Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "About.cshtml",
               "DocumentMoniker": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\Home\\About.cshtml",
               "RelativeDocumentMoniker": "TalentLink\\Views\\Home\\About.cshtml",
-              "ToolTip": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\Home\\About.cshtml*",
-              "RelativeToolTip": "TalentLink\\Views\\Home\\About.cshtml*",
-              "ViewState": "AgIAANcAAAAAAAAAAAAUwAYBAAAAAAAAAAAAAA==",
+              "ToolTip": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\Home\\About.cshtml",
+              "RelativeToolTip": "TalentLink\\Views\\Home\\About.cshtml",
+              "ViewState": "AgIAAKQCAAAAIAAAAEAlwA4AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-09-21T17:03:30.884Z",
               "EditorCaption": ""
