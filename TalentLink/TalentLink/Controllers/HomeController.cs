@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TalentLink.Data;
 using TalentLink.Models;
-using System.Diagnostics;
+using System.Diagnostics;    
 
 namespace TalentLink.Controllers
 {
