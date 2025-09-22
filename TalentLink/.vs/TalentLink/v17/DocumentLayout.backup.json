@@ -1,21 +1,77 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Project\\TalentLink\\TalentLink\\",
+  "WorkspaceRootPath": "E:\\SD 3.2\\TalentLink\\TalentLink\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|d:\\project\\talentlink\\talentlink\\talentlink\\views\\jobseeker\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\views\\jobseeker\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|e:\\sd 3.2\\talentlink\\talentlink\\talentlink\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|d:\\project\\talentlink\\talentlink\\talentlink\\views\\company\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\views\\company\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|e:\\sd 3.2\\talentlink\\talentlink\\talentlink\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|d:\\project\\talentlink\\talentlink\\talentlink\\views\\shared\\_sidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|e:\\sd 3.2\\talentlink\\talentlink\\talentlink\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|e:\\sd 3.2\\talentlink\\talentlink\\talentlink\\views\\shared\\_sidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\views\\shared\\_sidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|d:\\project\\talentlink\\talentlink\\talentlink\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|e:\\sd 3.2\\talentlink\\talentlink\\talentlink\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|e:\\sd 3.2\\talentlink\\talentlink\\talentlink\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|e:\\sd 3.2\\talentlink\\talentlink\\talentlink\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|e:\\sd 3.2\\talentlink\\talentlink\\talentlink\\views\\dashboard\\jobseekerdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\views\\dashboard\\jobseekerdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|e:\\sd 3.2\\talentlink\\talentlink\\talentlink\\views\\dashboard\\companydashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\views\\dashboard\\companydashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|e:\\sd 3.2\\talentlink\\talentlink\\talentlink\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|e:\\sd 3.2\\talentlink\\talentlink\\talentlink\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|e:\\sd 3.2\\talentlink\\talentlink\\talentlink\\migrations\\20250915213444_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\migrations\\20250915213444_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|e:\\sd 3.2\\talentlink\\talentlink\\talentlink\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|e:\\sd 3.2\\talentlink\\talentlink\\talentlink\\views\\company\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\views\\company\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|e:\\sd 3.2\\talentlink\\talentlink\\talentlink\\views\\company\\editprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\views\\company\\editprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|e:\\sd 3.2\\talentlink\\talentlink\\talentlink\\views\\jobseeker\\editprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\views\\jobseeker\\editprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|e:\\sd 3.2\\talentlink\\talentlink\\talentlink\\views\\jobseeker\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\views\\jobseeker\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|e:\\sd 3.2\\talentlink\\talentlink\\talentlink\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0D4DED83-35D9-4155-B1A7-A2CFEB394866}|TalentLink\\TalentLink.csproj|solutionrelative:talentlink\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -26,59 +82,235 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Profile.cshtml",
-              "DocumentMoniker": "D:\\Project\\TalentLink\\TalentLink\\TalentLink\\Views\\Company\\Profile.cshtml",
-              "RelativeDocumentMoniker": "TalentLink\\Views\\Company\\Profile.cshtml",
-              "ToolTip": "D:\\Project\\TalentLink\\TalentLink\\TalentLink\\Views\\Company\\Profile.cshtml",
-              "RelativeToolTip": "TalentLink\\Views\\Company\\Profile.cshtml",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAACsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-08T17:17:19.44Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Profile.cshtml",
-              "DocumentMoniker": "D:\\Project\\TalentLink\\TalentLink\\TalentLink\\Views\\JobSeeker\\Profile.cshtml",
-              "RelativeDocumentMoniker": "TalentLink\\Views\\JobSeeker\\Profile.cshtml",
-              "ToolTip": "D:\\Project\\TalentLink\\TalentLink\\TalentLink\\Views\\JobSeeker\\Profile.cshtml",
-              "RelativeToolTip": "TalentLink\\Views\\JobSeeker\\Profile.cshtml",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAAD4AAABxAAAAAAAAAA==",
+              "Title": "About.cshtml",
+              "DocumentMoniker": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\Home\\About.cshtml",
+              "RelativeDocumentMoniker": "TalentLink\\Views\\Home\\About.cshtml",
+              "ToolTip": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\Home\\About.cshtml*",
+              "RelativeToolTip": "TalentLink\\Views\\Home\\About.cshtml*",
+              "ViewState": "AgIAANcAAAAAAAAAAAAUwAYBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-08T17:17:06.58Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "_Sidebar.cshtml",
-              "DocumentMoniker": "D:\\Project\\TalentLink\\TalentLink\\TalentLink\\Views\\Shared\\_Sidebar.cshtml",
-              "RelativeDocumentMoniker": "TalentLink\\Views\\Shared\\_Sidebar.cshtml",
-              "ToolTip": "D:\\Project\\TalentLink\\TalentLink\\TalentLink\\Views\\Shared\\_Sidebar.cshtml",
-              "RelativeToolTip": "TalentLink\\Views\\Shared\\_Sidebar.cshtml",
-              "ViewState": "AgIAADcAAAAAAAAAAAAAADsAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-08T17:01:53.627Z",
+              "WhenOpened": "2025-09-21T17:03:30.884Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "_Sidebar.cshtml",
+              "DocumentMoniker": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\Shared\\_Sidebar.cshtml",
+              "RelativeDocumentMoniker": "TalentLink\\Views\\Shared\\_Sidebar.cshtml",
+              "ToolTip": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\Shared\\_Sidebar.cshtml",
+              "RelativeToolTip": "TalentLink\\Views\\Shared\\_Sidebar.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAL8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-21T15:38:25.233Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "TalentLink\\Controllers\\HomeController.cs",
+              "ToolTip": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "TalentLink\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAYwDMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-21T15:36:22.726Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "TalentLink\\Views\\_ViewImports.cshtml",
+              "ToolTip": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "TalentLink\\Views\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-21T15:36:07.073Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CompanyDashboard.cshtml",
+              "DocumentMoniker": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\Dashboard\\CompanyDashboard.cshtml",
+              "RelativeDocumentMoniker": "TalentLink\\Views\\Dashboard\\CompanyDashboard.cshtml",
+              "ToolTip": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\Dashboard\\CompanyDashboard.cshtml",
+              "RelativeToolTip": "TalentLink\\Views\\Dashboard\\CompanyDashboard.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-21T15:35:12.011Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "TalentLink\\Services\\AuthService.cs",
+              "ToolTip": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Services\\AuthService.cs",
+              "RelativeToolTip": "TalentLink\\Services\\AuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-21T15:34:45.624Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Program.cs",
+              "RelativeDocumentMoniker": "TalentLink\\Program.cs",
+              "ToolTip": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Program.cs",
+              "RelativeToolTip": "TalentLink\\Program.cs",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-21T15:33:43.238Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "TalentLink\\Views\\_ViewStart.cshtml",
+              "ToolTip": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "TalentLink\\Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-21T15:32:46.605Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "TalentLink\\Views\\Home\\Index.cshtml",
+              "ToolTip": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "TalentLink\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAMkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-21T15:31:35.051Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "20250915213444_initial.cs",
+              "DocumentMoniker": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Migrations\\20250915213444_initial.cs",
+              "RelativeDocumentMoniker": "TalentLink\\Migrations\\20250915213444_initial.cs",
+              "ToolTip": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Migrations\\20250915213444_initial.cs",
+              "RelativeToolTip": "TalentLink\\Migrations\\20250915213444_initial.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-15T21:34:45.45Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\appsettings.json",
+              "RelativeDocumentMoniker": "TalentLink\\appsettings.json",
+              "ToolTip": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\appsettings.json",
+              "RelativeToolTip": "TalentLink\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-15T21:32:00.504Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "EditProfile.cshtml",
+              "DocumentMoniker": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\JobSeeker\\EditProfile.cshtml",
+              "RelativeDocumentMoniker": "TalentLink\\Views\\JobSeeker\\EditProfile.cshtml",
+              "ToolTip": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\JobSeeker\\EditProfile.cshtml",
+              "RelativeToolTip": "TalentLink\\Views\\JobSeeker\\EditProfile.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFEAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-08T17:57:07.567Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "EditProfile.cshtml",
+              "DocumentMoniker": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\Company\\EditProfile.cshtml",
+              "RelativeDocumentMoniker": "TalentLink\\Views\\Company\\EditProfile.cshtml",
+              "ToolTip": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\Company\\EditProfile.cshtml",
+              "RelativeToolTip": "TalentLink\\Views\\Company\\EditProfile.cshtml",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-08T17:46:45.828Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "TalentLink\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "TalentLink\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-08T17:36:37.315Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Profile.cshtml",
+              "DocumentMoniker": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\Company\\Profile.cshtml",
+              "RelativeDocumentMoniker": "TalentLink\\Views\\Company\\Profile.cshtml",
+              "ToolTip": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\Company\\Profile.cshtml",
+              "RelativeToolTip": "TalentLink\\Views\\Company\\Profile.cshtml",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAmwCQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-08T17:17:19.44Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Profile.cshtml",
+              "DocumentMoniker": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\JobSeeker\\Profile.cshtml",
+              "RelativeDocumentMoniker": "TalentLink\\Views\\JobSeeker\\Profile.cshtml",
+              "ToolTip": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\JobSeeker\\Profile.cshtml",
+              "RelativeToolTip": "TalentLink\\Views\\JobSeeker\\Profile.cshtml",
+              "ViewState": "AgIAAIkBAAAAAAAAAAAAAO0BAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-08T17:17:06.58Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "JobSeekerDashboard.cshtml",
+              "DocumentMoniker": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\Dashboard\\JobSeekerDashboard.cshtml",
+              "RelativeDocumentMoniker": "TalentLink\\Views\\Dashboard\\JobSeekerDashboard.cshtml",
+              "ToolTip": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Views\\Dashboard\\JobSeekerDashboard.cshtml",
+              "RelativeToolTip": "TalentLink\\Views\\Dashboard\\JobSeekerDashboard.cshtml",
+              "ViewState": "AgIAAOYBAAAAAAAAAAAAACoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-08T17:20:33.97Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "DashboardController.cs",
-              "DocumentMoniker": "D:\\Project\\TalentLink\\TalentLink\\TalentLink\\Controllers\\DashboardController.cs",
+              "DocumentMoniker": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Controllers\\DashboardController.cs",
               "RelativeDocumentMoniker": "TalentLink\\Controllers\\DashboardController.cs",
-              "ToolTip": "D:\\Project\\TalentLink\\TalentLink\\TalentLink\\Controllers\\DashboardController.cs",
+              "ToolTip": "E:\\SD 3.2\\TalentLink\\TalentLink\\TalentLink\\Controllers\\DashboardController.cs",
               "RelativeToolTip": "TalentLink\\Controllers\\DashboardController.cs",
               "ViewState": "AgIAABsAAAAAAAAAAAAowCsAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-08T17:02:19.753Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-08T17:02:19.753Z"
             }
           ]
         }

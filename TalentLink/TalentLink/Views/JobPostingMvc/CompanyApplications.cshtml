@@ -7,54 +7,61 @@
     var selectedStatus = ViewBag.SelectedStatus as ApplicationStatus?;
 }
 
-<div class="container mt-4">
+<div class="container mt-5 mb-5">
     <div class="row">
         <div class="col-12">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="mb-0">
-                    <i class="fas fa-users me-2 text-primary"></i>Job Applications
+            <!-- Title -->
+            <div class="d-flex justify-content-between align-items-center mb-4 animate__animated animate__fadeInDown">
+                <h2 class="mb-0 fw-bold text-gradient">
+                    <i class="fas fa-users me-2"></i> Job Applications
                 </h2>
             </div>
 
             <!-- Filters -->
-            <div class="card mb-4 shadow-sm">
-                <div class="card-body">
+            <div class="card shadow-lg border-0 mb-4 animate__animated animate__fadeInUp">
+                <div class="card-body bg-light-gradient rounded-3">
                     <form method="get" class="row g-3">
                         <div class="col-md-4">
-                            <label class="form-label">Filter by Job</label>
-                            <select name="jobPostingId" class="form-select">
+                            <label class="form-label fw-bold">Filter by Job</label>
+                            <select name="jobPostingId" class="form-select custom-select">
                                 <option value="">All Jobs</option>
                                 @foreach (var job in jobPostings)
                                 {
-                                    <option value="@job.Id" selected="@(selectedJobPostingId == job.Id)">@job.Title</option>
+                                    <option value="@job.Id" selected="@(selectedJobPostingId == job.Id)">
+                                        @job.Title
+                                    </option>
                                 }
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">Filter by Status</label>
-                            <select name="status" class="form-select">
+                            <label class="form-label fw-bold">Filter by Status</label>
+                            <select name="status" class="form-select custom-select">
                                 <option value="">All Statuses</option>
                                 @foreach (ApplicationStatus status in statuses)
                                 {
-                                    <option value="@status" selected="@(selectedStatus == status)">@status</option>
+                                    <option value="@status" selected="@(selectedStatus == status)">
+                                        @status
+                                    </option>
                                 }
                             </select>
                         </div>
                         <div class="col-md-4 d-flex align-items-end">
-                            <button type="submit" class="btn btn-primary me-2">
-                                <i class="fas fa-filter me-1"></i>Apply Filters
+                            <button type="submit" class="btn btn-gradient me-2 btn-animated">
+                                <i class="fas fa-filter me-1"></i> Apply Filters
                             </button>
-                            <a href="@Url.Action("CompanyApplications")" class="btn btn-outline-secondary">
-                                <i class="fas fa-times me-1"></i>Clear
+                            <a href="@Url.Action("CompanyApplications")"
+                               class="btn btn-outline-secondary btn-animated">
+                                <i class="fas fa-times me-1"></i> Clear
                             </a>
                         </div>
                     </form>
                 </div>
             </div>
 
+            <!-- No Data -->
             @if (!Model.Any())
             {
-                <div class="card shadow">
+                <div class="card shadow-sm border-0 animate__animated animate__fadeInUp">
                     <div class="card-body text-center py-5">
                         <i class="fas fa-users fa-3x text-muted mb-3"></i>
                         <h4 class="text-muted">No Applications Found</h4>
@@ -64,33 +71,33 @@
             }
             else
             {
-                <div class="card shadow-sm">
+                <!-- Table -->
+                <div class="card shadow-lg border-0 animate__animated animate__fadeInUp">
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            <table class="table table-hover mb-0">
-                                <thead class="table-light">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="custom-thead">
                                     <tr>
                                         <th>Applicant</th>
                                         <th>Job Title</th>
                                         <th>Applied Date</th>
                                         <th>Status</th>
                                         <th>Interview Date</th>
-                                        <th>Actions</th>
+                                        <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (var application in Model)
                                     {
-                                        <tr>
+                                        <tr class="table-row-animate">
                                             <td>
-                                                <strong>@application.JobSeeker?.User?.FirstName @application.JobSeeker?.User?.LastName</strong>
-                                                <br>
+                                                <strong>@application.JobSeeker?.User?.FirstName @application.JobSeeker?.User?.LastName</strong><br>
                                                 <small class="text-muted">@application.JobSeeker?.User?.Email</small>
                                             </td>
                                             <td>@application.JobPosting?.Title</td>
                                             <td>@application.AppliedDate.ToString("MMM dd, yyyy")</td>
                                             <td>
-                                                <span class="badge bg-@GetStatusBadgeClass(application.Status)">
+                                                <span class="badge rounded-pill bg-@GetStatusBadgeClass(application.Status)">
                                                     @application.Status
                                                 </span>
                                             </td>
@@ -104,13 +111,13 @@
                                                     <span class="text-muted">Not scheduled</span>
                                                 }
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 <a href="@Url.Action("Details", new { id = application.Id })"
-                                                   class="btn btn-sm btn-outline-primary me-1">
+                                                   class="btn btn-sm btn-outline-primary me-1 btn-animated">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
                                                 <a href="@Url.Action("UpdateStatus", new { id = application.Id })"
-                                                   class="btn btn-sm btn-outline-warning">
+                                                   class="btn btn-sm btn-outline-warning btn-animated">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                             </td>
@@ -141,3 +148,98 @@
         };
     }
 }
+
+<style>
+    /* Gradient text */
+    .text-gradient {
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Filter card */
+    .bg-light-gradient {
+        background: linear-gradient(135deg, rgba(106,17,203,0.05), rgba(37,117,252,0.05));
+    }
+
+    /* Custom table header */
+    .custom-thead {
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        color: #fff;
+        font-weight: 600;
+    }
+
+    /* Table row hover */
+    .table-hover tbody tr:hover {
+        background-color: rgba(37,117,252,0.05);
+        transition: all 0.3s ease;
+    }
+
+    /* Buttons */
+    .btn-gradient {
+        background: linear-gradient(135deg, #42ba96, #3b8d99);
+        color: #fff;
+        font-weight: 600;
+        border-radius: 8px;
+        padding: 8px 16px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+        }
+
+    /* Animated button effect */
+    .btn-animated {
+        position: relative;
+        overflow: hidden;
+    }
+
+        .btn-animated::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(255,255,255,0.15);
+            transition: width 0.4s ease;
+        }
+
+        .btn-animated:hover::after {
+            width: 100%;
+        }
+
+    /* Selects */
+    .custom-select {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        transition: 0.3s;
+    }
+
+        .custom-select:focus {
+            border-color: #6a11cb;
+            box-shadow: 0 0 8px rgba(106,17,203,0.3);
+        }
+
+    /* Row fade-in animation */
+    .table-row-animate {
+        animation: fadeIn 0.8s ease-in forwards;
+    }
+
+    @@keyframes fadeIn {
+        0%
+
+    {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+</style>

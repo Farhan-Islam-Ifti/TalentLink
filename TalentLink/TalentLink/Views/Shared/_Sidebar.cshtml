@@ -18,15 +18,16 @@
 
 @if (user != null)
 {
-    <div id="sidebar" class="sidebar">
-        <div class="sidebar-header">
-            <h4 class="mb-0">Welcome, @firstName</h4>
+    <div id="sidebar" class="sidebar-custom collapsed">
+        <!-- Header -->
+        <div class="sidebar-header d-flex justify-content-between align-items-center p-3">
+            <h5 class="mb-0 fw-bold text-white">👋 Hi, @firstName</h5>
             <button class="btn-close btn-close-white" id="closeSidebar"></button>
         </div>
 
+        <!-- Sidebar Content -->
         <div class="sidebar-content d-flex flex-column justify-content-between h-100">
-            <!-- Top: Links -->
-            <div class="mt-4">
+            <div class="mt-3">
                 <ul class="list-unstyled sidebar-links">
                     @if (role == "Admin")
                     {
@@ -35,62 +36,25 @@
                     }
                     else if (role == "Company")
                     {
-                        <li>
-                            <a class="sidebar-link"
-                               asp-controller="Company"
-                               asp-action="Profile"
-                               asp-route-userId="@Context.Session.GetString("UserId")">
-                                <i class="fas fa-user me-2"></i> My Profile
-                            </a>
-                        </li>
-                        <li>
-                            <a class="sidebar-link"
-                               asp-controller="Company"
-                               asp-action="EditProfile"
-                               asp-route-userId="@Context.Session.GetString("UserId")">
-                                <i class="fas fa-edit me-2"></i> Edit Profile
-                            </a>
-                        </li>
-                        <li>
-                            <a class="sidebar-link"
-                               asp-controller="Dashboard"
-                               asp-action="CompanyDashboard">
-                                <i class="fas fa-user me-2"></i> DashBoard
-                            </a>
-                        </li>
-                        <li><a class="sidebar-link" asp-controller="Company" asp-action="PostJob"><i class="fas fa-plus me-2"></i> Post Job</a></li>
+                        <li><a class="sidebar-link" asp-controller="Company" asp-action="Profile" asp-route-userId="@Context.Session.GetString("UserId")"><i class="fas fa-user-circle me-2"></i> My Profile</a></li>
+                        <li><a class="sidebar-link" asp-controller="Company" asp-action="EditProfile" asp-route-userId="@Context.Session.GetString("UserId")"><i class="fas fa-edit me-2"></i> Edit Profile</a></li>
+                        <li><a class="sidebar-link" asp-controller="Dashboard" asp-action="CompanyDashboard"><i class="fas fa-tachometer-alt me-2"></i> Dashboard</a></li>
+                        <li><a class="sidebar-link" asp-controller="Company" asp-action="PostJob"><i class="fas fa-plus-circle me-2"></i> Post Job</a></li>
                         <li><a class="sidebar-link" asp-controller="Company" asp-action="MyJobs"><i class="fas fa-briefcase me-2"></i> My Jobs</a></li>
                     }
                     else if (role == "JobSeeker")
                     {
-                        <li>
-                            <a class="sidebar-link"
-                               asp-controller="JobSeeker"
-                               asp-action="Profile"
-                               asp-route-userId="@Context.Session.GetString("UserId")">
-                                <i class="fas fa-user me-2"></i> My Profile
-                            </a>
-                        </li>
-                        <li>
-                            <a class="sidebar-link d-flex align-items-center"
-                               asp-controller="Dashboard"
-                               asp-action="JobSeekerDashboard">
-                                <!-- Icon -->
-                                <i class="bi bi-person-workspace me-2" style="font-size: 1.2rem;"></i>
-                                <!-- Link Text -->
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
-
+                        <li><a class="sidebar-link" asp-controller="JobSeeker" asp-action="Profile" asp-route-userId="@Context.Session.GetString("UserId")"><i class="fas fa-user-circle me-2"></i> My Profile</a></li>
+                        <li><a class="sidebar-link" asp-controller="Dashboard" asp-action="JobSeekerDashboard"><i class="bi bi-person-workspace me-2"></i> Dashboard</a></li>
                         <li><a class="sidebar-link" asp-controller="JobSeeker" asp-action="Jobs"><i class="fas fa-search me-2"></i> Available Jobs</a></li>
                         <li><a class="sidebar-link" asp-controller="JobSeeker" asp-action="Applications"><i class="fas fa-file-alt me-2"></i> My Applications</a></li>
                     }
                 </ul>
             </div>
 
-            <!-- Bottom: Logout -->
+            <!-- Logout -->
             <div class="text-center mb-3">
-                <a href="#" id="logoutBtn" class="btn btn-outline-danger w-75">
+                <a href="#" id="logoutBtn" class="btn btn-logout w-75">
                     <i class="fas fa-sign-out-alt me-2"></i> Logout
                 </a>
             </div>
@@ -101,14 +65,127 @@
     <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
     <script>
-        document.getElementById("logoutBtn")?.addEventListener("click", function(e){
-            e.preventDefault();
-            localStorage.removeItem("UserId");
-            localStorage.removeItem("FirstName");
-            window.location.href = '@Url.Action("Logout", "Account")';
+        document.addEventListener("DOMContentLoaded", function () {
+            const sidebar = document.getElementById("sidebar");
+            const overlay = document.getElementById("sidebarOverlay");
+            const toggleBtn = document.getElementById("sidebarToggle");
+            const closeBtn = document.getElementById("closeSidebar");
+            const logoutBtn = document.getElementById("logoutBtn");
+
+            // Open sidebar
+            toggleBtn?.addEventListener("click", function () {
+                sidebar.classList.remove("collapsed");
+                overlay.style.display = "block";
+            });
+
+            // Close sidebar on ❌
+            closeBtn?.addEventListener("click", function () {
+                sidebar.classList.add("collapsed");
+                overlay.style.display = "none";
+            });
+
+            // Close sidebar on overlay click
+            overlay?.addEventListener("click", function () {
+                sidebar.classList.add("collapsed");
+                this.style.display = "none";
+            });
+
+            // Logout
+            logoutBtn?.addEventListener("click", function (e) {
+                e.preventDefault();
+                localStorage.removeItem("UserId");
+                localStorage.removeItem("FirstName");
+                window.location.href = '@Url.Action("Logout", "Account")';
+            });
         });
     </script>
+
 }
 
+<!-- Styles -->
+<style>
+    .sidebar-custom {
+        width: 260px;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: linear-gradient(160deg, #667eea, #764ba2);
+        color: #fff;
+        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+        z-index: 1050;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.3s ease-in-out;
+    }
 
+    .sidebar-header {
+        background: rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 0 0 12px 12px;
+    }
 
+    /* Collapsed state (hidden) */
+    .sidebar-custom.collapsed {
+        transform: translateX(-100%);
+    }
+
+    .sidebar-links li {
+        margin: 12px 0;
+    }
+
+    .sidebar-link {
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        border-radius: 8px;
+        color: #fff;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+        .sidebar-link:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
+        }
+
+    .btn-logout {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 8px;
+        color: #fff;
+        transition: 0.3s;
+    }
+
+        .btn-logout:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.05);
+        }
+
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        display: none;
+        z-index: 1040;
+    }
+
+    /* Animations */
+    #sidebar {
+        animation: slideIn 0.4s ease;
+    }
+
+    @@!keyframes slideIn {
+        from {
+            transform: translateX(-100%);
+        }
+
+        to {
+            transform: translateX(0);
+        }
+    }
+</style>

@@ -6,30 +6,32 @@
     ViewData["Title"] = "Update Application Status";
 }
 
-<div class="container mt-4">
+<div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white">
+            <div class="card shadow-lg animate__animated animate__fadeInUp">
+                <div class="card-header bg-gradient-primary text-white">
                     <h3 class="card-title mb-0">
                         <i class="fas fa-edit me-2"></i>Update Application Status
                     </h3>
                 </div>
                 <div class="card-body">
-                    <div class="alert alert-info">
+                    <div class="alert alert-info custom-alert animate__animated animate__fadeInDown">
                         <i class="fas fa-info-circle me-2"></i>
-                        Updating application for: <strong>@application?.JobSeeker?.User?.FirstName @application?.JobSeeker?.User?.LastName</strong>
+                        Updating application for:
+                        <strong>@application?.JobSeeker?.User?.FirstName @application?.JobSeeker?.User?.LastName</strong>
                         <br>
                         Position: <strong>@application?.JobPosting?.Title</strong>
                     </div>
 
-                    <form asp-action="UpdateStatus" method="post">
+                    <form asp-action="UpdateStatus" method="post" class="animate__animated animate__fadeIn">
                         @Html.AntiForgeryToken()
                         <input type="hidden" name="id" value="@application?.Id" />
 
-                        <div class="mb-3">
-                            <label asp-for="Status" class="form-label">Status *</label>
-                            <select asp-for="Status" class="form-select">
+                        <!-- Status -->
+                        <div class="mb-4">
+                            <label asp-for="Status" class="form-label fw-bold">Status *</label>
+                            <select asp-for="Status" class="form-select custom-input">
                                 @foreach (ApplicationStatus status in statuses)
                                 {
                                     <option value="@status">@status</option>
@@ -38,24 +40,27 @@
                             <span asp-validation-for="Status" class="text-danger"></span>
                         </div>
 
-                        <div class="mb-3">
-                            <label asp-for="InterviewDate" class="form-label">Interview Date</label>
-                            <input asp-for="InterviewDate" type="datetime-local" class="form-control">
+                        <!-- Interview Date -->
+                        <div class="mb-4">
+                            <label asp-for="InterviewDate" class="form-label fw-bold">Interview Date</label>
+                            <input asp-for="InterviewDate" type="datetime-local" class="form-control custom-input">
                             <span asp-validation-for="InterviewDate" class="text-danger"></span>
                         </div>
 
-                        <div class="mb-3">
-                            <label asp-for="InterviewNotes" class="form-label">Interview Notes</label>
-                            <textarea asp-for="InterviewNotes" class="form-control" rows="4"
+                        <!-- Interview Notes -->
+                        <div class="mb-4">
+                            <label asp-for="InterviewNotes" class="form-label fw-bold">Interview Notes</label>
+                            <textarea asp-for="InterviewNotes" class="form-control custom-input" rows="4"
                                       placeholder="Add any notes about the interview or application status..."></textarea>
                             <span asp-validation-for="InterviewNotes" class="text-danger"></span>
                         </div>
 
+                        <!-- Buttons -->
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a href="@Url.Action("Details", new { id = application?.Id })" class="btn btn-outline-secondary me-md-2">
+                            <a href="@Url.Action("Details", new { id = application?.Id })" class="btn btn-outline-secondary btn-animated me-md-2">
                                 <i class="fas fa-arrow-left me-1"></i>Cancel
                             </a>
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-gradient btn-animated">
                                 <i class="fas fa-save me-1"></i>Update Status
                             </button>
                         </div>
@@ -65,6 +70,131 @@
         </div>
     </div>
 </div>
+
+<style>
+    /* Card */
+    .card {
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+    /* Gradient header */
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        font-weight: 600;
+        font-size: 1.2rem;
+        border-bottom: none;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Custom Alert */
+    .custom-alert {
+        border-radius: 10px;
+        background: linear-gradient(135deg, rgba(106,17,203,0.1), rgba(37,117,252,0.1));
+        border: none;
+        color: #333;
+        padding: 15px;
+        font-weight: 500;
+    }
+
+    /* Buttons */
+    .btn-gradient {
+        background: linear-gradient(135deg, #42ba96, #3b8d99);
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        padding: 10px 20px;
+        color: #fff;
+        transition: all 0.3s ease;
+    }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+        }
+
+    .btn-animated {
+        position: relative;
+        overflow: hidden;
+    }
+
+        .btn-animated::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(255,255,255,0.2);
+            transition: width 0.4s ease;
+        }
+
+        .btn-animated:hover::after {
+            width: 100%;
+        }
+
+    /* Inputs & selects */
+    .custom-input {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        transition: all 0.3s ease;
+    }
+
+        .custom-input:focus {
+            border-color: #6a11cb;
+            box-shadow: 0 0 8px rgba(106,17,203,0.3);
+        }
+
+    /* Animate fadeInUp */
+    .animate__fadeInUp {
+        animation-name: fadeInUp;
+        animation-duration: 0.8s;
+        animation-fill-mode: both;
+    }
+
+    @@keyframes fadeInUp {
+        0%
+
+    {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    /* Animate fadeInDown */
+    .animate__fadeInDown {
+        animation-name: fadeInDown;
+        animation-duration: 0.8s;
+        animation-fill-mode: both;
+    }
+
+    @@keyframes fadeInDown {
+        0%
+
+    {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+</style>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

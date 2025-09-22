@@ -4,16 +4,15 @@
     ViewData["Title"] = "Post a New Job";
 }
 
-<div class="container mt-4">
+<div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white">
-                    <h3 class="card-title mb-0">
-                        <i class="fas fa-briefcase me-2"></i>Post a New Job
-                    </h3>
+        <div class="col-lg-10">
+            <div class="card job-form-card shadow-lg animate__animated animate__fadeInUp">
+                <div class="card-header text-white d-flex align-items-center">
+                    <i class="fas fa-briefcase fa-lg me-2"></i>
+                    <h3 class="card-title mb-0">Post a New Job</h3>
                 </div>
-                <div class="card-body">
+                <div class="card-body p-4">
                     @if (TempData["ErrorMessage"] != null)
                     {
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -22,69 +21,69 @@
                         </div>
                     }
 
-                    <form asp-action="Create" method="post">
+                    <form asp-action="Create" method="post" class="needs-validation" novalidate>
                         @Html.AntiForgeryToken()
 
                         <div class="row">
-                            <div class="col-md-12 mb-3">
+                            <div class="col-md-12 mb-4">
                                 <label asp-for="Title" class="form-label">Job Title *</label>
-                                <input asp-for="Title" class="form-control" placeholder="e.g., Senior Software Engineer">
+                                <input asp-for="Title" class="form-control modern-input" placeholder="e.g., Senior Software Engineer">
                                 <span asp-validation-for="Title" class="text-danger"></span>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-6 mb-4">
                                 <label asp-for="JobType" class="form-label">Job Type *</label>
-                                <select asp-for="JobType" class="form-select" asp-items="Html.GetEnumSelectList<JobType>()">
+                                <select asp-for="JobType" class="form-select modern-input" asp-items="Html.GetEnumSelectList<JobType>()">
                                     <option value="">Select Job Type</option>
                                 </select>
                                 <span asp-validation-for="JobType" class="text-danger"></span>
                             </div>
 
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-6 mb-4">
                                 <label asp-for="Location" class="form-label">Location *</label>
-                                <input asp-for="Location" class="form-control" placeholder="e.g., New York, NY or Remote">
+                                <input asp-for="Location" class="form-control modern-input" placeholder="e.g., New York, NY or Remote">
                                 <span asp-validation-for="Location" class="text-danger"></span>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-6 mb-4">
                                 <label asp-for="Salary" class="form-label">Salary (optional)</label>
                                 <div class="input-group">
                                     <span class="input-group-text">$</span>
-                                    <input asp-for="Salary" type="number" class="form-control" placeholder="Annual salary" min="0" step="1000">
+                                    <input asp-for="Salary" type="number" class="form-control modern-input" placeholder="Annual salary" min="0" step="1000">
                                 </div>
                                 <span asp-validation-for="Salary" class="text-danger"></span>
                             </div>
 
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-6 mb-4">
                                 <label asp-for="DeadlineDate" class="form-label">Application Deadline *</label>
-                                <input asp-for="DeadlineDate" type="date" class="form-control">
+                                <input asp-for="DeadlineDate" type="date" class="form-control modern-input" id="DeadlineDate">
                                 <span asp-validation-for="DeadlineDate" class="text-danger"></span>
                             </div>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-4">
                             <label asp-for="Description" class="form-label">Job Description *</label>
-                            <textarea asp-for="Description" class="form-control" rows="5"
+                            <textarea asp-for="Description" class="form-control modern-input" rows="5"
                                       placeholder="Describe the role, responsibilities, and what you're looking for in a candidate..."></textarea>
                             <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-4">
                             <label asp-for="Requirements" class="form-label">Requirements *</label>
-                            <textarea asp-for="Requirements" class="form-control" rows="5"
+                            <textarea asp-for="Requirements" class="form-control modern-input" rows="5"
                                       placeholder="List the required skills, experience, and qualifications..."></textarea>
                             <span asp-validation-for="Requirements" class="text-danger"></span>
                         </div>
 
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a href="@Url.Action("MyPostings")" class="btn btn-outline-secondary me-md-2">
+                        <div class="d-flex justify-content-end gap-2">
+                            <a href="@Url.Action("MyPostings")" class="btn btn-outline-secondary btn-animate">
                                 <i class="fas fa-arrow-left me-1"></i>Back to List
                             </a>
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary btn-gradient btn-animate">
                                 <i class="fas fa-paper-plane me-1"></i>Post Job
                             </button>
                         </div>
@@ -99,7 +98,7 @@
     <partial name="_ValidationScriptsPartial" />
     <script>
         // Set minimum date for deadline to today
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const deadlineInput = document.getElementById('DeadlineDate');
             const today = new Date().toISOString().split('T')[0];
             deadlineInput.min = today;
@@ -108,36 +107,75 @@
 }
 
 <style>
-    .card {
+    /* Card Styling */
+    .job-form-card {
         border: none;
-        border-radius: 10px;
+        border-radius: 16px;
+        overflow: hidden;
     }
 
-    .card-header {
-        border-radius: 10px 10px 0 0 !important;
-    }
-
-    .form-label {
-        font-weight: 500;
-        color: #495057;
-    }
-
-    .btn-primary {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border: none;
-        border-radius: 6px;
-        padding: 10px 20px;
-        font-weight: 500;
-    }
-
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        .job-form-card .card-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 20px;
+            font-weight: 600;
         }
 
-    .form-control:focus, .form-select:focus {
-        border-color: #667eea;
-        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    /* Inputs */
+    .modern-input {
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .modern-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 8px rgba(102, 126, 234, 0.4);
+            transform: scale(1.01);
+        }
+
+    /* Buttons */
+    .btn-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 8px;
+        padding: 10px 22px;
+        font-weight: 500;
+    }
+
+        .btn-gradient:hover {
+            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+        }
+
+    .btn-animate {
+        transition: all 0.3s ease;
+    }
+
+        .btn-animate:hover {
+            transform: translateY(-2px);
+        }
+
+    /* Animations */
+    .animate__animated {
+        animation-duration: 0.8s;
+        animation-fill-mode: both;
+    }
+
+    .animate__fadeInUp {
+        animation-name: fadeInUp;
+    }
+
+    @@keyframes fadeInUp {
+        0%
+
+    {
+        transform: translate3d(0, 40px, 0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+
     }
 </style>
