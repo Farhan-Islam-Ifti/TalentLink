@@ -2,161 +2,193 @@
 
 @{
     ViewData["Title"] = "Register";
-    Layout = "_Layout"; // Changed to use the main layout
+    Layout = "_Layout";
 }
 
-<div class="row justify-content-center mt-5">
-    <div class="col-md-8">
-        <div class="card shadow">
-            <div class="card-header bg-success text-white text-center">
-                <h3><i class="fas fa-user-plus"></i> Join TalentLink</h3>
+<div class="register-page py-5" style="background: linear-gradient(180deg, #f6f8ff 0%, #fafcff 100%);">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+
+            <!-- Lottie Animation Column -->
+            <div class="col-lg-5 d-none d-lg-block text-center mb-4 mb-lg-0">
+                <!-- Lottie Player -->
+                <lottie-player id="registerLottie"
+                               src="https://assets6.lottiefiles.com/packages/lf20_3rwasyjy.json"
+                               background="transparent"
+                               speed="1"
+                               style="width:100%; height:400px;"
+                               loop
+                               autoplay>
+                </lottie-player>
             </div>
-            <div class="card-body">
-                @if (TempData["SuccessMessage"] != null)
-                {
-                    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
-                }
 
-                <form asp-action="Register" method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <!-- Form Column -->
+            <div class="col-lg-7">
+                <div class="card shadow rounded-4 p-4">
+                    <div class="card-header text-white text-center rounded-top-4" style="background: linear-gradient(135deg,#667eea,#764ba2);">
+                        <h3><i class="fas fa-user-plus me-2"></i> Join TalentLink</h3>
+                        <p class="mb-0 small">Create your account to start your career journey</p>
+                    </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group mb-3">
-                                <label asp-for="FirstName" class="form-label">First Name</label>
-                                <input asp-for="FirstName" class="form-control" />
-                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                    <div class="card-body">
+                        @if (TempData["SuccessMessage"] != null)
+                        {
+                            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+                        }
+
+                        <form asp-action="Register" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label asp-for="FirstName" class="form-label">First Name</label>
+                                        <input asp-for="FirstName" class="form-control form-control-lg" />
+                                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label asp-for="LastName" class="form-label">Last Name</label>
+                                        <input asp-for="LastName" class="form-control form-control-lg" />
+                                        <span asp-validation-for="LastName" class="text-danger"></span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
+
                             <div class="form-group mb-3">
-                                <label asp-for="LastName" class="form-label">Last Name</label>
-                                <input asp-for="LastName" class="form-control" />
-                                <span asp-validation-for="LastName" class="text-danger"></span>
+                                <label asp-for="Email" class="form-label">Email</label>
+                                <input asp-for="Email" class="form-control form-control-lg" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="form-group mb-3">
-                        <label asp-for="Email" class="form-label">Email</label>
-                        <input asp-for="Email" class="form-control" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
-                        <input asp-for="PhoneNumber" class="form-control" />
-                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label asp-for="Password" class="form-label">Password</label>
-                                <input asp-for="Password" type="password" class="form-control" />
-                                <span asp-validation-for="Password" class="text-danger"></span>
+                                <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+                                <input asp-for="PhoneNumber" class="form-control form-control-lg" />
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                             </div>
-                        </div>
-                        <div class="col-md-6">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Password" class="form-label">Password</label>
+                                        <input asp-for="Password" type="password" class="form-control form-control-lg" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
+                                        <input asp-for="ConfirmPassword" type="password" class="form-control form-control-lg" />
+                                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="form-group mb-3">
-                                <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
-                                <input asp-for="ConfirmPassword" type="password" class="form-control" />
-                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                <label asp-for="Role" class="form-label">User Type</label>
+                                <select asp-for="Role" class="form-select form-select-lg" id="roleSelect">
+                                    <option value="">Select Role</option>
+                                    <option value="Company">Company</option>
+                                    <option value="JobSeeker">Job Seeker</option>
+                                </select>
+                                <span asp-validation-for="Role" class="text-danger"></span>
                             </div>
-                        </div>
+
+                            <!-- Company Fields -->
+                            <div id="companyFields" style="display: none;">
+                                <div class="form-group mb-3">
+                                    <label asp-for="CompanyName" class="form-label">Company Name</label>
+                                    <input asp-for="CompanyName" class="form-control form-control-lg" />
+                                    <span asp-validation-for="CompanyName" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label asp-for="Industry" class="form-label">Industry</label>
+                                    <input asp-for="Industry" class="form-control form-control-lg" />
+                                    <span asp-validation-for="Industry" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label asp-for="Website" class="form-label">Website</label>
+                                    <input asp-for="Website" class="form-control form-control-lg" />
+                                    <span asp-validation-for="Website" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label asp-for="CompanyAddress" class="form-label">Company Address</label>
+                                    <textarea asp-for="CompanyAddress" class="form-control form-control-lg"></textarea>
+                                    <span asp-validation-for="CompanyAddress" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label asp-for="CompanyDescription" class="form-label">Company Description</label>
+                                    <textarea asp-for="CompanyDescription" class="form-control form-control-lg"></textarea>
+                                    <span asp-validation-for="CompanyDescription" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- Job Seeker Fields -->
+                            <div id="jobSeekerFields" style="display: none;">
+                                <div class="form-group mb-3">
+                                    <label asp-for="DateOfBirth" class="form-label">Date of Birth</label>
+                                    <input asp-for="DateOfBirth" type="date" class="form-control form-control-lg" />
+                                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label asp-for="Address" class="form-label">Address</label>
+                                    <textarea asp-for="Address" class="form-control form-control-lg"></textarea>
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label asp-for="Skills" class="form-label">Skills</label>
+                                    <textarea asp-for="Skills" class="form-control form-control-lg" placeholder="Separate skills with commas"></textarea>
+                                    <span asp-validation-for="Skills" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label asp-for="Experience" class="form-label">Experience</label>
+                                    <textarea asp-for="Experience" class="form-control form-control-lg"></textarea>
+                                    <span asp-validation-for="Experience" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label asp-for="Education" class="form-label">Education</label>
+                                    <textarea asp-for="Education" class="form-control form-control-lg"></textarea>
+                                    <span asp-validation-for="Education" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <button type="submit" class="btn w-100 btn-lg" style="background: linear-gradient(135deg,#667eea,#764ba2); color:#fff;">Register</button>
+                            </div>
+
+                            <div class="text-center">
+                                <p>Already have an account? <a href="/Account/Login">Login here</a></p>
+                            </div>
+                        </form>
                     </div>
-
-                    <div class="form-group mb-3">
-                        <label asp-for="Role" class="form-label">User Type</label>
-                        <select asp-for="Role" class="form-control" id="roleSelect">
-                            <option value="">Select Role</option>
-                            <option value="Company">Company</option>
-                            <option value="JobSeeker">Job Seeker</option>
-                        </select>
-                        <span asp-validation-for="Role" class="text-danger"></span>
-                    </div>
-
-                    <!-- Company Fields -->
-                    <div id="companyFields" style="display: none;">
-                        <div class="form-group mb-3">
-                            <label asp-for="CompanyName" class="form-label">Company Name</label>
-                            <input asp-for="CompanyName" class="form-control" />
-                            <span asp-validation-for="CompanyName" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label asp-for="Industry" class="form-label">Industry</label>
-                            <input asp-for="Industry" class="form-control" />
-                            <span asp-validation-for="Industry" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label asp-for="Website" class="form-label">Website</label>
-                            <input asp-for="Website" class="form-control" />
-                            <span asp-validation-for="Website" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label asp-for="CompanyAddress" class="form-label">Company Address</label>
-                            <textarea asp-for="CompanyAddress" class="form-control"></textarea>
-                            <span asp-validation-for="CompanyAddress" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label asp-for="CompanyDescription" class="form-label">Company Description</label>
-                            <textarea asp-for="CompanyDescription" class="form-control"></textarea>
-                            <span asp-validation-for="CompanyDescription" class="text-danger"></span>
-                        </div>
-                    </div>
-
-                    <!-- Job Seeker Fields -->
-                    <div id="jobSeekerFields" style="display: none;">
-                        <div class="form-group mb-3">
-                            <label asp-for="DateOfBirth" class="form-label">Date of Birth</label>
-                            <input asp-for="DateOfBirth" type="date" class="form-control" />
-                            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label asp-for="Address" class="form-label">Address</label>
-                            <textarea asp-for="Address" class="form-control"></textarea>
-                            <span asp-validation-for="Address" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label asp-for="Skills" class="form-label">Skills</label>
-                            <textarea asp-for="Skills" class="form-control" placeholder="Separate skills with commas"></textarea>
-                            <span asp-validation-for="Skills" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label asp-for="Experience" class="form-label">Experience</label>
-                            <textarea asp-for="Experience" class="form-control"></textarea>
-                            <span asp-validation-for="Experience" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label asp-for="Education" class="form-label">Education</label>
-                            <textarea asp-for="Education" class="form-control"></textarea>
-                            <span asp-validation-for="Education" class="text-danger"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <button type="submit" class="btn btn-success w-100">Register</button>
-                    </div>
-
-                    <div class="text-center">
-                        <p>Already have an account? <a href="/Account/Login">Login here</a></p>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+<style>
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        transition: 0.3s ease;
+    }
+</style>
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    <!-- Lottie Script -->
+    <script src="https://unpkg.com/@@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -166,7 +198,6 @@
                 $('#jobSeekerFields').toggle(role === 'JobSeeker');
             });
 
-            // Trigger change on page load to show/hide fields based on initial value
             $('#roleSelect').trigger('change');
         });
     </script>
