@@ -3,7 +3,9 @@
     font-weight: 700;
     font-size: 1.5rem;
 }
-
+.footer {
+    margin-top: auto;
+}
 .dashboard-card {
     transition: transform 0.3s;
     border: none;
