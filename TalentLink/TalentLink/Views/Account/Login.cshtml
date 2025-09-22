@@ -2,8 +2,9 @@
 
 @{
     ViewData["Title"] = "Login";
-    Layout = "_Layout"; // Changed to use the main layout
+    Layout = "_Layout";
 }
+
 @if (TempData["UserId"] != null)
 {
     <script>
@@ -12,37 +13,83 @@
     </script>
 }
 
+<!-- PREMIUM SPLIT LAYOUT (KEEPING YOUR CORE FORM INTACT) -->
+<div class="login-section min-vh-100 d-flex align-items-center position-relative overflow-hidden">
 
-<div class="row justify-content-center mt-5">
-    <div class="col-md-6">
-        <div class="card shadow">
-            <div class="card-header bg-primary text-white text-center">
-                <h3><i class="fas fa-sign-in-alt"></i> Login to TalentLink</h3>
-            </div>
-            <div class="card-body">
-                <form asp-action="Login" method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <!-- subtle animated gradient background -->
+    <div class="bg-animated"></div>
 
-                    <div class="form-group mb-3">
-                        <label asp-for="Email" class="form-label">Email</label>
-                        <input asp-for="Email" class="form-control" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
+    <!-- soft floating blobs for depth -->
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10">
+                <div class="card premium-card shadow-lg overflow-hidden rounded-4 d-flex flex-row flex-column-lg" data-aos="fade-up">
+
+                    <!-- LEFT: branding / lottie — visible on md+ -->
+                    <div class="col-lg-6 left-panel d-none d-lg-flex flex-column justify-content-center align-items-center text-white p-5">
+                        <div class="branding">
+                            <div class="brand-badge mb-3">
+                                <i class="fas fa-briefcase fa-2x"></i>
+                            </div>
+                            <h2 class="fw-bold mb-2">Welcome Back</h2>
+                            <p class="lead mb-4 text-white-75">Sign in to TalentLink to discover curated jobs and grow your career.</p>
+                        </div>
+
+                        <!-- Relevant Lottie: Job / Career / Search themed animation -->
+                        <!-- I used a job-search oriented JSON (loads from LottieFiles CDN). -->
+                        <div class="lottie-wrap w-100 d-flex justify-content-center">
+                            <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_jcikwtux.json"
+                                           background="transparent"
+                                           speed="1"
+                                           style="width:320px; height:320px;"
+                                           loop
+                                           autoplay>
+                            </lottie-player>
+                        </div>
                     </div>
 
-                    <div class="form-group mb-3">
-                        <label asp-for="Password" class="form-label">Password</label>
-                        <input asp-for="Password" type="password" class="form-control" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
+                    <!-- RIGHT: your login form (unchanged logic) -->
+                    <div class="col-lg-6 p-4 p-lg-5 bg-white">
+                        <div class="text-center mb-4">
+                            <h3 class="fw-bold text-gradient"><i class="fas fa-sign-in-alt me-2"></i> Login</h3>
+                            <p class="text-muted mb-0">Access your account and continue your job search.</p>
+                        </div>
 
-                    <div class="form-group mb-3">
-                        <button type="submit" class="btn btn-primary w-100">Login</button>
-                    </div>
+                        <!-- YOUR CORE FORM (no logic changed) -->
+                        <form asp-action="Login" method="post" class="mt-4">
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-                    <div class="text-center">
-                        <p>Don't have an account? <a href="/Account/Register">Register here</a></p>
+                            <div class="form-group mb-3">
+                                <label asp-for="Email" class="form-label fw-semibold">Email</label>
+                                <input asp-for="Email" class="form-control form-control-lg rounded-3" placeholder="Enter your email" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label asp-for="Password" class="form-label fw-semibold">Password</label>
+                                <input asp-for="Password" type="password" class="form-control form-control-lg rounded-3" placeholder="Enter your password" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <button type="submit" class="btn btn-gradient w-100 py-2 rounded-3 fw-bold shadow">
+                                    <i class="fas fa-unlock me-2"></i> Login
+                                </button>
+                            </div>
+
+                            <div class="text-center">
+                                <p class="mb-0">
+                                    Don’t have an account?
+                                    <a href="/Account/Register" class="text-gradient fw-semibold"> Register here</a>
+                                </p>
+                            </div>
+                        </form>
+                        <!-- END CORE FORM -->
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -51,3 +98,184 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+
+<!-- Lottie player (only one script needed) -->
+<script src="https://unpkg.com/@@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<!-- PAGE STYLES: premium, motion, responsive -->
+<style>
+    :root {
+        --p1: #667eea;
+        --p2: #764ba2;
+        --accent: #ff6ec7;
+    }
+
+    /* animated gradient background */
+    .bg-animated {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(102,126,234,0.20), rgba(118,75,162,0.18));
+        z-index: 0;
+        pointer-events: none;
+        animation: bgShift 14s linear infinite;
+        filter: saturate(1.05);
+    }
+    @@keyframes bgShift {
+        0%
+
+    {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+    }
+
+    /* floating blobs */
+    .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: .25;
+        z-index: 0;
+    }
+
+    .blob-a {
+        width: 420px;
+        height: 420px;
+        background: var(--p1);
+        top: -120px;
+        left: -80px;
+        animation: floatA 10s ease-in-out infinite;
+    }
+
+    .blob-b {
+        width: 320px;
+        height: 320px;
+        background: var(--p2);
+        bottom: -100px;
+        right: -60px;
+        animation: floatB 12s ease-in-out infinite;
+    }
+    @@keyframes floatA {
+        0%,100%
+
+    {
+        transform: translateY(0)
+    }
+
+    50% {
+        transform: translateY(-30px)
+    }
+
+    }
+    @@keyframes floatB {
+        0%,100%
+
+    {
+        transform: translateY(0)
+    }
+
+    50% {
+        transform: translateY(24px)
+    }
+
+    }
+
+    /* premium card */
+    .premium-card {
+        background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.98));
+        border-radius: 18px;
+        overflow: hidden;
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: stretch;
+        box-shadow: 0 30px 60px rgba(40,40,70,0.12);
+    }
+    /* left panel */
+    .left-panel {
+        min-height: 420px;
+        background: linear-gradient(135deg, var(--p1), var(--p2));
+        color: white;
+        text-align: center;
+    }
+
+    .brand-badge {
+        width: 72px;
+        height: 72px;
+        border-radius: 14px;
+        background: rgba(255,255,255,0.08);
+        display: inline-grid;
+        place-items: center;
+        font-size: 24px;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+        margin-bottom: 16px;
+    }
+
+    /* gradients & accents */
+    .text-gradient {
+        background: linear-gradient(90deg,var(--p1),var(--p2));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .btn-gradient {
+        background: linear-gradient(90deg,var(--p1),var(--p2));
+        color: #fff;
+        border: none;
+        transition: transform .22s ease, box-shadow .22s ease;
+        box-shadow: 0 10px 30px rgba(102,126,234,0.18);
+    }
+
+        .btn-gradient:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px rgba(102,126,234,0.22);
+        }
+
+    /* form column styles */
+    .premium-card .bg-white {
+        background: linear-gradient(180deg,#ffffff, #fbfbff);
+    }
+
+    .premium-card .form-control {
+        border-radius: 0.6rem;
+        padding: 1rem;
+        border: 1px solid #efeff6;
+        box-shadow: none;
+    }
+
+    .premium-card .form-label {
+        font-size: .95rem;
+    }
+
+    /* responsive stack on small screens */
+    @@media (max-width: 991.98px) {
+        .premium-card
+
+    {
+        flex-direction: column;
+    }
+
+    .left-panel {
+        display: flex !important;
+        padding: 2.2rem 1.6rem;
+        text-align: center;
+    }
+
+        .left-panel .lottie-wrap {
+            display: none;
+        }
+    /* hide large animation on small screens for clarity */
+    .blob-a, .blob-b {
+        display: none;
+    }
+
+    }
+</style>

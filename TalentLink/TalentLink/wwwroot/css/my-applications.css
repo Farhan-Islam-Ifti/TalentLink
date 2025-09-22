@@ -1,0 +1,34 @@
+﻿/* ===== My Applications & Application Details Styles ===== */
+
+.my-applications-page h2,
+.application-details-page h3 {
+    color: #333;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.soft-card {
+    border-radius: 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+    .soft-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+.bg-gradient {
+    background: linear-gradient(45deg, #6c63ff, #836fff);
+    color: #fff;
+}
+
+.btn-gradient {
+    background: linear-gradient(45deg, #6c63ff, #836fff);
+    border: none;
+    color: #fff;
+    transition: 0.3s;
+}
+
+    .btn-gradient:hover {
+        opacity: 0.9;
+    }

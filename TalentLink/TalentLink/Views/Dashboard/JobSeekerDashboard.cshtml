@@ -1,239 +1,456 @@
 ﻿@model TalentLink.Models.JobSeeker
 @{
     ViewData["Title"] = "Job Seeker Dashboard";
-    // Cast ViewBag.Applications to a strongly typed list
     var applications = ViewBag.Applications as List<JobApplication> ?? new List<JobApplication>();
     var recommendedJobs = ViewBag.RecommendedJobs as List<JobPosting> ?? new List<JobPosting>();
 }
 
-<div class="container mt-4">
-    <!-- Welcome Section -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <div class="card bg-gradient text-black">
-                <div class="card-body">
-                    <h2 class="card-title"><i class="fas fa-user-graduate me-2"></i> Welcome, @Model.User?.FirstName!</h2>
-                    <p class="card-text">Ready to find your next opportunity? Here are some jobs that match your skills.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="dashboard-container">
+    <div class="container mt-4">
 
-    <div class="row">
-        <div class="col-md-4">
-            <!-- Profile Summary -->
-            <div class="card mb-4 shadow-sm">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0"><i class="fas fa-user me-2"></i>Profile Summary</h5>
-                </div>
-                <div class="card-body">
-                    <h6 class="fw-bold">@Model.User?.FirstName @Model.User?.LastName</h6>
-                    <p class="text-muted mb-3">@Model.User?.Email</p>
+        <!-- Welcome Card -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card welcome-card shadow-lg glass-card text-center">
+                    <!-- Animated Background -->
+                    <div class="welcome-bg-animation"></div>
 
-                    @if (!string.IsNullOrEmpty(Model.Skills))
-                    {
-                        <h6 class="fw-bold">Skills:</h6>
-                        <div class="skill-tags">
-                            @foreach (var skill in Model.Skills.Split(',').Take(5))
-                            {
-                                <span class="badge bg-secondary mb-2 me-1">@skill.Trim()</span>
-                            }
-                        </div>
-                    }
+                    <!-- Visible Watermark -->
+                    <div class="welcome-watermark">TalentLink</div>
 
-                </div>
-            </div>
-
-            <!-- Application Stats -->
-            <div class="card shadow-sm">
-                <div class="card-header bg-info text-white">
-                    <h6 class="mb-0"><i class="fas fa-chart-pie me-2"></i>Application Stats</h6>
-                </div>
-                <div class="card-body text-center">
-                    <h3 class="text-primary mb-0">@applications.Count</h3>
-                    <small class="text-muted">Total Applications</small>
+                    <div class="card-body">
+                        <h2 class="animated-fadein-down"><i class="fas fa-user-graduate me-2"></i> Welcome, @Model.User?.FirstName!</h2>
+                        <p class="animated-fadein-up delay-1s">Ready to find your next opportunity? Here are some jobs that match your skills.</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-8">
-            <!-- Recommended Jobs -->
-            <div class="card mb-4 shadow-sm">
-                <div class="card-header bg-success text-white">
-                    <h5 class="mb-0"><i class="fas fa-briefcase me-2"></i>Recommended Jobs For You</h5>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        @if (recommendedJobs.Any())
+        <div class="row">
+
+            <!-- Left Sidebar -->
+            <div class="col-md-4">
+
+                <!-- Profile Summary -->
+                <div class="card profile-summary-card gradient-card mb-4 animated-fadein-left">
+                    <div class="card-header gradient-header">
+                        <h5 class="mb-0"><i class="fas fa-user me-2"></i>Profile Summary</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="fw-bold">@Model.User?.FirstName @Model.User?.LastName</h6>
+                        <p class="text-dark mb-3">@Model.User?.Email</p>
+                        @if (!string.IsNullOrEmpty(Model.Skills))
                         {
-                            foreach (var job in recommendedJobs)
+                            <h6 class="fw-bold text-dark">Skills:</h6>
+                            <div class="skill-tags">
+                                @foreach (var skill in Model.Skills.Split(',').Take(5))
+                                {
+                                    <span class="badge skill-badge">@skill.Trim()</span>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <!-- Application Stats -->
+                <div class="card application-stats-card gradient-card shadow-lg animated-fadein-left delay-1s">
+                    <div class="card-header gradient-header">
+                        <h6 class="mb-0"><i class="fas fa-chart-pie me-2"></i>Application Stats</h6>
+                    </div>
+                    <div class="card-body text-center">
+                        <h3 class="stat-number mb-0">@applications.Count</h3>
+                        <small>Total Applications</small>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Content -->
+            <div class="col-md-8">
+
+                <!-- Recommended Jobs -->
+                <div id="recommendedJobsContainer"></div>
+
+                @section Scripts {
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            fetch('@Url.Action("Recommended", "Recommendation")', { headers: { "X-Requested-With": "XMLHttpRequest" } })
+                                .then(r => r.text())
+                                .then(html => document.getElementById('recommendedJobsContainer').innerHTML = html)
+                                .catch(() => { document.getElementById('recommendedJobsContainer').innerHTML = '<div class="alert alert-warning">Could not load recommendations.</div>'; });
+                        });
+                    </script>
+                }
+
+                <!-- Recent Applications -->
+                <div class="card recent-applications-card gradient-card shadow-lg animated-card delay-1s">
+                    <div class="card-header gradient-header">
+                        <h5 class="mb-0"><i class="fas fa-file-alt me-2"></i>Your Recent Applications</h5>
+                    </div>
+                    <div class="card-body">
+                        @if (applications.Count > 0)
+                        {
+                            foreach (var application in applications.Take(5))
                             {
-                                <div class="col-md-6 mb-3">
-                                    <div class="card h-100 job-card">
-                                        <div class="card-body">
-                                            <h6 class="card-title fw-bold">@job.Title</h6>
-                                            <p class="text-muted mb-2">
-                                                <i class="fas fa-building me-1"></i> @job.Company?.CompanyName
-                                            </p>
-                                            <p class="small text-muted mb-3">
-                                                @(job.Description.Length > 100 ? job.Description.Substring(0, 100) + "..." : job.Description)
-                                            </p>
-                                            <div class="job-details mb-3">
-                                                <small class="text-muted">
-                                                    <i class="fas fa-map-marker-alt me-1"></i> @job.Location<br>
-                                                    @if (job.Salary.HasValue)
-                                                    {
-                                                        <i class="fas fa-money-bill-wave me-1"></i>
-                                                        @job.Salary.Value.ToString("C")
-                                                        <br>
-                                                    }
-                                                    <i class="fas fa-clock me-1"></i> @job.DeadlineDate?.ToString("MMM dd, yyyy")
-                                                </small>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <!-- FIXED: Link to JobPosting details, not JobApplication -->
-                                                <a href="@Url.Action("Details", "JobPostingMvc", new { id = job.Id })"
-                                                   class="btn btn-sm btn-primary">
-                                                    <i class="fas fa-eye me-1"></i>View Job
-                                                </a>
-                                                @{
-                                                    var applicationForJob = applications.FirstOrDefault(a => a.JobPostingId == job.Id);
-                                                }
-                                                @if (applicationForJob != null)
-                                                {
-                                                    <a href="@Url.Action("Details", "JobApplicationMvc", new { id = applicationForJob.Id })"
-                                                       class="badge bg-success text-decoration-none">
-                                                        <i class="fas fa-check me-1"></i>View Application
-                                                    </a>
-                                                }
-                                            </div>
-                                        </div>
+                                <div class="d-flex justify-content-between align-items-center mb-3 p-3 application-card shadow-lg animated-card soft-card">
+                                    <div>
+                                        <strong>@application.JobPosting?.Title</strong>
+                                        <small>
+                                            <i class="fas fa-building me-1"></i>@application.JobPosting?.Company?.CompanyName |
+                                            <i class="fas fa-calendar me-1"></i>@application.AppliedDate.ToString("MMM dd, yyyy")
+                                        </small>
                                     </div>
+                                    <a href="@Url.Action("Details", "JobApplicationMvc", new { id = application.Id })" class="application-badge">
+                                        <i class="fas fa-eye me-1"></i>View Application
+                                    </a>
                                 </div>
                             }
                         }
                         else
                         {
-                            <div class="col-12">
-                                <div class="text-center py-4">
-                                    <i class="fas fa-briefcase fa-3x text-muted mb-3"></i>
-                                    <p class="text-muted mb-0">No recommended jobs available at the moment.</p>
-                                    <a href="@Url.Action("Index", "JobPostingMvc")" class="btn btn-primary mt-2">
-                                        <i class="fas fa-search me-1"></i>Browse All Jobs
-                                    </a>
-                                </div>
+                            <div class="text-center py-4">
+                                <i class="fas fa-file-alt fa-3x mb-3"></i>
+                                <p>You haven't applied to any jobs yet.</p>
+                                <a href="@Url.Action("Index", "JobPostingMvc")" class="modern-btn btn-gradient">
+                                    <i class="fas fa-briefcase me-1"></i>Browse Jobs
+                                </a>
                             </div>
                         }
                     </div>
                 </div>
-            </div>
 
-            <!-- Recent Applications -->
-            <div class="card shadow-sm">
-                <div class="card-header bg-warning text-dark">
-                    <h5 class="mb-0"><i class="fas fa-file-alt me-2"></i>Your Recent Applications</h5>
-                </div>
-                <div class="card-body">
-                    @if (applications.Count > 0)
-                    {
-                        foreach (var application in applications.Take(5))
-                        {
-                            <div class="d-flex justify-content-between align-items-center mb-3 p-3 border rounded">
-                                <div>
-                                    <strong class="d-block">@application.JobPosting?.Title</strong>
-                                    <small class="text-muted">
-                                        <i class="fas fa-building me-1"></i> @application.JobPosting?.Company?.CompanyName |
-                                        <i class="fas fa-calendar me-1"></i> @application.AppliedDate.ToString("MMM dd, yyyy")
-                                    </small>
-                                </div>
-                                <a href="@Url.Action("Details", "JobApplicationMvc", new { id = application.Id })"
-                                   class="badge bg-info text-decoration-none">
-                                    <i class="fas fa-eye me-1"></i>View Application
-                                </a>
-                            </div>
-                        }
-
-                        @if (applications.Count > 5)
-                        {
-                            <div class="text-center mt-3">
-                                <a href="@Url.Action("MyApplications", "JobApplicationMvc")" class="btn btn-outline-primary btn-sm">
-                                    <i class="fas fa-list me-1"></i>View All Applications
-                                </a>
-                            </div>
-                        }
-                    }
-                    else
-                    {
-                        <div class="text-center py-4">
-                            <i class="fas fa-file-alt fa-3x text-muted mb-3"></i>
-                            <p class="text-muted mb-2">You haven't applied to any jobs yet.</p>
-                            <p class="text-muted">Start applying to see them here!</p>
-                            <a href="@Url.Action("Index", "JobPostingMvc")" class="btn btn-primary">
-                                <i class="fas fa-briefcase me-1"></i>Browse Jobs
-                            </a>
-                        </div>
-                    }
-                </div>
             </div>
         </div>
     </div>
 </div>
 
 <style>
-    .bg-gradient {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* ---- Dashboard Background ---- */
+    .dashboard-container {
+        background: linear-gradient(180deg, #f5f6fa 0%, #e9ecef 100%);
+        min-height: 100vh;
+        font-family: 'Poppins', sans-serif;
     }
 
-    .job-card {
-        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        border: none;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    /* ---- Gradient Cards ---- */
+    .gradient-card {
+        border-radius: 15px;
+        transition: all 0.3s ease;
+        background-color: rgba(255, 255, 255, 0.95); /* Soft white */
     }
 
-        .job-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        .gradient-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
         }
 
-    .skill-tags .badge {
+    /* ---- Gradient Headers ---- */
+    .gradient-header {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 15px 15px 0 0;
+        color: white;
+    }
+
+    /* ---- Skill Badge ---- */
+    .skill-badge {
         font-size: 0.75rem;
         padding: 0.35em 0.65em;
         margin-right: 0.25rem;
         margin-bottom: 0.25rem;
+        background: linear-gradient(135deg,#667eea,#764ba2);
+        color: #fff;
+        border-radius: 12px;
+        transition: 0.3s;
     }
 
-    .card {
-        border: none;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-
-    .card-header {
-        border-radius: 10px 10px 0 0 !important;
-        font-weight: 600;
-    }
-
-    .btn-primary {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border: none;
-        border-radius: 6px;
-        font-weight: 500;
-    }
-
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        .skill-badge:hover {
+            transform: scale(1.1);
         }
 
-    .badge {
-        font-size: 0.75rem;
-        padding: 0.5em 0.75em;
+    /* ---- Application Badge ---- */
+    .application-badge {
+        background: linear-gradient(135deg,#42ba96,#3b8d99);
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 8px;
+        transition: 0.3s;
     }
 
-    .btn-sm {
-        padding: 0.25rem 0.5rem;
-        font-size: 0.75rem;
+        .application-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+    /* ---- Buttons ---- */
+    .btn-gradient {
+        background: linear-gradient(135deg,#667eea,#764ba2);
+        color: #fff;
+        border-radius: 12px;
+        font-weight: 500;
+        transition: 0.3s;
+    }
+
+        .btn-gradient:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+        }
+
+    /* ---- Animations ---- */
+    @@keyframes pulseGlow {
+        0% {
+            box-shadow: 0 0 20px #667eea;
+        }
+
+        50% {
+            box-shadow: 0 0 40px #764ba2;
+        }
+
+        100% {
+            box-shadow: 0 0 20px #667eea;
+        }
+    }
+
+    @@keyframes floatCard {
+        0% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+
+        100% {
+            transform: translateY(0px);
+        }
+    }
+
+    @@keyframes lightSweep {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @@keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @@keyframes fadeInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @@keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ---- Welcome Card Animations ---- */
+    .welcome-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+    }
+
+    .welcome-bg-animation {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #667eea, #89f7fe, #a1c4fd, #c2e9fb);
+        background-size: 400% 400%;
+        animation: welcomeGradient 20s ease infinite;
+        z-index: 0;
+        border-radius: 15px;
+        opacity: 0.25;
+    }
+
+    .welcome-card::before,
+    .welcome-card::after {
+        content: '';
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+        border-radius: 50%;
+        animation: floatParticles 15s linear infinite alternate;
+        z-index: 0;
+    }
+
+    .welcome-card::before {
+        top: -50px;
+        left: -50px;
+    }
+
+    .welcome-card::after {
+        bottom: -60px;
+        right: -40px;
+        animation-delay: 7s;
+    }
+
+    .welcome-watermark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 4rem;
+        font-weight: 900;
+        color: rgba(255,255,255,0.15);
+        letter-spacing: 10px;
+        z-index: 0;
+        pointer-events: none;
+        text-transform: uppercase;
+        text-shadow: 0 0 15px rgba(255,255,255,0.1);
+        animation: watermarkPulse 6s ease-in-out infinite alternate;
+    }
+
+    @@keyframes welcomeGradient {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    @@keyframes floatParticles {
+        0% {
+            transform: translateY(0) translateX(0);
+            opacity: 0.3;
+        }
+
+        50% {
+            transform: translateY(-20px) translateX(10px);
+            opacity: 0.6;
+        }
+
+        100% {
+            transform: translateY(0) translateX(0);
+            opacity: 0.3;
+        }
+    }
+
+    @@keyframes watermarkPulse {
+        0% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.15;
+        }
+
+        50% {
+            transform: translate(-50%, -50%) scale(1.05);
+            opacity: 0.25;
+        }
+
+        100% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.15;
+        }
+    }
+
+    /* ---- Animated Classes ---- */
+    .animated-fadein-down {
+        animation: fadeInDown 0.8s ease forwards;
+    }
+
+    .animated-fadein-left {
+        animation: fadeInLeft 0.8s ease forwards;
+    }
+
+    .animated-fadein-up {
+        animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .animated-card {
+        animation: slideUp 0.6s ease forwards;
+    }
+
+    .delay-1s {
+        animation-delay: 0.2s;
+    }
+
+    .delay-2s {
+        animation-delay: 0.4s;
+    }
+
+    .soft-card {
+        background-color: rgba(255,255,255,0.95); /* soft white for cards */
+        position: relative;
+        overflow: hidden;
+    }
+
+        .soft-card::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background: linear-gradient(120deg, #667eea, #764ba2, #89f7fe, #a1c4fd);
+            background-size: 400% 400%;
+            animation: cardGradient 15s ease infinite;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .soft-card .card-body {
+            position: relative;
+            z-index: 1;
+        }
+
+    @@keyframes cardGradient {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
     }
 </style>

@@ -50,6 +50,7 @@ builder.Services.AddRazorPages();
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("Cloudinary"));
 builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 
+builder.Services.AddScoped<IJobRecommendationService, JobRecommendationService>();
 // Add session services
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>

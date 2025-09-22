@@ -4,83 +4,81 @@
     ViewData["Title"] = "Edit Job Posting";
 }
 
-<div class="container mt-4">
+<div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white">
+            <div class="card shadow-lg animate__animated animate__fadeInUp">
+                <div class="card-header text-white apply-card-header">
                     <h3 class="card-title mb-0">
                         <i class="fas fa-edit me-2"></i>Edit Job Posting
                     </h3>
                 </div>
-                <div class="card-body">
-                    <form asp-action="Edit" method="post">
+                <div class="card-body apply-card-body">
+                    <form asp-action="Edit" method="post" class="needs-validation" novalidate>
                         @Html.AntiForgeryToken()
                         <input type="hidden" asp-for="Id" />
 
-                        <div class="row">
-                            <div class="col-md-12 mb-3">
-                                <label asp-for="Title" class="form-label">Job Title *</label>
-                                <input asp-for="Title" class="form-control">
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label asp-for="Title" class="form-label fw-bold">Job Title *</label>
+                                <input asp-for="Title" class="form-control modern-input">
                                 <span asp-validation-for="Title" class="text-danger"></span>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label asp-for="JobType" class="form-label">Job Type *</label>
-                                <select asp-for="JobType" class="form-select" asp-items="Html.GetEnumSelectList<JobType>()">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label asp-for="JobType" class="form-label fw-bold">Job Type *</label>
+                                <select asp-for="JobType" class="form-select modern-input" asp-items="Html.GetEnumSelectList<JobType>()">
                                     <option value="">Select Job Type</option>
                                 </select>
                                 <span asp-validation-for="JobType" class="text-danger"></span>
                             </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label asp-for="Location" class="form-label">Location *</label>
-                                <input asp-for="Location" class="form-control">
+                            <div class="col-md-6">
+                                <label asp-for="Location" class="form-label fw-bold">Location *</label>
+                                <input asp-for="Location" class="form-control modern-input">
                                 <span asp-validation-for="Location" class="text-danger"></span>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label asp-for="Salary" class="form-label">Salary (optional)</label>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label asp-for="Salary" class="form-label fw-bold">Salary (optional)</label>
                                 <div class="input-group">
                                     <span class="input-group-text">$</span>
-                                    <input asp-for="Salary" type="number" class="form-control" min="0" step="1000">
+                                    <input asp-for="Salary" type="number" class="form-control modern-input" min="0" step="1000">
                                 </div>
                                 <span asp-validation-for="Salary" class="text-danger"></span>
                             </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label asp-for="DeadlineDate" class="form-label">Application Deadline *</label>
-                                <input asp-for="DeadlineDate" type="date" class="form-control">
+                            <div class="col-md-6">
+                                <label asp-for="DeadlineDate" class="form-label fw-bold">Application Deadline *</label>
+                                <input asp-for="DeadlineDate" type="date" class="form-control modern-input" id="DeadlineDate">
                                 <span asp-validation-for="DeadlineDate" class="text-danger"></span>
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="Description" class="form-label">Job Description *</label>
-                            <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                            <label asp-for="Description" class="form-label fw-bold">Job Description *</label>
+                            <textarea asp-for="Description" class="form-control modern-input" rows="5"></textarea>
                             <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="Requirements" class="form-label">Requirements *</label>
-                            <textarea asp-for="Requirements" class="form-control" rows="5"></textarea>
+                            <label asp-for="Requirements" class="form-label fw-bold">Requirements *</label>
+                            <textarea asp-for="Requirements" class="form-control modern-input" rows="5"></textarea>
                             <span asp-validation-for="Requirements" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3 form-check">
-                            <input asp-for="IsActive" class="form-check-input" />
-                            <label asp-for="IsActive" class="form-check-label">Active Job Posting</label>
+                            <input asp-for="IsActive" class="form-check-input">
+                            <label asp-for="IsActive" class="form-check-label fw-bold">Active Job Posting</label>
                         </div>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a href="@Url.Action("MyPostings")" class="btn btn-outline-secondary me-md-2">
+                            <a href="@Url.Action("MyPostings")" class="btn btn-outline-secondary btn-animated me-md-2">
                                 <i class="fas fa-arrow-left me-1"></i>Cancel
                             </a>
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-gradient btn-animated">
                                 <i class="fas fa-save me-1"></i>Update Job
                             </button>
                         </div>
@@ -101,3 +99,95 @@
         });
     </script>
 }
+
+<style>
+    /* Card Styling */
+    .apply-card-header {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        padding: 20px;
+        font-weight: 600;
+        font-size: 1.25rem;
+        border-radius: 12px 12px 0 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .apply-card-body {
+        padding: 30px;
+        background: #f9f9f9;
+        border-radius: 0 0 12px 12px;
+    }
+
+    /* Modern Inputs */
+    .modern-input {
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .modern-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 8px rgba(102,126,234,0.4);
+            transform: scale(1.01);
+        }
+
+    /* Buttons */
+    .btn-gradient {
+        background: linear-gradient(135deg, #42ba96, #3b8d99);
+        color: #fff;
+        font-weight: 600;
+        border-radius: 8px;
+        padding: 10px 20px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-gradient:hover {
+            background: linear-gradient(135deg, #3aa986, #357f8a);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+
+    .btn-animated {
+        position: relative;
+        overflow: hidden;
+    }
+
+        .btn-animated::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(255,255,255,0.15);
+            transition: width 0.4s ease;
+        }
+
+        .btn-animated:hover::after {
+            width: 100%;
+        }
+
+    /* Animations */
+    .animate__animated {
+        animation-duration: 0.8s;
+        animation-fill-mode: both;
+    }
+
+    .animate__fadeInUp {
+        animation-name: fadeInUp;
+    }
+
+    @@keyframes fadeInUp {
+        0%
+
+    {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+</style>
