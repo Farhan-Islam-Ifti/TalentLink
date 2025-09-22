@@ -1,0 +1,59 @@
+﻿@model AvailableJobsViewModel
+
+<div class="row">
+    @foreach (var job in Model.Jobs)
+    {
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card job-card-modern gradient-card shadow-lg animated-card soft-card h-100">
+                <div class="card-body d-flex flex-column">
+
+                    <!-- Job Title -->
+                    <h5 class="fw-bold mb-2">@job.Title</h5>
+
+                    <!-- Company -->
+                    <p class="text-muted mb-2">
+                        <i class="fas fa-building me-1"></i> @job.Company?.CompanyName
+                    </p>
+
+                    <!-- Job Type Badge -->
+                @functions { string JobTypeClass(JobType jt) => jt switch { JobType.FullTime => "bg-success", JobType.PartTime => "bg-primary", JobType.Internship => "bg-warning text-dark", _ => "bg-secondary" }; }
+                    <span class="badge @JobTypeClass(job.JobType) mb-3 px-3 py-2">
+                        <i class="bi bi-briefcase-fill me-1"></i> @job.JobType
+                    </span>
+
+                    <!-- Description -->
+                    <p class="small flex-grow-1">
+                        @(job.Description.Length > 100 ? job.Description.Substring(0, 100) + "..." : job.Description)
+                    </p>
+
+                    <!-- Job Info Row -->
+                    <div class="job-meta mt-3">
+                        <div class="d-flex justify-content-between small text-muted">
+                            <span><i class="fas fa-map-marker-alt me-1"></i>@job.Location</span>
+                            <span><i class="fas fa-clock me-1"></i>@job.DeadlineDate?.ToString("MMM dd, yyyy")</span>
+                        </div>
+                        @if (job.Salary.HasValue)
+                        {
+                            <div class="mt-2 text-success fw-semibold">
+                                <i class="fas fa-money-bill-wave me-1"></i>
+                                @job.Salary.Value.ToString("C")
+                            </div>
+                        }
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top">
+                        <a href="@Url.Action("Details", "JobPostingMvc", new { id = job.Id })"
+                           class="modern-btn btn-gradient btn-animated btn-sm">
+                            <i class="fas fa-eye me-1"></i> View
+                        </a>
+                        <a href="@Url.Action("Apply", "JobApplicationMvc", new { jobPostingId = job.Id })"
+                           class="modern-btn btn-outline-gradient btn-sm">
+                            <i class="fas fa-paper-plane me-1"></i> Apply
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

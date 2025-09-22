@@ -55,7 +55,8 @@ namespace TalentLink.Controllers
                     .OrderByDescending(ja => ja.AppliedDate)
                     .ToListAsync();
 
-                return View(applications);
+                return View("~/Views/JobSeeker/MyApplications.cshtml", applications);
+
             }
             catch (Exception ex)
             {
@@ -172,7 +173,8 @@ namespace TalentLink.Controllers
                 }
 
                 ViewBag.UserRole = userRole;
-                return View(application);
+                return View("~/Views/JobSeeker/ApplicationDetails.cshtml", application);
+
             }
             catch (Exception ex)
             {

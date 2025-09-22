@@ -1,0 +1,56 @@
+﻿@model IEnumerable<TalentLink.Models.JobApplication>
+
+@{
+    ViewData["Title"] = "My Applications";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/my-applications.css" asp-append-version="true" />
+}
+
+<div class="container mt-5 my-applications-page">
+    <h2 class="fw-bold mb-4 animate__animated animate__fadeInDown">
+        <i class="fas fa-file-alt me-2"></i> My Applications
+    </h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info text-center animate__animated animate__fadeIn">
+            <i class="fas fa-info-circle me-2"></i> You haven’t applied for any jobs yet.
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var app in Model)
+            {
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card shadow-lg h-100 animate__animated animate__fadeInUp soft-card">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="fw-bold">@app.JobPosting.Title</h5>
+                            <p class="text-muted mb-2"><i class="fas fa-building me-1"></i>@app.JobPosting.Company?.CompanyName</p>
+
+                            <span class="badge bg-gradient mb-2">
+                                @app.Status
+                            </span>
+
+                            <p class="small flex-grow-1">
+                                Applied: @app.AppliedDate.ToString("MMM dd, yyyy")
+                            </p>
+
+                            <div class="mt-auto d-flex justify-content-between border-top pt-3">
+                                <a asp-action="Details" asp-controller="JobApplicationMvc" asp-route-id="@app.Id"
+                                   class="btn btn-sm btn-gradient">
+                                    <i class="fas fa-eye me-1"></i> Details
+                                </a>
+                                <a asp-action="Details" asp-controller="JobPostingMvc" asp-route-id="@app.JobPostingId"
+                                   class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-briefcase me-1"></i> Job Info
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

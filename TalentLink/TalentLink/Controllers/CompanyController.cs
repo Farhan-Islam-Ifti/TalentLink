@@ -97,15 +97,15 @@ namespace TalentLink.Controllers
             if (company == null) return NotFound("Company profile not found");
 
             // Update only changed values
-            user.FirstName = model.FirstName ?? user.FirstName;
-            user.LastName = model.LastName ?? user.LastName;
-            user.PhoneNumber = model.PhoneNumber ?? user.PhoneNumber;
+            user.FirstName = string.IsNullOrWhiteSpace(model.FirstName) ? user.FirstName : model.FirstName;
+            user.LastName = string.IsNullOrWhiteSpace(model.LastName) ? user.LastName : model.LastName;
+            user.PhoneNumber = string.IsNullOrWhiteSpace(model.PhoneNumber) ? user.PhoneNumber : model.PhoneNumber;
 
-            company.CompanyName = model.CompanyName ?? company.CompanyName;
-            company.Industry = model.Industry ?? company.Industry;
-            company.Website = model.Website ?? company.Website;
-            company.Address = model.Address ?? company.Address;
-            company.Description = model.Description ?? company.Description;
+            company.CompanyName = string.IsNullOrWhiteSpace(model.CompanyName) ? company.CompanyName : model.CompanyName;
+            company.Industry = string.IsNullOrWhiteSpace(model.Industry) ? company.Industry : model.Industry;
+            company.Website = string.IsNullOrWhiteSpace(model.Website) ? company.Website : model.Website;
+            company.Address = string.IsNullOrWhiteSpace(model.Address) ? company.Address : model.Address;
+            company.Description = string.IsNullOrWhiteSpace(model.Description) ? company.Description : model.Description;
 
             // Upload Image if new file provided
             if (model.ImageFile != null)
