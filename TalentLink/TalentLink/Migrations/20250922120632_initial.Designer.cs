@@ -12,7 +12,7 @@ using TalentLink.Data;
 namespace TalentLink.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250914150545_initial")]
+    [Migration("20250922120632_initial")]
     partial class initial
     {
         /// <inheritdoc />

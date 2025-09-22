@@ -46,7 +46,14 @@
                     {
                         <li><a class="sidebar-link" asp-controller="JobSeeker" asp-action="Profile" asp-route-userId="@Context.Session.GetString("UserId")"><i class="fas fa-user-circle me-2"></i> My Profile</a></li>
                         <li><a class="sidebar-link" asp-controller="Dashboard" asp-action="JobSeekerDashboard"><i class="bi bi-person-workspace me-2"></i> Dashboard</a></li>
-                        <li><a class="sidebar-link" asp-controller="JobSeeker" asp-action="Jobs"><i class="fas fa-search me-2"></i> Available Jobs</a></li>
+                        <li>
+                            <a class="sidebar-link"
+                               asp-controller="JobSeeker"
+                               asp-action="AvailableJobs">
+                                <i class="bi bi-briefcase-fill me-2"></i>
+                                <span>Available Jobs</span>
+                            </a>
+                        </li>
                         <li><a class="sidebar-link" asp-controller="JobSeeker" asp-action="Applications"><i class="fas fa-file-alt me-2"></i> My Applications</a></li>
                     }
                 </ul>
