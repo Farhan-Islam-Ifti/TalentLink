@@ -100,15 +100,14 @@ namespace TalentLink.Controllers
             if (jsProfile == null) return NotFound("Job seeker profile not found");
 
             // Update only changed values
-            user.FirstName = model.FirstName ?? user.FirstName;
-            user.LastName = model.LastName ?? user.LastName;
-            user.PhoneNumber = model.PhoneNumber ?? user.PhoneNumber;
+            user.FirstName = string.IsNullOrWhiteSpace(model.FirstName) ? user.FirstName : model.FirstName;
+            user.LastName = string.IsNullOrWhiteSpace(model.LastName) ? user.LastName : model.LastName;
+            user.PhoneNumber = string.IsNullOrWhiteSpace(model.PhoneNumber) ? user.PhoneNumber : model.PhoneNumber;
 
-            jsProfile.Address = model.Address ?? jsProfile.Address;
-            jsProfile.DateOfBirth = model.DateOfBirth ?? jsProfile.DateOfBirth;
-            jsProfile.Skills = model.Skills ?? jsProfile.Skills;
-            jsProfile.Experience = model.Experience ?? jsProfile.Experience;
-            jsProfile.Education = model.Education ?? jsProfile.Education;
+            jsProfile.Address = string.IsNullOrWhiteSpace(model.Address) ? jsProfile.Address : model.Address;
+            jsProfile.Skills = string.IsNullOrWhiteSpace(model.Skills) ? jsProfile.Skills : model.Skills;
+            jsProfile.Experience = string.IsNullOrWhiteSpace(model.Experience) ? jsProfile.Experience : model.Experience;
+            jsProfile.Education = string.IsNullOrWhiteSpace(model.Education) ? jsProfile.Education : model.Education;
 
             // Upload Image if new file provided
             if (model.ImageFile != null)
