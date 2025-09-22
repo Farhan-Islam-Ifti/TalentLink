@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TalentLink")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+07690959a5f2c9c7bddec113cfeb62497f66b336")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a52c8727a8e02ed5b8e973b7bb5e6bb3d743cff7")]
 [assembly: System.Reflection.AssemblyProductAttribute("TalentLink")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TalentLink")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

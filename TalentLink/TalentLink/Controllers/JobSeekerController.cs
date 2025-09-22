@@ -23,6 +23,10 @@ namespace TalentLink.Controllers
             _cloudinaryService = cloudinaryService;
         }
 
+        public IActionResult Applications() =>
+     RedirectToAction("MyApplications", "JobApplicationMvc");
+
+
         // GET: /JobSeeker/Profile/{userId}
         [HttpGet]
         public async Task<IActionResult> Profile(string userId)
@@ -129,5 +133,47 @@ namespace TalentLink.Controllers
 
             return RedirectToAction("Profile", new { userId = user.Id });
         }
+
+        // GET: /JobSeeker/AvailableJobs
+        [HttpGet]
+        public async Task<IActionResult> AvailableJobs(string? search, string? location, JobType? jobType, int page = 1, int pageSize = 9)
+        {
+            var query = _context.JobPostings
+                .Include(jp => jp.Company)
+                .Where(jp => jp.IsActive);
+
+            if (!string.IsNullOrWhiteSpace(search))
+                query = query.Where(jp => jp.Title.Contains(search) || jp.Description.Contains(search) || jp.Requirements.Contains(search));
+
+            if (!string.IsNullOrWhiteSpace(location))
+                query = query.Where(jp => jp.Location.Contains(location));
+
+            if (jobType.HasValue)
+                query = query.Where(jp => jp.JobType == jobType);
+
+            var totalCount = await query.CountAsync();
+            var jobs = await query
+                .OrderByDescending(jp => jp.PostedDate)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            var model = new AvailableJobsViewModel
+            {
+                Jobs = jobs,
+                Search = search,
+                Location = location,
+                JobType = jobType,
+                CurrentPage = page,
+                PageSize = pageSize,
+                TotalCount = totalCount
+            };
+
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                return PartialView("_JobsList", model);
+
+            return View(model);
+        }
+
     }
 }

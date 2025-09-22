@@ -91,6 +91,13 @@
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+    .job-card-modern .badge {
+        display: inline-block;
+        width: auto;
+        max-width: fit-content; /* modern browsers */
+        white-space: nowrap; /* prevents line-breaks inside badge */
+    }
+
 
     .job-card-modern:hover {
         transform: translateY(-8px) scale(1.02);

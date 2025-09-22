@@ -100,12 +100,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iUG9zdGluZ012Y1xVcGRhdGVTdGF0dXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/SD Only/TalentLink/TalentLink/TalentLink/Views/JobSeeker/ApplicationDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iU2Vla2VyXEFwcGxpY2F0aW9uRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/SD Only/TalentLink/TalentLink/TalentLink/Views/JobSeeker/AvailableJobs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iU2Vla2VyXEF2YWlsYWJsZUpvYnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/SD Only/TalentLink/TalentLink/TalentLink/Views/JobSeeker/EditProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iU2Vla2VyXEVkaXRQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/SD Only/TalentLink/TalentLink/TalentLink/Views/JobSeeker/MyApplications.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iU2Vla2VyXE15QXBwbGljYXRpb25zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/SD Only/TalentLink/TalentLink/TalentLink/Views/JobSeeker/Profile.cshtml]
